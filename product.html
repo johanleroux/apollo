@@ -9,6 +9,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap-slider/slider.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
@@ -24,7 +25,7 @@
 <body class="sidebar-mini skin-black-light fixed">
   <div class="wrapper">
     <header class="main-header">
-      <a href="index.html" class="logo">
+      <a href="http://ifmproject.app" class="logo">
         <span class="logo-mini"><b>P</b></span>
         <span class="logo-lg"><b>Paradox</b></span>
       </a>
@@ -66,7 +67,7 @@
                   <ul class="menu">
                     <li>
                       <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        <i class="fa fa-users text-red"></i> 5 products have low stock
                       </a>
                     </li>
                   </ul>
@@ -82,7 +83,7 @@
               <ul class="dropdown-menu" style="width: 50%">
                 <li>
                   <a href="#"><i class="fa fa-gears"></i>Settings</a>
-                  <a href="#"><i class="fa fa-lock"></i>Sign Out</a>
+                  <a href="http://ifmproject.app/login"><i class="fa fa-lock"></i>Sign Out</a>
                 </li>
               </ul>
             </li>
@@ -103,10 +104,8 @@
           </div>
         </div>
         <ul class="sidebar-menu">
-          <li><a href="./product.html"><i class="fa fa-link"></i> <span>Product</span></a></li>
-          <li><a href="#"><i class="fa fa-link"></i> <span>Forecasts</span></a></li>
-          <li><a href="#"><i class="fa fa-link"></i> <span>Orders</span></a></li>
-          <li><a href="#"><i class="fa fa-link"></i> <span>Suppliers</span></a></li>
+          <li><a href="./products"><i class="fa fa-link"></i> <span>Product</span></a></li>
+          <li><a href="./order"><i class="fa fa-link"></i> <span>Orders</span></a></li>
         </ul>
       </section>
     </aside>
@@ -114,173 +113,105 @@
     <div class="content-wrapper">
       <section class="content">
           <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-cart-outline"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Stock Levels</span>
+          <span class="info-box-number">43<small>%</small></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-yellow"><i class="fa fa-money"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Stock Value</span>
+          <span class="info-box-number">R41,410.00</span>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix visible-sm-block"></div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Est. Margin</span>
+          <span class="info-box-number">R7,600.00</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-exclamation"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Order Urgency</span>
+          <span class="info-box-number">High</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-md-12">
       <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Manage Product</h3>
-          <div class="box-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-              <div class="input-group-btn">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        <div class="box-header with-border">
+          <h3 class="box-title">Yearly Recap Report</h3>
+        </div>
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="text-center"><strong>Stock Levels: 1 Feb, 2016 - 31 Jan, 2017</strong></p>
+              <div class="chart">
+                <canvas id="salesChart" style="height: 180px;"></canvas>
               </div>
             </div>
           </div>
         </div>
-        <!-- TODO Add Popup for both set methods -->
-        <div class="box-body table-responsive no-padding">
-          <table class="table table-hover table-striped">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Description</th>
-                <th>Stock (%)</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>123</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-red">20%</span></td>
-                <td><span class="badge bg-red">Low</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>234</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-blue">65%</span></td>
-                <td><span class="badge bg-blue">Medium</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>564</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-orange">50%</span></td>
-                <td><span class="badge bg-orange">Low</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>345</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-red">23%</span></td>
-                <td><span class="badge bg-red">Low</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>513</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-green">88%</span></td>
-                <td><span class="badge bg-green">High</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>584</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-blue">60%</span></td>
-                <td><span class="badge bg-blue">Medium</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>786</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-green">90%</span></td>
-                <td><span class="badge bg-green">High</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>945</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-green">124%</span></td>
-                <td><span class="badge bg-green">High</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>432</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-orange">53%</span></td>
-                <td><span class="badge bg-orange">Low</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>634</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td><span class="badge bg-blue">77%</span></td>
-                <td><span class="badge bg-blue">Medium</span></td>
-                <td style="width: 180px">
-                  <div class="btn-group">
-                    <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                    <button type="button" class="btn btn-xs btn-flat btn-warning">Set Stock</button>
-                    <button type="button" class="btn btn-xs btn-flat btn-danger">Set Warning</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="box-footer">
+          <div class="row">
+            <div class="col-sm-4 col-xs-6">
+              <div class="description-block border-right">
+                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                <h5 class="description-header">R13,210,532.35</h5>
+                <span class="description-text">TOTAL REVENUE</span>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+              <div class="description-block border-right">
+                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                <h5 class="description-header">R8,390,456.90</h5>
+                <span class="description-text">TOTAL COST</span>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-6">
+              <div class="description-block border-right">
+                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                <h5 class="description-header">R4,820,075.45</h5>
+                <span class="description-text">TOTAL PROFIT</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="box-footer clearfix">
-          <ul class="pagination pagination-md no-margin pull-right">
-            <li><a href="#">«</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">»</a></li>
-          </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Forecast</h3>
+        </div>
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="text-center"><strong>Stock Levels: 1 Nov, 2016 - 31 May, 2017</strong></p>
+              <div class="chart">
+                <canvas id="forecastChart" style="height: 180px;"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -298,6 +229,7 @@
   <script src="plugins/fastclick/fastclick.min.js"></script>
   <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
   <script src="plugins/chartjs/Chart.min.js"></script>
+  <script src="../../plugins/bootstrap-slider/bootstrap-slider.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
   <script src="dist/js/app.min.js"></script>
   <script src="js/demo.js"></script>
