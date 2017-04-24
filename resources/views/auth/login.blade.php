@@ -72,7 +72,7 @@
         </div>
       </div>
       {{ html()->form()->close() }}
-      <a href="#">I forgot my password</a><br>
+      <a href="{{ url('forget_password') }}">I forgot my password</a><br>
     </div>
     <!-- /.login-box-body -->
   </div>

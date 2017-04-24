@@ -56,8 +56,9 @@
           </a>
           <ul class="dropdown-menu" style="width: 50%">
             <li>
-              <a href="#"><i class="fa fa-gears"></i>Settings</a>
-              <a href="{{ route('login') }}"><i class="fa fa-lock"></i>Sign Out</a>
+              <a href="{{ url('/modify_password') }}"><i class="fa fa-gears"></i>Settings</a>
+              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-lock"></i>Sign Out</a>
+              {{ html()->form('POST', route('logout'))->id('logout-form')->open() }}{{ html()->form()->close() }}
             </li>
           </ul>
         </li>

@@ -10,4 +10,12 @@ Route::get('/dashboard', function() {
   return view('dashboard');
 });
 
+Route::get('/modify_password', function() {
+  return view('auth.modify_password');
+});
+
+Route::get('/forget_password', function() {
+  return view('auth.forget_password');
+});
+
 Route::resource('products', 'ProductsController');
