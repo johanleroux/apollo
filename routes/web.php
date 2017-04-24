@@ -1,9 +1,11 @@
 <?php
 
 Route::get('/', function () {
-    return redirect()->route('login');
+  return redirect()->route('login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/dashboard', function() {
+  return view('dashboard');
+});
