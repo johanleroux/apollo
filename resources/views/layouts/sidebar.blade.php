@@ -10,8 +10,9 @@
       </div>
     </div>
     <ul class="sidebar-menu">
-      <li><a href="{{ action('ProductsController@index') }}"><i class="fa fa-link"></i> <span>Product</span></a></li>
-      <li><a href="#"><i class="fa fa-link"></i> <span>Orders</span></a></li>
+      <li><a href="{{ action('CustomersController@index') }}"><i class="fa fa-link"></i> <span>Customers</span></a></li>
+      <li><a href="{{ action('SuppliersController@index') }}"><i class="fa fa-link"></i> <span>Suppliers</span></a></li>
+      <li><a href="{{ action('ProductsController@index') }}"><i class="fa fa-link"></i> <span>Products</span></a></li>
     </ul>
   </section>
 </aside>
