@@ -18,4 +18,6 @@ Route::get('/forget_password', function() {
   return view('auth.forget_password');
 });
 
+Route::resource('customers', 'CustomersController');
 Route::resource('products', 'ProductsController');
+Route::resource('suppliers', 'SuppliersController');
