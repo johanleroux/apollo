@@ -12,10 +12,11 @@
             <div class="box-header">
               <h3 class="box-title">Manage Product</h3>
               <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
+                <div class="input-group input-group-sm" style="width: 250px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
                   <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <a href="{{ action('ProductsController@create') }}" class="btn btn-info" style="margin-left:15px;">Create</a>
                   </div>
                 </div>
               </div>
@@ -25,374 +26,38 @@
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th>SKU</th>
                     <th>Description</th>
                     <th>Stock (%)</th>
-                    <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>688</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">67%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>361</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">7%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>708</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">10%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>205</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-orange">41%</span></td>
-                    <td><span class="badge bg-orange">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>159</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">52%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>138</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">21%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>989</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">54%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>772</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">68%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>413</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-orange">37%</span></td>
-                    <td><span class="badge bg-orange">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>979</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-green">79%</span></td>
-                    <td><span class="badge bg-green">High</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>545</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">59%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>778</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">66%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>866</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">2%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>321</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">54%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>988</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-orange">37%</span></td>
-                    <td><span class="badge bg-orange">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>175</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">16%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>515</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-orange">39%</span></td>
-                    <td><span class="badge bg-orange">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>347</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">9%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>870</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">22%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>319</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-green">97%</span></td>
-                    <td><span class="badge bg-green">High</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>284</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">53%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>688</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">55%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>623</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-green">92%</span></td>
-                    <td><span class="badge bg-green">High</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>807</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-blue">60%</span></td>
-                    <td><span class="badge bg-blue">Medium</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>169</td>
-                    <td><a href="./product.html">Lorem ipsum dolor sit amet.</a></td>
-                    <td><span class="badge bg-red">6%</span></td>
-                    <td><span class="badge bg-red">Low</span></td>
-                    <td style="width: 220px">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
-                        <a href="./product_edit.html" class="btn btn-xs btn-flat btn-info">Edit</a>
-                        <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
-                        <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
-                      </div>
-                    </td>
-                  </tr>
+                  @forelse ($products as $product)
+                    <tr>
+                      <td>{{ $product->id }}</td>
+                      <td><a href="{{ action('ProductsController@show', $product) }}">{{ $product->sku }}</a></td>
+                      <td>{{ $product->description }}</td>
+                      <td><span class="badge bg-blue">@php echo rand(1,100) . '%' @endphp</span></td>
+                      <td style="width: 220px">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#sellModal">Sell</button>
+                          <button type="button" class="btn btn-xs btn-flat btn-warning" data-toggle="modal" data-target="#myOrder">Order</button>
+                          <a href="{{ action('ProductsController@edit', $product) }}" class="btn btn-xs btn-flat btn-info">Edit</a>
+                          <button type="button" class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#myModal">Set Warning</button>
+                        </div>
+                      </td>
+                    </tr>
+                  @empty
+                    <tr>
+                      <td colspan"5">Sorry, but there is no products on the system.</td>
+                    </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-md no-margin pull-right">
-                <li><a href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
+            <div class="box-footer clearfix text-right">
+              {{ $products->links() }}
             </div>
           </div>
         </div>
@@ -495,6 +160,3 @@
 
   </div>
 @endsection
-
-@push('js')
-@endpush
