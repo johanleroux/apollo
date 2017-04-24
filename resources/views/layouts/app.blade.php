@@ -9,10 +9,11 @@
   <title>@yield('page-title', 'Dashboard') | Paradox</title>
 
   <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/bootstrap-slider/slider.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('plugins/iCheck/square/blue.css') }}">
+  <link rel="stylesheet" href="{{ asset('dist/css/skins/skin-black-light.css') }}">
 
   <script>
   window.Laravel = {!! json_encode([
@@ -27,11 +28,22 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition @yield('body-class', '')">
-  @yield('content')
+<body class="@yield('body-class', '')">
+  <div class="wrapper">
+    @include('layouts.header')
+    @include('layouts.sidebar')
+    @yield('content')
+    @include('layouts.footer')
+  </div>
 
   <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+  <script src="{{ asset('plugins/fastclick/fastclick.min.js') }}"></script>
+  <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+  <script src="{{ asset('plugins/chartjs/Chart.min.js') }}"></script>
+  <script src="{{ asset('plugins/bootstrap-slider/bootstrap-slider.js') }}"></script>
   <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('dist/js/app.min.js') }}"></script>
+  <script src="{{ asset('js/demo.js') }}"></script>
   @stack('js')
 </body>
 </html>
