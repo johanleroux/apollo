@@ -58,7 +58,7 @@ class CustomersApiTest extends TestCase
     }
 
     /** @test */
-    public function it_validate_storing_of_a_customer()
+    public function it_validates_storing_of_a_customer()
     {
         $this->json('POST', '/api/customer', [])
             ->assertJsonFragment(['The email field is required.'])
@@ -82,7 +82,7 @@ class CustomersApiTest extends TestCase
     }
 
     /** @test */
-    public function it_can_validate_updating_of_a_customer()
+    public function it_validates_updating_of_a_customer()
     {
         $customer = factory(\App\Models\Customer::class)->create();
 
