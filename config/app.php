@@ -167,6 +167,7 @@ return [
   * Package Service Providers...
   */
   Laravel\Tinker\TinkerServiceProvider::class,
+  Spatie\Fractal\FractalServiceProvider::class,
   Spatie\Html\HtmlServiceProvider::class,
 
   /*
@@ -227,6 +228,7 @@ return [
   'Validator' => Illuminate\Support\Facades\Validator::class,
   'View' => Illuminate\Support\Facades\View::class,
 
+  'Fractal' => Spatie\Fractal\FractalFacade::class,
   ],
 
   ];
