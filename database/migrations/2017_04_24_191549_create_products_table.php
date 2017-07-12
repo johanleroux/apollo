@@ -6,20 +6,21 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateProductsTable extends Migration
 {
-  /**
+    /**
   * Run the migrations.
   *
   * @return void
   */
   public function up()
   {
-    Schema::create('products', function (Blueprint $table) {
-      $table->increments('id');
-      $table->string('sku');
-      $table->text('description');
-      $table->double('price', 10, 2);
-      $table->timestamps();
-    });
+      Schema::create('products', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('sku');
+          $table->text('description');
+          $table->double('price', 10, 2);
+          $table->softDeletes();
+          $table->timestamps();
+      });
   }
 
   /**
@@ -29,6 +30,6 @@ class CreateProductsTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('products');
+      Schema::dropIfExists('products');
   }
 }
