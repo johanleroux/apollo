@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-  public function items()
-  {
-    return $this->hasMany('App\Models\SaleItem');
-  }
+    public function items()
+    {
+        return $this->hasMany('App\Models\SaleItem');
+    }
 }

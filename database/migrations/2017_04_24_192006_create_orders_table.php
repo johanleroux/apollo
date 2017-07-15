@@ -6,20 +6,20 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateOrdersTable extends Migration
 {
-  /**
+    /**
   * Run the migrations.
   *
   * @return void
   */
   public function up()
   {
-    Schema::create('orders', function (Blueprint $table) {
-      $table->increments('id');
-      $table->integer('supplier_id')->unsigned();
+      Schema::create('orders', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('supplier_id')->unsigned();
 
-      $table->foreign('supplier_id')->references('id')->on('suppliers');
-      $table->timestamps();
-    });
+          $table->foreign('supplier_id')->references('id')->on('suppliers');
+          $table->timestamps();
+      });
   }
 
   /**
@@ -29,6 +29,6 @@ class CreateOrdersTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('orders');
+      Schema::dropIfExists('orders');
   }
 }

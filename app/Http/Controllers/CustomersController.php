@@ -7,57 +7,52 @@ use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function index()
-  {
-    $customers = Customer::paginate(25);
-    return view('customer.index', compact('customers'));
-  }
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index()
+    {
+        $customers = Customer::paginate(25);
+        return view('customer.index', compact('customers'));
+    }
 
-  /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function create()
-  {
-    return view('customer.create');
-  }
+    /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function create()
+    {
+        return view('customer.create');
+    }
 
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function store(Request $request)
-  {
-    $this->validate($request, [
-      'name'  => 'required|string',
-      'email' => 'required|email',
-    ]);
+    /**
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name'  => 'required|string',
+            'email' => 'required|email',
+        ]);
 
-    $customer = Customer::create([
-      'name'      => $request->name,
-      'telephone' => $request->telephone,
-      'email'     => $request->email,
-      'address'   => $request->address,
-      'address_2' => $request->address_2,
-      'city'      => $request->city,
-      'province'  => $request->province,
-      'country'   => $request->country,
-      ]);
+        $customer = Customer::create([
+            'name'      => $request->name,
+            'telephone' => $request->telephone,
+            'email'     => $request->email,
+            'address'   => $request->address,
+            'address_2' => $request->address_2,
+            'city'      => $request->city,
+            'province'  => $request->province,
+            'country'   => $request->country,
+        ]);
 
-      return redirect()->action('CustomersController@index');
+        return redirect()->action('CustomersController@index');
     }
 
     /**
@@ -68,8 +63,8 @@ class CustomersController extends Controller
     */
     public function show($id)
     {
-      $customer = Customer::findOrFail($id);
-      return view('customer.show', compact('customer'));
+        $customer = Customer::findOrFail($id);
+        return view('customer.show', compact('customer'));
     }
 
     /**
@@ -80,8 +75,8 @@ class CustomersController extends Controller
     */
     public function edit($id)
     {
-      $customer = Customer::findOrFail($id);
-      return view('customer.edit', compact('customer'));
+        $customer = Customer::findOrFail($id);
+        return view('customer.edit', compact('customer'));
     }
 
     /**
@@ -93,25 +88,25 @@ class CustomersController extends Controller
     */
     public function update(Request $request, $id)
     {
-      $customer = Customer::findOrFail($id);
+        $customer = Customer::findOrFail($id);
 
-      $this->validate($request, [
-      'name'  => 'required|string',
-      'email' => 'required|email',
-      ]);
+        $this->validate($request, [
+            'name'  => 'required|string',
+            'email' => 'required|email',
+        ]);
 
-      $customer->update([
-      'name'      => $request->name,
-      'telephone' => $request->telephone,
-      'email'     => $request->email,
-      'address'   => $request->address,
-      'address_2' => $request->address_2,
-      'city'      => $request->city,
-      'province'  => $request->province,
-      'country'   => $request->country,
-      ]);
+        $customer->update([
+            'name'      => $request->name,
+            'telephone' => $request->telephone,
+            'email'     => $request->email,
+            'address'   => $request->address,
+            'address_2' => $request->address_2,
+            'city'      => $request->city,
+            'province'  => $request->province,
+            'country'   => $request->country,
+        ]);
 
-      return redirect()->action('CustomersController@edit', $id);
+        return redirect()->action('CustomersController@edit', $id);
     }
 
     /**
@@ -122,6 +117,6 @@ class CustomersController extends Controller
     */
     public function destroy($id)
     {
-      //
+        //
     }
-  }
+}

@@ -6,25 +6,25 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateSuppliersTable extends Migration
 {
-  /**
+    /**
   * Run the migrations.
   *
   * @return void
   */
   public function up()
   {
-    Schema::create('suppliers', function (Blueprint $table) {
-      $table->increments('id');
-      $table->string('name');
-      $table->string('telephone')->nullable();
-      $table->string('email');
-      $table->text('address')->nullable();
-      $table->text('address_2')->nullable();
-      $table->text('city')->nullable();
-      $table->text('province')->nullable();
-      $table->text('country')->nullable();
-      $table->timestamps();
-    });
+      Schema::create('suppliers', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('name');
+          $table->string('telephone')->nullable();
+          $table->string('email');
+          $table->text('address')->nullable();
+          $table->text('address_2')->nullable();
+          $table->text('city')->nullable();
+          $table->text('province')->nullable();
+          $table->text('country')->nullable();
+          $table->timestamps();
+      });
   }
 
   /**
@@ -34,6 +34,6 @@ class CreateSuppliersTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('suppliers');
+      Schema::dropIfExists('suppliers');
   }
 }

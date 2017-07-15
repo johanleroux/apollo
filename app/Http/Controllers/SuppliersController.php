@@ -7,57 +7,57 @@ use Illuminate\Http\Request;
 
 class SuppliersController extends Controller
 {
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function index()
-  {
-    $suppliers = Supplier::paginate(25);
-    return view('supplier.index', compact('suppliers'));
-  }
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index()
+    {
+        $suppliers = Supplier::paginate(25);
+        return view('supplier.index', compact('suppliers'));
+    }
 
-  /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function create()
-  {
-    return view('supplier.create');
-  }
+    /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function create()
+    {
+        return view('supplier.create');
+    }
 
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function store(Request $request)
-  {
-    $this->validate($request, [
-      'name'  => 'required|string',
-      'email' => 'required|email',
-    ]);
+    /**
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name'  => 'required|string',
+            'email' => 'required|email',
+        ]);
 
-    $supplier = Supplier::create([
-      'name'      => $request->name,
-      'telephone' => $request->telephone,
-      'email'     => $request->email,
-      'address'   => $request->address,
-      'address_2' => $request->address_2,
-      'city'      => $request->city,
-      'province'  => $request->province,
-      'country'   => $request->country,
-      ]);
+        $supplier = Supplier::create([
+            'name'      => $request->name,
+            'telephone' => $request->telephone,
+            'email'     => $request->email,
+            'address'   => $request->address,
+            'address_2' => $request->address_2,
+            'city'      => $request->city,
+            'province'  => $request->province,
+            'country'   => $request->country,
+        ]);
 
-      return redirect()->action('SuppliersController@index');
+        return redirect()->action('SuppliersController@index');
     }
 
     /**
@@ -68,8 +68,8 @@ class SuppliersController extends Controller
     */
     public function show($id)
     {
-      $supplier = Supplier::findOrFail($id);
-      return view('supplier.show', compact('supplier'));
+        $supplier = Supplier::findOrFail($id);
+        return view('supplier.show', compact('supplier'));
     }
 
     /**
@@ -80,8 +80,8 @@ class SuppliersController extends Controller
     */
     public function edit($id)
     {
-      $supplier = Supplier::findOrFail($id);
-      return view('supplier.edit', compact('supplier'));
+        $supplier = Supplier::findOrFail($id);
+        return view('supplier.edit', compact('supplier'));
     }
 
     /**
@@ -93,25 +93,25 @@ class SuppliersController extends Controller
     */
     public function update(Request $request, $id)
     {
-      $supplier = Supplier::findOrFail($id);
+        $supplier = Supplier::findOrFail($id);
 
-      $this->validate($request, [
-      'name'  => 'required|string',
-      'email' => 'required|email',
-      ]);
+        $this->validate($request, [
+            'name'  => 'required|string',
+            'email' => 'required|email',
+        ]);
 
-      $supplier->update([
-      'name'      => $request->name,
-      'telephone' => $request->telephone,
-      'email'     => $request->email,
-      'address'   => $request->address,
-      'address_2' => $request->address_2,
-      'city'      => $request->city,
-      'province'  => $request->province,
-      'country'   => $request->country,
-      ]);
+        $supplier->update([
+            'name'      => $request->name,
+            'telephone' => $request->telephone,
+            'email'     => $request->email,
+            'address'   => $request->address,
+            'address_2' => $request->address_2,
+            'city'      => $request->city,
+            'province'  => $request->province,
+            'country'   => $request->country,
+        ]);
 
-      return redirect()->action('SuppliersController@edit', $id);
+        return redirect()->action('SuppliersController@edit', $id);
     }
 
     /**
@@ -122,6 +122,6 @@ class SuppliersController extends Controller
     */
     public function destroy($id)
     {
-      //
+        //
     }
-  }
+}

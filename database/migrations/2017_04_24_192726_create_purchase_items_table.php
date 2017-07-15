@@ -6,25 +6,25 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePurchaseItemsTable extends Migration
 {
-  /**
+    /**
   * Run the migrations.
   *
   * @return void
   */
   public function up()
   {
-    Schema::create('purchase_items', function (Blueprint $table) {
-      $table->increments('id');
-      $table->integer('purchase_id')->unsigned();
-      $table->integer('product_id')->unsigned();
+      Schema::create('purchase_items', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('purchase_id')->unsigned();
+          $table->integer('product_id')->unsigned();
 
-      $table->double('price', 10, 2);
-      $table->integer('quantity');
+          $table->double('price', 10, 2);
+          $table->integer('quantity');
 
-      $table->foreign('purchase_id')->references('id')->on('purchases');
-      $table->foreign('product_id')->references('id')->on('products');
-      $table->timestamps();
-    });
+          $table->foreign('purchase_id')->references('id')->on('purchases');
+          $table->foreign('product_id')->references('id')->on('products');
+          $table->timestamps();
+      });
   }
 
   /**
@@ -34,6 +34,6 @@ class CreatePurchaseItemsTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('purchase_items');
+      Schema::dropIfExists('purchase_items');
   }
 }

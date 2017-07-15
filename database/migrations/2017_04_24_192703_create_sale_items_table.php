@@ -6,25 +6,25 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateSaleItemsTable extends Migration
 {
-  /**
+    /**
   * Run the migrations.
   *
   * @return void
   */
   public function up()
   {
-    Schema::create('sale_items', function (Blueprint $table) {
-      $table->increments('id');
-      $table->integer('sale_id')->unsigned();
-      $table->integer('product_id')->unsigned();
+      Schema::create('sale_items', function (Blueprint $table) {
+          $table->increments('id');
+          $table->integer('sale_id')->unsigned();
+          $table->integer('product_id')->unsigned();
 
-      $table->double('price', 10, 2);
-      $table->integer('quantity');
+          $table->double('price', 10, 2);
+          $table->integer('quantity');
 
-      $table->foreign('sale_id')->references('id')->on('sales');
-      $table->foreign('product_id')->references('id')->on('products');
-      $table->timestamps();
-    });
+          $table->foreign('sale_id')->references('id')->on('sales');
+          $table->foreign('product_id')->references('id')->on('products');
+          $table->timestamps();
+      });
   }
 
   /**
@@ -34,6 +34,6 @@ class CreateSaleItemsTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('sale_items');
+      Schema::dropIfExists('sale_items');
   }
 }
