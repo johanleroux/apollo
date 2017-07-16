@@ -1,22 +1,45 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
-
-window.Vue = require('vue');
+$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': window.Laravel.csrfToken }});
 
 /**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+* Start Turbolinks
+*/
+Turbolinks.start();
 
-Vue.component('example', require('./components/Example.vue'));
+/**
+* Turbolinks onLoad listener
+* @type
+*/
+document.addEventListener("turbolinks:load", function() {
+  // Fix page layout on Turbolinks reload
+  if("layout" in $.AdminLTE)
+  $.AdminLTE.layout.fix();
 
-const app = new Vue({
-    el: '#app'
+  /**
+  * Add Confirmation To A Button
+  */
+  $('.confirmSubmit').on('click', function(e) {
+    e.preventDefault();
+    var form = $(this).parent('form');
+    swal({
+      title: "Are you sure?",
+      text: "You will not be able to reverse this action!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Confirm",
+      cancelButtonText: "Cancel",
+    },
+    function(isConfirm){
+      if (isConfirm) form.submit();
+    });
+  });
+});
+
+document.addEventListener("turbolinks:before-cache", function() {
+  // Fix LaravelDataTables when going back and forward
+  if(!window.LaravelDataTables) return;
+  if(!window.LaravelDataTables.dataTableBuilder) return;
+  window.LaravelDataTables.dataTableBuilder.destroy();
+  window.LaravelDataTables.dataTableBuilder = null;
 });

@@ -1,7 +1,7 @@
 <header class="main-header">
   <a href="{{ url('/') }}" class="logo">
-    <span class="logo-mini"><b>P</b></span>
-    <span class="logo-lg"><b>Paradox</b></span>
+    <span class="logo-mini"><b>A</b></span>
+    <span class="logo-lg"><b>Apollo</b></span>
   </a>
   <nav class="navbar navbar-static-top" role="navigation">
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
