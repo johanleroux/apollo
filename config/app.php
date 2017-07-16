@@ -166,6 +166,7 @@ return [
   /*
   * Package Service Providers...
   */
+  DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
   Laravel\Tinker\TinkerServiceProvider::class,
   Spatie\Fractal\FractalServiceProvider::class,
   Spatie\Html\HtmlServiceProvider::class,
@@ -229,6 +230,7 @@ return [
   'Validator' => Illuminate\Support\Facades\Validator::class,
   'View' => Illuminate\Support\Facades\View::class,
 
+  'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
   'Fractal' => Spatie\Fractal\FractalFacade::class,
   'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
   'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
