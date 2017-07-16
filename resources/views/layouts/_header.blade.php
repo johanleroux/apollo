@@ -20,7 +20,7 @@
               <ul class="menu">
                 <li>
                   <a href="#">
-                    <div class="pull-left"><img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image"></div>
+                    <div class="pull-left"><img src="{{ asset('img/avatar.png') }}" class="img-circle" alt="User Image"></div>
                     <h4>Support Team<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
                     <p>Why not buy a new awesome theme?</p>
                   </a>
@@ -51,7 +51,7 @@
         </li>
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+            <img src="{{ asset('img/avatar.png') }}" class="user-image" alt="User Image">
             <span class="hidden-xs">John Doe</span>
           </a>
           <ul class="dropdown-menu" style="width: 50%">
