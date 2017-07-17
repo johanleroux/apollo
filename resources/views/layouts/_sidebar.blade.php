@@ -10,9 +10,17 @@
             </div>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="{{ action('CustomersController@index') }}"><i class="fa fa-link"></i> <span>Customers</span></a></li>
-            <li><a href="{{ action('SuppliersController@index') }}"><i class="fa fa-link"></i> <span>Suppliers</span></a></li>
-            <li><a href="{{ action('ProductsController@index') }}"><i class="fa fa-link"></i> <span>Products</span></a></li>
+            <li class="header">RESOURCES</li>
+            <li><a href="{{ action('CustomersController@index') }}"><i class="fa fa-users"></i> <span>Customers</span></a></li>
+            <li><a href="{{ action('ProductsController@index') }}"><i class="fa fa-shopping-cart"></i> <span>Products</span></a></li>
+            <li><a href="{{ action('SuppliersController@index') }}"><i class="fa fa-building"></i> <span>Suppliers</span></a></li>
+            <li class="header">TRANSACTIONS</li>
+            <li><a href="#"><i class="fa fa-credit-card-alt"></i><span>Purchases</span></a></li>
+            <li><a href="#"><i class="fa fa-credit-card"></i><span>Orders</span></a></li>
+            <li><a href="#"><i class="fa fa-money"></i><span>Sales</span></a></li>
+            <li class="header">MANAGEMENT</li>
+            <li><a href="#"><i class="fa fa-info-circle"></i><span>Company Info</span></a></li>
+            <li><a href="#"><i class="fa fa-user-circle-o"></i><span>Users</span></a></li>
         </ul>
     </section>
 </aside>
