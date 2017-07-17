@@ -171,6 +171,8 @@ return [
   Spatie\Fractal\FractalServiceProvider::class,
   Spatie\Html\HtmlServiceProvider::class,
   Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+  Yajra\Datatables\ButtonsServiceProvider::class,
+  Yajra\Datatables\DatatablesServiceProvider::class,
 
   /*
   * Application Service Providers...

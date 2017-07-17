@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use Illuminate\Http\Request;
+use App\DataTables\CustomersDataTable;
 
 class CustomersController extends Controller
 {
@@ -12,10 +12,9 @@ class CustomersController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(CustomersDataTable $dt)
     {
-        $customers = Customer::paginate(25);
-        return view('customer.index', compact('customers'));
+        return $dt->render('customer.index');
     }
 
     /**
@@ -34,25 +33,22 @@ class CustomersController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
-            'name'  => 'required|string',
-            'email' => 'required|email',
+        $this->validate(request(), [
+            'name'      => 'required|string',
+            'telephone' => 'required|string',
+            'email'     => 'required|string',
+            'address'   => 'nullable|string',
+            'address_2' => 'nullable|string',
+            'city'      => 'nullable|string',
+            'province'  => 'nullable|string',
+            'country'   => 'nullable|string',
         ]);
 
-        $customer = Customer::create([
-            'name'      => $request->name,
-            'telephone' => $request->telephone,
-            'email'     => $request->email,
-            'address'   => $request->address,
-            'address_2' => $request->address_2,
-            'city'      => $request->city,
-            'province'  => $request->province,
-            'country'   => $request->country,
-        ]);
+        $customer = Customer::create(request()->all());
 
-        return redirect()->action('CustomersController@index');
+        return redirect()->action('CustomersController@show', $customer);
     }
 
     /**
@@ -64,6 +60,7 @@ class CustomersController extends Controller
     public function show($id)
     {
         $customer = Customer::findOrFail($id);
+
         return view('customer.show', compact('customer'));
     }
 
@@ -86,27 +83,22 @@ class CustomersController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, $id)
+    public function update(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-
-        $this->validate($request, [
-            'name'  => 'required|string',
-            'email' => 'required|email',
+        $this->validate(request(), [
+            'name'      => 'required|string',
+            'telephone' => 'required|string',
+            'email'     => 'required|string',
+            'address'   => 'nullable|string',
+            'address_2' => 'nullable|string',
+            'city'      => 'nullable|string',
+            'province'  => 'nullable|string',
+            'country'   => 'nullable|string',
         ]);
 
-        $customer->update([
-            'name'      => $request->name,
-            'telephone' => $request->telephone,
-            'email'     => $request->email,
-            'address'   => $request->address,
-            'address_2' => $request->address_2,
-            'city'      => $request->city,
-            'province'  => $request->province,
-            'country'   => $request->country,
-        ]);
+        $customer->update(request()->all());
 
-        return redirect()->action('CustomersController@edit', $id);
+        return redirect()->action('CustomersController@show', $customer);
     }
 
     /**
@@ -115,8 +107,10 @@ class CustomersController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+
+        return redirect()->action('CustomersController@index');
     }
 }

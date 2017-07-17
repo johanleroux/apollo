@@ -52,11 +52,11 @@ class CustomersController extends ApiController
             'name'      => 'required|string',
             'telephone' => 'required|string',
             'email'     => 'required|string',
-            'address'   => 'string',
-            'address_2' => 'string',
-            'city'      => 'string',
-            'province'  => 'string',
-            'country'   => 'string',
+            'address'   => 'nullable|string',
+            'address_2' => 'nullable|string',
+            'city'      => 'nullable|string',
+            'province'  => 'nullable|string',
+            'country'   => 'nullable|string',
         ]);
 
         return response()
@@ -77,11 +77,11 @@ class CustomersController extends ApiController
             'name'      => 'required|string',
             'telephone' => 'required|string',
             'email'     => 'required|string',
-            'address'   => 'string',
-            'address_2' => 'string',
-            'city'      => 'string',
-            'province'  => 'string',
-            'country'   => 'string',
+            'address'   => 'nullable|string',
+            'address_2' => 'nullable|string',
+            'city'      => 'nullable|string',
+            'province'  => 'nullable|string',
+            'country'   => 'nullable|string',
         ]);
 
         $customer = Customer::findOrFail($id);
