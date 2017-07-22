@@ -1,47 +1,34 @@
-@extends('layouts.app')
+@extends('layouts.backend')
+@section('content-header')
+    {!! Breadcrumbs::render('product_edit', $product) !!}
 
-@section('page-title', 'Products')
-@section('body-class', 'sidebar-mini skin-black-light fixed')
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
+        <ul class="dropdown-menu pull-right" role="menu">
+            <li><a href="{{ action('ProductsController@show', $product) }}"><i class="fa fa-eye"></i> View</a></li>
+            <li><a href="#" onclick="$('#product_destroy').submit();"><i class="fa fa-trash"></i> Archive</a></li>
+            {{ html()->form('DELETE', action('ProductsController@destroy', $product))->id('product_destroy')->open() }}
+            {{ html()->form()->close() }}
+        </ul>
+    </div>
+@endsection
 
 @section('content')
-  <div class="content-wrapper">
-    <section class="content">
-      <div class="box box-default">
+    <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">Edit Product [{{ $product->id}}]</h3>
+            <h3 class="box-title">Edit {{ $product->sku }}</h3>
         </div>
         <div class="box-body">
-          <div class="row">
-            <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ html()->modelForm($product, 'PUT', action('ProductsController@update', $product))->open() }}
 
-              {{ html()->modelForm($product, 'PATCH', action('ProductsController@update', $product))->open() }}
-              <div class="form-group has-feedback ">
-                <label for="description">Description:</label>
-                {{ html()->text('description')->id('description')->class('form-control')->placeholder('Description') }}
-                <span class="glyphicon glyphicon-certificate form-control-feedback"></span>
-              </div>
-              <div class="form-group has-feedback ">
-                <label for="price">Stock Price:</label>
-                {{ html()->text('price')->id('price')->class('form-control')->placeholder('Price') }}
-                <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  @if($errors->count() > 0)
-                    <div class="alert alert-danger">
-                      @foreach ($errors->all() as $error)
-                        {{ $error }}<br>
-                      @endforeach
-                    </div>
-                  @endif
+                    @include('product._form')
+
+                    <input class="btn btn-primary pull-right" type="submit" value="Save Changes">
+                    {{ html()->closeModelForm() }}
                 </div>
-              </div>
-              <input class="btn btn-primary" type="submit" value="Save Changes">
-              {{ html()->closeModelForm() }}
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-  </div>
+    </div>
 @endsection

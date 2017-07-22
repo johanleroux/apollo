@@ -27,3 +27,26 @@ Breadcrumbs::register('customer_show', function ($breadcrumbs, $customer) {
     $breadcrumbs->parent('customer');
     $breadcrumbs->push('[#' . $customer->id . '] ' . $customer->name, action('CustomersController@show', $customer));
 });
+
+// Product
+Breadcrumbs::register('product', function ($breadcrumbs) {
+    $breadcrumbs->push('Products', action('ProductsController@index'));
+});
+
+// Product >> Create
+Breadcrumbs::register('product_create', function ($breadcrumbs) {
+    $breadcrumbs->parent('product');
+    $breadcrumbs->push('Create', action('ProductsController@create'));
+});
+
+// Product >> Edit
+Breadcrumbs::register('product_edit', function ($breadcrumbs, $product) {
+    $breadcrumbs->parent('product_show', $product);
+    $breadcrumbs->push('Edit', action('ProductsController@edit', $product));
+});
+
+// Product >> Show
+Breadcrumbs::register('product_show', function ($breadcrumbs, $product) {
+    $breadcrumbs->parent('product');
+    $breadcrumbs->push('[#' . $product->id . '] ' . $product->name, action('ProductsController@show', $product));
+});

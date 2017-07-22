@@ -43,14 +43,15 @@
         @include('layouts._footer')
     </div>
 
-    <script data-turbolinks-eval="false" src="{{ asset('js/app.js') }}"></script>
-
     @stack('js-before')
-    <script>
-    @if (false)
-    toastr.{{notify()->type()}}('{{ notify()->message() }}');
+    <script data-turbolinks-eval="false" src="{{ asset('js/app.js') }}"></script>
+    @if (notify()->ready())
+        <script>
+            toastr.{{notify()->type()}}('{{ notify()->message() }}');
+        </script>
+        {{ Session::forget(notify()->message()) }}
     @endif
-    </script>
+
     @stack('js-after')
 </body>
 </html>

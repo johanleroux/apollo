@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Customer;
+use App\Models\Product;
 use Yajra\Datatables\Services\DataTable;
 
-class CustomersDataTable extends DataTable
+class ProductsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,8 +16,8 @@ class CustomersDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('actions', function (Customer $customer) {
-                return view('customer.datatable._actions', compact('customer'));
+            ->addColumn('actions', function (Product $product) {
+                return view('product.datatable._actions', compact('product'));
             })
             ->rawColumns(['actions']);
     }
@@ -29,7 +29,7 @@ class CustomersDataTable extends DataTable
      */
     public function query()
     {
-        $query = Customer::query()->select();
+        $query = Product::query()->select();
 
         return $this->applyScopes($query);
     }
@@ -58,11 +58,10 @@ class CustomersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name',
-            'telephone',
-            'email',
-            'address',
-            'actions'
+            'sku',
+            'description',
+            'price',
+            'actions',
         ];
     }
 
@@ -73,6 +72,6 @@ class CustomersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'customers_' . time();
+        return 'product_' . time();
     }
 }
