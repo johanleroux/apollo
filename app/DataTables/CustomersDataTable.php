@@ -44,8 +44,9 @@ class CustomersDataTable extends DataTable
         return $this->builder()
                     ->columns($this->getColumns())
                     ->parameters([
-                        'dom'     => 'Bfrtip',
-                        'order'   => [[0, 'asc']],
+                        'dom'        => 'Bfrtip',
+                        'pageLength' => '25',
+                        'order'      => [[0, 'asc']],
                     ]);
     }
 
