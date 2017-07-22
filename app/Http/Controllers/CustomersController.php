@@ -48,6 +48,7 @@ class CustomersController extends Controller
 
         $customer = Customer::create(request()->all());
 
+        notify()->flash('Customer has been created!', 'success');
         return redirect()->action('CustomersController@show', $customer);
     }
 
@@ -98,6 +99,7 @@ class CustomersController extends Controller
 
         $customer->update(request()->all());
 
+        notify()->flash('Customer has been updated!', 'success');
         return redirect()->action('CustomersController@show', $customer);
     }
 
@@ -111,6 +113,7 @@ class CustomersController extends Controller
     {
         $customer->delete();
 
+        notify()->flash('Customer has been archived!', 'success');
         return redirect()->action('CustomersController@index');
     }
 }
