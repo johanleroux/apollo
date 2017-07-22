@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\DataTables\ProductsDataTable;
 
 class ProductsController extends Controller
 {
@@ -12,10 +12,9 @@ class ProductsController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(ProductsDataTable $dt)
     {
-        $products = Product::paginate(25);
-        return view('product.index', compact('products'));
+        return $dt->render('product.index');
     }
 
     /**
@@ -34,20 +33,17 @@ class ProductsController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
+        $this->validate(request(), [
             'sku'         => 'required|string',
             'description' => 'required|string',
             'price'       => 'required|numeric',
         ]);
 
-        $product = Product::create([
-            'sku'         => $request->sku,
-            'description' => $request->description,
-            'price'       => $request->price,
-        ]);
+        $product = Product::create(request()->all());
 
+        notify()->flash('Product has been created!', 'success');
         return redirect()->action('ProductsController@show', $product);
     }
 
@@ -60,6 +56,7 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+
         return view('product.show', compact('product'));
     }
 
@@ -72,6 +69,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+
         return view('product.edit', compact('product'));
     }
 
@@ -82,21 +80,17 @@ class ProductsController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, $id)
+    public function update(Product $product)
     {
-        $product = Product::findOrFail($id);
-
-        $this->validate($request, [
+        $this->validate(request(), [
             'description' => 'required|string',
             'price'       => 'required|numeric',
         ]);
 
-        $product->update([
-            'description' => $request->description,
-            'price'       => $request->price,
-        ]);
+        $product->update(request()->all());
 
-        return redirect()->action('ProductsController@show', $id);
+        notify()->flash('Product has been updated!', 'success');
+        return redirect()->action('ProductsController@show', $product);
     }
 
     /**
@@ -105,8 +99,11 @@ class ProductsController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        notify()->flash('Product has been archived!', 'success');
+        return redirect()->action('ProductsController@index');
     }
 }
