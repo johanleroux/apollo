@@ -64,7 +64,7 @@
                 </div>
             </div>
             {{ html()->form()->close() }}
-            <a href="{{ url('forget_password') }}">I forgot my password</a>
+            <a href="{{ url('password/reset') }}">I forgot my password</a>
             <br>
         </div>
         <!-- /.login-box-body -->
