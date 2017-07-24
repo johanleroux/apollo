@@ -16,11 +16,11 @@ Route::namespace('Api')->group(function () {
         /**
         * Customers REST
         */
-        Route::resource('customer', 'CustomersController', ['except' => ['create', 'edit']]);
+        Route::apiResource('customer', 'CustomersController');
 
         /**
          * Products REST
          */
-        Route::resource('product', 'ProductsController', ['except' => ['create', 'edit']]);
+        Route::apiResource('product', 'ProductsController');
     });
 });
