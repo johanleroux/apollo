@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
-use Illuminate\Http\Request;
+use App\DataTables\SuppliersDataTable;
 
 class SuppliersController extends Controller
 {
@@ -12,15 +12,9 @@ class SuppliersController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index()
+    public function index(SuppliersDataTable $dt)
     {
-        $suppliers = Supplier::paginate(25);
-        return view('supplier.index', compact('suppliers'));
+        return $dt->render('supplier.index');
     }
 
     /**
@@ -39,25 +33,23 @@ class SuppliersController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
-            'name'  => 'required|string',
-            'email' => 'required|email',
+        $this->validate(request(), [
+            'name'      => 'required|string',
+            'telephone' => 'required|string',
+            'email'     => 'required|string',
+            'address'   => 'nullable|string',
+            'address_2' => 'nullable|string',
+            'city'      => 'nullable|string',
+            'province'  => 'nullable|string',
+            'country'   => 'nullable|string',
         ]);
 
-        $supplier = Supplier::create([
-            'name'      => $request->name,
-            'telephone' => $request->telephone,
-            'email'     => $request->email,
-            'address'   => $request->address,
-            'address_2' => $request->address_2,
-            'city'      => $request->city,
-            'province'  => $request->province,
-            'country'   => $request->country,
-        ]);
+        $supplier = Supplier::create(request()->all());
 
-        return redirect()->action('SuppliersController@index');
+        notify()->flash('Supplier has been created!', 'success');
+        return redirect()->action('SuppliersController@show', $supplier);
     }
 
     /**
@@ -69,6 +61,7 @@ class SuppliersController extends Controller
     public function show($id)
     {
         $supplier = Supplier::findOrFail($id);
+
         return view('supplier.show', compact('supplier'));
     }
 
@@ -81,6 +74,7 @@ class SuppliersController extends Controller
     public function edit($id)
     {
         $supplier = Supplier::findOrFail($id);
+
         return view('supplier.edit', compact('supplier'));
     }
 
@@ -91,27 +85,23 @@ class SuppliersController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, $id)
+    public function update(Supplier $supplier)
     {
-        $supplier = Supplier::findOrFail($id);
-
-        $this->validate($request, [
-            'name'  => 'required|string',
-            'email' => 'required|email',
+        $this->validate(request(), [
+            'name'      => 'required|string',
+            'telephone' => 'required|string',
+            'email'     => 'required|string',
+            'address'   => 'nullable|string',
+            'address_2' => 'nullable|string',
+            'city'      => 'nullable|string',
+            'province'  => 'nullable|string',
+            'country'   => 'nullable|string',
         ]);
 
-        $supplier->update([
-            'name'      => $request->name,
-            'telephone' => $request->telephone,
-            'email'     => $request->email,
-            'address'   => $request->address,
-            'address_2' => $request->address_2,
-            'city'      => $request->city,
-            'province'  => $request->province,
-            'country'   => $request->country,
-        ]);
+        $supplier->update(request()->all());
 
-        return redirect()->action('SuppliersController@edit', $id);
+        notify()->flash('Supplier has been updated!', 'success');
+        return redirect()->action('SuppliersController@show', $supplier);
     }
 
     /**
@@ -120,8 +110,11 @@ class SuppliersController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+
+        notify()->flash('Supplier has been archived!', 'success');
+        return redirect()->action('SuppliersController@index');
     }
 }
