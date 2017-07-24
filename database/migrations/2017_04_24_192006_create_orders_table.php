@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration
           $table->integer('supplier_id')->unsigned();
 
           $table->foreign('supplier_id')->references('id')->on('suppliers');
+          $table->datetime('process_date');
+          $table->datetime('processed_at')->nullable();
           $table->timestamps();
       });
   }

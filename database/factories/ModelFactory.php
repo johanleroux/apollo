@@ -48,6 +48,7 @@ $factory->define(App\Models\Supplier::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Order::class, function (Faker\Generator $faker) {
     return [
     'supplier_id' => $faker->numberBetween(1, 250),
+    'process_date' => $faker->dateTimeBetween('+5 days', '30 days'),
   ];
 });
 
