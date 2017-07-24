@@ -37,6 +37,12 @@
         <div class="login-box-body">
             <p class="login-box-msg">Reset Password</p>
 
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             {{ html()->form('post', route('password.request'))->open() }}
             <input type="hidden" name="token" value="{{ $token }}">
 
@@ -60,7 +66,7 @@
                     <div class="form-group">
                         {{ html()->button('Reset Password', 'submit')->class('btn btn-primary btn-block btn-flat') }}
                     </div>
-                    
+
                     {{ html()->form()->close() }}
                 </div>
             </div>

@@ -37,6 +37,12 @@
         <div class="login-box-body">
             <p class="login-box-msg">Reset Password</p>
 
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             {{ html()->form('post', route('password.email'))->open() }}
             <div class="row">
                 <div class="col-md-12">
