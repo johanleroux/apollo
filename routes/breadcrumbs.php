@@ -50,3 +50,26 @@ Breadcrumbs::register('product_show', function ($breadcrumbs, $product) {
     $breadcrumbs->parent('product');
     $breadcrumbs->push('[#' . $product->id . '] ' . $product->name, action('ProductsController@show', $product));
 });
+
+// Supplier
+Breadcrumbs::register('supplier', function ($breadcrumbs) {
+    $breadcrumbs->push('Suppliers', action('SuppliersController@index'));
+});
+
+// Supplier >> Create
+Breadcrumbs::register('supplier_create', function ($breadcrumbs) {
+    $breadcrumbs->parent('supplier');
+    $breadcrumbs->push('Create', action('SuppliersController@create'));
+});
+
+// Supplier >> Edit
+Breadcrumbs::register('supplier_edit', function ($breadcrumbs, $supplier) {
+    $breadcrumbs->parent('supplier_show', $supplier);
+    $breadcrumbs->push('Edit', action('SuppliersController@edit', $supplier));
+});
+
+// Supplier >> Show
+Breadcrumbs::register('supplier_show', function ($breadcrumbs, $supplier) {
+    $breadcrumbs->parent('supplier');
+    $breadcrumbs->push('[#' . $supplier->id . '] ' . $supplier->name, action('SuppliersController@show', $supplier));
+});

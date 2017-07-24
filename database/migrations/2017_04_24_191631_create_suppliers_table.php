@@ -23,6 +23,7 @@ class CreateSuppliersTable extends Migration
           $table->text('city')->nullable();
           $table->text('province')->nullable();
           $table->text('country')->nullable();
+          $table->softDeletes();
           $table->timestamps();
       });
   }
