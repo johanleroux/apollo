@@ -15,14 +15,22 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->middleware('guest');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->middleware('guest')->name('password.email');
 
-Route::get('dashboard', function () {
-    return view('dashboard');
-});
+/**
+ * Authenticated Routes
+ */
+Route::middleware('auth')->group(function () {
+    Route::get('dashboard', function () {
+        return view('dashboard');
+    });
 
-Route::get('/modify_password', function () {
-    return view('auth.modify_password');
-});
+    Route::get('/modify_password', function () {
+        return view('auth.modify_password');
+    });
 
-Route::resource('customers', 'CustomersController');
-Route::resource('products', 'ProductsController');
-Route::resource('suppliers', 'SuppliersController');
+    Route::resource('customers', 'CustomersController');
+    Route::resource('products', 'ProductsController');
+    Route::resource('suppliers', 'SuppliersController');
+    Route::resource('orders', 'OrdersController');
+    Route::resource('purchases', 'PurchasesController');
+    Route::resource('sales', 'SalesController');
+});

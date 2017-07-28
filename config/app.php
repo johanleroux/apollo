@@ -166,6 +166,7 @@ return [
   /*
   * Package Service Providers...
   */
+  Barryvdh\Debugbar\ServiceProvider::class,
   Codecourse\Notify\NotifyServiceProvider::class,
   DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
   Laravel\Tinker\TinkerServiceProvider::class,
@@ -234,6 +235,7 @@ return [
   'View'         => Illuminate\Support\Facades\View::class,
 
   'Breadcrumbs'  => DaveJamesMiller\Breadcrumbs\Facade::class,
+  'Debugbar'     => Barryvdh\Debugbar\Facade::class,
   'Fractal'      => Spatie\Fractal\FractalFacade::class,
   'JWTAuth'      => Tymon\JWTAuth\Facades\JWTAuth::class,
   'JWTFactory'   => Tymon\JWTAuth\Facades\JWTFactory::class,

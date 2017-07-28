@@ -13,7 +13,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
     return [
-    'sku'         => $faker->word,
+    'sku'         => strtoupper($faker->unique()->lexify()),
     'description' => $faker->sentence(),
     'price'       => $faker->randomFloat(2, 100, 10000),
   ];
@@ -21,7 +21,7 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Customer::class, function (Faker\Generator $faker) {
     return [
-    'name'      => $faker->name,
+    'name'      => $faker->company,
     'telephone' => $faker->phoneNumber,
     'email'     => $faker->email,
     'address'   => $faker->streetAddress,
@@ -34,7 +34,7 @@ $factory->define(App\Models\Customer::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Supplier::class, function (Faker\Generator $faker) {
     return [
-    'name'      => $faker->name,
+    'name'      => $faker->company,
     'telephone' => $faker->phoneNumber,
     'email'     => $faker->email,
     'address'   => $faker->streetAddress,
@@ -42,20 +42,6 @@ $factory->define(App\Models\Supplier::class, function (Faker\Generator $faker) {
     'city'      => $faker->city,
     'province'  => $faker->state,
     'country'   => $faker->country,
-  ];
-});
-
-$factory->define(App\Models\Order::class, function (Faker\Generator $faker) {
-    return [
-    'supplier_id' => $faker->numberBetween(1, 250),
-  ];
-});
-
-$factory->define(App\Models\OrderItem::class, function (Faker\Generator $faker) {
-    return [
-    'product_id' => $faker->numberBetween(1, 250),
-    'price'      => $faker->randomFloat(2, 100, 10000),
-    'quantity'   => $faker->numberBetween(1, 2500),
   ];
 });
 
