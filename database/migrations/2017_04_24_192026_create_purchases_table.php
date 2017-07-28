@@ -22,6 +22,8 @@ class CreatePurchasesTable extends Migration
           $table->foreign('supplier_id')->references('id')->on('suppliers');
           $table->timestamps();
       });
+
+      DB::update("ALTER TABLE purchases AUTO_INCREMENT = 10000;");
   }
 
   /**

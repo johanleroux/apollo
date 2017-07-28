@@ -20,6 +20,8 @@ class CreateSalesTable extends Migration
           $table->foreign('customer_id')->references('id')->on('customers');
           $table->timestamps();
       });
+
+      DB::update("ALTER TABLE sales AUTO_INCREMENT = 10000;");
   }
 
   /**
