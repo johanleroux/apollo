@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 
 @section('content-header')
-    {!! Breadcrumbs::render('order_show', $order) !!}
+    {!! Breadcrumbs::render('purchase_show', $purchase) !!}
 
 <div class="btn-group pull-right">
     <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
@@ -15,8 +15,8 @@
     <div class="row">
         <div class="col-xs-12">
             <h2 class="page-header">
-                <i class="fa fa-globe"></i> AdminLTE, Inc.
-                <small class="pull-right">Date: {{ $order->created_at->toDateString() }}</small>
+                <i class="fa fa-globe"></i> Company, Inc.
+                <small class="pull-right">Date: {{ $purchase->created_at->toDateString() }}</small>
               </h2>
         </div>
     </div>
@@ -34,9 +34,9 @@
               </address>
         </div>
         <div class="col-sm-6 invoice-col text-right">
-            <b>Order ID:</b> #{{ $order->id }}
+            <b>Purchase ID:</b> #{{ $purchase->id }}
             <br>
-            <b>Process Date:</b> {{ $order->process_date->toDateTimeString() }}
+            <b>Process Date:</b> {{ $purchase->processed_at ?  $purchase->processed_at->toDateTimeString() : 'Not Yet Processed' }}
         </div>
     </div>
 
@@ -64,7 +64,7 @@
                     @endforeach
                     <tr>
                         <td colspan="4"></td>
-                        <td class="text-right"><b>{{ price_format($order->total) }}</b></td>
+                        <td class="text-right"><b>{{ price_format($purchase->total) }}</b></td>
                     </tr>
                 </tbody>
             </table>

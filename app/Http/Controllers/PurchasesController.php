@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
-use App\DataTables\OrdersDataTable;
+use App\DataTables\PurchasesDataTable;
 
-class OrdersController extends Controller
+class PurchasesController extends Controller
 {
     /**
     * Display a listing of the resource.
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(OrdersDataTable $dt)
+    public function index(PurchasesDataTable $dt)
     {
-        return $dt->render('order.index');
+        return $dt->render('purchase.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class OrdersController extends Controller
     */
     public function create()
     {
-        return view('order.create');
+        return view('purchase.create');
     }
 
     /**
@@ -47,10 +47,10 @@ class OrdersController extends Controller
             'country'   => 'nullable|string',
         ]);
 
-        $order = Order::create(request()->all());
+        $purchase = Purchase::create(request()->all());
 
-        notify()->flash('Order has been created!', 'success');
-        return redirect()->action('OrdersController@show', $order);
+        notify()->flash('Purchase has been created!', 'success');
+        return redirect()->action('PurchasesController@show', $purchase);
     }
 
     /**
@@ -61,12 +61,12 @@ class OrdersController extends Controller
     */
     public function show($id)
     {
-        $order = Order::with(['supplier', 'items.product'])->findOrFail($id);
+        $purchase = Purchase::with(['supplier', 'items.product'])->findOrFail($id);
 
-        return view('order.show', [
-            'order'    => $order,
-            'items'    => $order->items,
-            'supplier' => $order->supplier
+        return view('purchase.show', [
+            'purchase'    => $purchase,
+            'items'    => $purchase->items,
+            'supplier' => $purchase->supplier
         ]);
     }
 
@@ -78,9 +78,9 @@ class OrdersController extends Controller
     */
     public function edit($id)
     {
-        $order = Order::findOrFail($id);
+        $purchase = Purchase::findOrFail($id);
 
-        return view('order.edit', compact('order'));
+        return view('purchase.edit', compact('purchase'));
     }
 
     /**
@@ -90,7 +90,7 @@ class OrdersController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Order $order)
+    public function update(Purchase $purchase)
     {
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -103,10 +103,10 @@ class OrdersController extends Controller
             'country'   => 'nullable|string',
         ]);
 
-        $order->update(request()->all());
+        $purchase->update(request()->all());
 
-        notify()->flash('Order has been updated!', 'success');
-        return redirect()->action('OrdersController@show', $order);
+        notify()->flash('Purchase has been updated!', 'success');
+        return redirect()->action('PurchasesController@show', $purchase);
     }
 
     /**
@@ -115,11 +115,11 @@ class OrdersController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Order $order)
+    public function destroy(Purchase $purchase)
     {
-        $order->delete();
+        $purchase->delete();
 
-        notify()->flash('Order has been archived!', 'success');
-        return redirect()->action('OrdersController@index');
+        notify()->flash('Purchase has been archived!', 'success');
+        return redirect()->action('PurchasesController@index');
     }
 }

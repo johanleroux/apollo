@@ -1,10 +1,10 @@
 @extends('layouts.backend')
 
 @section('content-header')
-  {!! Breadcrumbs::render('order') !!}
+  {!! Breadcrumbs::render('purchase') !!}
 
   <div class="btn-group pull-right">
-    <a href="{{ action('OrdersController@create') }}" class="btn btn-sm"> Create <i class="fa fa-plus"></i></a>
+    <a href="{{ action('PurchasesController@create') }}" class="btn btn-sm"> Create <i class="fa fa-plus"></i></a>
   </div>
 @endsection
 

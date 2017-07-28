@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Order;
+use App\Models\Purchase;
 use Yajra\Datatables\Services\DataTable;
 
-class OrdersDataTable extends DataTable
+class PurchasesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,11 +16,11 @@ class OrdersDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('actions', function (Order $order) {
-                return view('order.datatable._actions', compact('order'));
+            ->addColumn('actions', function (Purchase $purchase) {
+                return view('purchase.datatable._actions', compact('purchase'));
             })
-            ->editColumn('supplier', function (Order $order) {
-                return $order->supplier->name;
+            ->editColumn('supplier', function (Purchase $purchase) {
+                return $purchase->supplier->name;
             })
             ->rawColumns(['actions']);
     }
@@ -32,7 +32,7 @@ class OrdersDataTable extends DataTable
      */
     public function query()
     {
-        $query = Order::query()->with(['supplier', 'items']);
+        $query = Purchase::query()->with(['supplier', 'items']);
 
         return $this->applyScopes($query);
     }
@@ -49,7 +49,7 @@ class OrdersDataTable extends DataTable
                     ->parameters([
                         'dom'        => 'Bfrtip',
                         'pageLength' => '25',
-                        'order'      => [[0, 'desc']],
+                        'purchase'      => [[0, 'desc']],
                     ]);
     }
 
@@ -61,10 +61,9 @@ class OrdersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'           => ['title' => 'Order #'],
-            'supplier'     => ['name' => 'supplier.name', 'orderable' => false, 'searchable' => true],
+            'id'           => ['title' => 'Purchase #'],
+            'supplier'     => ['name' => 'supplier.name', 'purchaseable' => false, 'searchable' => true],
             'created_at'   => ['title' => 'Created Date'],
-            'process_date' => ['title' => 'Process Date'],
             'processed_at' => ['title' => 'Processed At'],
             'actions'
         ];
@@ -77,6 +76,6 @@ class OrdersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'orders_' . time();
+        return 'purchases_' . time();
     }
 }

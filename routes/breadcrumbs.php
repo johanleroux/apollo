@@ -74,25 +74,25 @@ Breadcrumbs::register('supplier_show', function ($breadcrumbs, $supplier) {
     $breadcrumbs->push('[#' . $supplier->id . '] ' . $supplier->name, action('SuppliersController@show', $supplier));
 });
 
-// Order
-Breadcrumbs::register('order', function ($breadcrumbs) {
-    $breadcrumbs->push('Orders', action('OrdersController@index'));
+// Purchase
+Breadcrumbs::register('purchase', function ($breadcrumbs) {
+    $breadcrumbs->push('Purchases', action('PurchasesController@index'));
 });
 
-// Order >> Create
-Breadcrumbs::register('order_create', function ($breadcrumbs) {
-    $breadcrumbs->parent('order');
-    $breadcrumbs->push('Create', action('OrdersController@create'));
+// Purchase >> Create
+Breadcrumbs::register('purchase_create', function ($breadcrumbs) {
+    $breadcrumbs->parent('purchase');
+    $breadcrumbs->push('Create', action('PurchasesController@create'));
 });
 
-// Order >> Edit
-Breadcrumbs::register('order_edit', function ($breadcrumbs, $order) {
-    $breadcrumbs->parent('order_show', $order);
-    $breadcrumbs->push('Edit', action('OrdersController@edit', $order));
+// Purchase >> Edit
+Breadcrumbs::register('purchase_edit', function ($breadcrumbs, $purchase) {
+    $breadcrumbs->parent('purchase_show', $purchase);
+    $breadcrumbs->push('Edit', action('PurchasesController@edit', $purchase));
 });
 
-// Order >> Show
-Breadcrumbs::register('order_show', function ($breadcrumbs, $order) {
-    $breadcrumbs->parent('order');
-    $breadcrumbs->push('#' . $order->id, action('OrdersController@show', $order));
+// Purchase >> Show
+Breadcrumbs::register('purchase_show', function ($breadcrumbs, $purchase) {
+    $breadcrumbs->parent('purchase');
+    $breadcrumbs->push('#' . $purchase->id, action('PurchasesController@show', $purchase));
 });

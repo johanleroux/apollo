@@ -15,8 +15,7 @@
             <li><a href="{{ action('ProductsController@index') }}"><i class="fa fa-shopping-cart"></i> <span>Products</span></a></li>
             <li><a href="{{ action('SuppliersController@index') }}"><i class="fa fa-building"></i> <span>Suppliers</span></a></li>
             <li class="header">TRANSACTIONS</li>
-            <li><a href="{{ action('PurchasesController@index') }}"><i class="fa fa-credit-card-alt"></i><span>Purchases</span></a></li>
-            <li><a href="{{ action('OrdersController@index') }}"><i class="fa fa-credit-card"></i><span>Orders</span></a></li>
+            <li><a href="{{ action('PurchasesController@index') }}"><i class="fa fa-credit-card"></i><span>Purchases</span></a></li>
             <li><a href="{{ action('SalesController@index') }}"><i class="fa fa-money"></i><span>Sales</span></a></li>
             <li class="header">MANAGEMENT</li>
             <li><a href="#"><i class="fa fa-info-circle"></i><span>Company Info</span></a></li>
