@@ -17,8 +17,6 @@ elixir((mix) => {
     'app.css',
   ], 'public/css/app.css')
   .webpack('app.js')
-  .webpack('order.js')
-  .webpack('report.js')
   .copy([
     'node_modules/font-awesome/fonts',
     'node_modules/ionicons/dist/fonts',
