@@ -62,7 +62,7 @@ class PurchasesDataTable extends DataTable
     {
         return [
             'id'           => ['title' => 'Purchase #'],
-            'supplier'     => ['name' => 'supplier.name', 'purchaseable' => false, 'searchable' => true],
+            'supplier'     => ['name' => 'supplier.name', 'sortable' => false, 'searchable' => true],
             'created_at'   => ['title' => 'Created Date'],
             'processed_at' => ['title' => 'Processed At'],
             'actions'

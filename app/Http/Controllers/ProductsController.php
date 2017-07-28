@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use App\DataTables\ProductsDataTable;
 
 class ProductsController extends Controller
@@ -24,7 +25,8 @@ class ProductsController extends Controller
     */
     public function create()
     {
-        return view('product.create');
+        $suppliers = Supplier::orderBy('name', 'asc')->pluck('name', 'id');
+        return view('product.create', compact('suppliers'));
     }
 
     /**
@@ -36,9 +38,15 @@ class ProductsController extends Controller
     public function store()
     {
         $this->validate(request(), [
-            'sku'         => 'required|string',
-            'description' => 'required|string',
-            'price'       => 'required|numeric',
+            'supplier_id'               => 'required|exists:suppliers,id',
+            'sku'                       => 'required|unique:products|string',
+            'description'               => 'required|string',
+            'cost_price'                => 'required|numeric',
+            'retail_price'              => 'required|numeric',
+            'recommended_selling_price' => 'required|numeric',
+        ], [
+            'supplier_id.required' => 'The supplier field is required.',
+            'supplier_id.exists'   => 'The supplier field is required.',
         ]);
 
         $product = Product::create(request()->all());
@@ -69,8 +77,9 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+        $suppliers = Supplier::orderBy('name', 'asc')->pluck('name', 'id');
 
-        return view('product.edit', compact('product'));
+        return view('product.edit', compact('product', 'suppliers'));
     }
 
     /**
@@ -83,8 +92,10 @@ class ProductsController extends Controller
     public function update(Product $product)
     {
         $this->validate(request(), [
-            'description' => 'required|string',
-            'price'       => 'required|numeric',
+            'description'               => 'required|string',
+            'cost_price'                => 'required|numeric',
+            'retail_price'              => 'required|numeric',
+            'recommended_selling_price' => 'required|numeric',
         ]);
 
         $product->update(request()->all());
