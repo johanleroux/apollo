@@ -12,12 +12,15 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
+    $cost = $faker->randomFloat(2, 100, 5000);
+    $retail = $cost * 1.14 * $faker->randomFloat(2, 1.25, 1.5);
+    $rsp = $retail * $faker->randomFloat(2, 0.9, 1.1);
     return [
     'sku'                       => strtoupper($faker->unique()->lexify()),
     'description'               => $faker->sentence(),
-    'cost_price'                => $faker->randomFloat(2, 100, 10000),
-    'retail_price'              => $faker->randomFloat(2, 100, 10000),
-    'recommended_selling_price' => $faker->randomFloat(2, 100, 10000),
+    'cost_price'                => $cost,
+    'retail_price'              => $retail,
+    'recommended_selling_price' => $rsp,
     'supplier_id'               => $faker->numberBetween(1, 250),
   ];
 });
