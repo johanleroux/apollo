@@ -14,6 +14,7 @@
         "league/fractal": "^0.16.0",
         "spatie/laravel-fractal": "^4.01",
         "spatie/laravel-html": "^2",
+        "spatie/laravel-migrate-fresh": "^1.5",
         "tymon/jwt-auth": "0.5.*",
         "yajra/laravel-datatables-buttons": "^2.0",
         "yajra/laravel-datatables-oracle": "^7.5"
