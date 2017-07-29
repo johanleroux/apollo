@@ -1,20 +1,40 @@
 require('./bootstrap');
-$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': window.Laravel.csrfToken }});
+window.Vue = require('vue');
+window.Turbolinks = require('turbolinks');
+import VueTurbolinks from 'vue-turbolinks';
+Vue.use(VueTurbolinks);
 
-/**
-* Start Turbolinks
-*/
+$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': window.Laravel.csrfToken }});
 Turbolinks.start();
 
 /**
 * Turbolinks onLoad listener
 * @type
 */
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener('turbolinks:load', () => {
     // Fix page layout on Turbolinks reload
     if("layout" in $.AdminLTE)
-    $.AdminLTE.layout.fix();
+      $.AdminLTE.layout.fix();
 
+    setup();
+
+    Vue.component('example', require('./components/Example.vue'));
+
+    vm = new Vue({
+        el: '#app'
+    });
+});
+
+document.addEventListener("turbolinks:before-cache", function() {
+    // Fix LaravelDataTables when going back and forward
+    if(!window.LaravelDataTables) return;
+    if(!window.LaravelDataTables.dataTableBuilder) return;
+    window.LaravelDataTables.dataTableBuilder.destroy();
+    window.LaravelDataTables.dataTableBuilder = null;
+});
+
+function setup()
+{
     /**
     * Set toastr Options
     */
@@ -55,12 +75,4 @@ document.addEventListener("turbolinks:load", function() {
             if (isConfirm) form.submit();
         });
     });
-});
-
-document.addEventListener("turbolinks:before-cache", function() {
-    // Fix LaravelDataTables when going back and forward
-    if(!window.LaravelDataTables) return;
-    if(!window.LaravelDataTables.dataTableBuilder) return;
-    window.LaravelDataTables.dataTableBuilder.destroy();
-    window.LaravelDataTables.dataTableBuilder = null;
-});
+}

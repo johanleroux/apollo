@@ -17,5 +17,9 @@
 @endsection
 
 @push('js-after')
-  {!! $dataTable->scripts() !!}
+  <script type="text/javascript">
+  $(document).ready(function () {
+    {{ $dataTable->generateScripts() }}
+  });
+  </script>
 @endpush
