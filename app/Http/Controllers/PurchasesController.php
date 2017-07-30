@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchase;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\DataTables\PurchasesDataTable;
 
@@ -25,7 +26,9 @@ class PurchasesController extends Controller
     */
     public function create()
     {
-        return view('purchase.create');
+        $suppliers = Supplier::with(['products'])->get();
+
+        return view('purchase.create', compact('suppliers'));
     }
 
     /**

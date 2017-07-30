@@ -9,16 +9,13 @@
             <h3 class="box-title">Create Purchase</h3>
         </div>
         <div class="box-body">
-            <div class="row">
-                <div class="col-md-12">
-                    {{ html()->form('POST', action('PurchasesController@store'))->open() }}
+            {{ html()->form('POST', action('PurchasesController@store'))->open() }}
+            <invoice :suppliers="{{ $suppliers }}"></invoice>
+            {{-- @include('purchase._form')
 
-                    @include('purchase._form')
-
-                    <input class="btn btn-primary pull-right" type="submit" value="Save Changes">
-                    {{ html()->form()->close() }}
-                </div>
-            </div>
+            <input class="btn btn-primary pull-right" type="submit" value="Save Changes"> --}}
+            {{ html()->form()->close() }}
         </div>
     </div>
+</div>
 @endsection

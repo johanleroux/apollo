@@ -1,9 +1,3 @@
-<div class="form-group has-feedback @if ($errors->has('name')) has-error @endif">
-    <label for="name">Name:</label>
-    {{ html()->text('name')->id('name')->class('form-control')->placeholder('Name') }}
-    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-    @include('errors._helpblock', ['field' => 'name'])
-</div>
 <div class="form-group has-feedback @if ($errors->has('email')) has-error @endif">
     <label for="email">Email:</label>
     {{ html()->email('email')->id('email')->class('form-control')->placeholder('Email') }}

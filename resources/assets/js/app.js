@@ -18,7 +18,9 @@ document.addEventListener('turbolinks:load', () => {
 
     setup();
 
-    Vue.component('example', require('./components/Example.vue'));
+    Vue.component('invoice', require('./components/Invoice.vue'));
+    Vue.component('invoice-row', require('./components/Invoice-Row.vue'));
+    Vue.component('invoice-supplier', require('./components/Invoice-Supplier.vue'));
 
     vm = new Vue({
         el: '#app'
