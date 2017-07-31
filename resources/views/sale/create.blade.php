@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 @section('content-header')
-    {!! Breadcrumbs::render('purchase_create') !!}
+    {!! Breadcrumbs::render('sale_create') !!}
 @endsection
 
 @section('content')
     <div class="box box-default">
         <div class="box-header">
-            <h3 class="box-title">Create Purchase</h3>
+            <h3 class="box-title">Create Sale</h3>
         </div>
         <div class="box-body">
-            <purchase :suppliers="{{ $suppliers }}"></purchase>
+            <sale :customers="{{ $customers }}" :products="{{ $products }}"></sale>
         </div>
     </div>
 </div>

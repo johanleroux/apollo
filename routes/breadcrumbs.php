@@ -96,3 +96,26 @@ Breadcrumbs::register('purchase_show', function ($breadcrumbs, $purchase) {
     $breadcrumbs->parent('purchase');
     $breadcrumbs->push('#' . $purchase->id, action('PurchasesController@show', $purchase));
 });
+
+// Sale
+Breadcrumbs::register('sale', function ($breadcrumbs) {
+    $breadcrumbs->push('Sales', action('SalesController@index'));
+});
+
+// Sale >> Create
+Breadcrumbs::register('sale_create', function ($breadcrumbs) {
+    $breadcrumbs->parent('sale');
+    $breadcrumbs->push('Create', action('SalesController@create'));
+});
+
+// Sale >> Edit
+Breadcrumbs::register('sale_edit', function ($breadcrumbs, $sale) {
+    $breadcrumbs->parent('sale_show', $sale);
+    $breadcrumbs->push('Edit', action('SalesController@edit', $sale));
+});
+
+// Sale >> Show
+Breadcrumbs::register('sale_show', function ($breadcrumbs, $sale) {
+    $breadcrumbs->parent('sale');
+    $breadcrumbs->push('#' . $sale->id, action('SalesController@show', $sale));
+});

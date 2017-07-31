@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <invoice-supplier :supplier="supplier"></invoice-supplier>
+                <purchase-supplier :supplier="supplier"></purchase-supplier>
             </div>
             <div class="col-md-12">
                 <hr>
@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <invoice-row v-for="row in invoice_rows" :row="row"></invoice-row>
+                        <purchase-row v-for="row in purchase_rows" :row="row"></purchase-row>
                         <tr>
                             <td colspan="4"></td>
                             <td><input type="text" class="form-control text-right" v-model="total"></td>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {Errors} from '../Errors'
+import {Errors} from '../../Errors'
 
 export default {
     props: ['suppliers'],
@@ -54,7 +54,7 @@ export default {
         return {
             supplier_id: '',
             supplier: '',
-            invoice_rows: '',
+            purchase_rows: '',
             total: 0,
             errors: new Errors()
         }
@@ -73,13 +73,13 @@ export default {
         },
         reset: function () {
             // Reset Rows
-            this.invoice_rows = [];
+            this.purchase_rows = [];
             this.createRow(1);
         },
         createRow: function() {
-            this.invoice_rows.push(
+            this.purchase_rows.push(
             {
-                id: this.invoice_rows.length+1,
+                id: this.purchase_rows.length+1,
                 product: {
                     sku: '',
                     description: '',
@@ -91,7 +91,7 @@ export default {
         },
         calcTotal: function() {
             let total = 0;
-            this.invoice_rows.forEach(row => {
+            this.purchase_rows.forEach(row => {
                 if(row.product.total != undefined)
                 total += Number.parseFloat(row.product.total);
             });
@@ -109,7 +109,7 @@ export default {
             let data = new FormData();
             data.append('supplier_id', this.supplier_id);
 
-            this.invoice_rows.forEach(row => {
+            this.purchase_rows.forEach(row => {
                 data.append('product[' + row.id + '][sku]', row.product.sku);
                 data.append('product[' + row.id + '][unit_price]', row.product.unit_price);
                 data.append('product[' + row.id + '][quantity]', row.product.quantity);
@@ -128,10 +128,10 @@ export default {
             // Set Supplier
             this.supplier = this.suppliers.find(supplier => this.supplier_id == supplier.id);
         },
-        invoice_rows: {
+        purchase_rows: {
             handler: function()
             {
-                let emptyRows = this.invoice_rows.filter(row => (row.product.sku == ''));
+                let emptyRows = this.purchase_rows.filter(row => (row.product.sku == ''));
 
                 if(emptyRows.length == 0)
                 this.createRow();

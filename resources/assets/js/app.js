@@ -18,9 +18,13 @@ document.addEventListener('turbolinks:load', () => {
 
     setup();
 
-    Vue.component('invoice', require('./components/Invoice.vue'));
-    Vue.component('invoice-row', require('./components/Invoice-Row.vue'));
-    Vue.component('invoice-supplier', require('./components/Invoice-Supplier.vue'));
+    Vue.component('purchase', require('./components/Purchase/Purchase.vue'));
+    Vue.component('purchase-row', require('./components/Purchase/Purchase-Row.vue'));
+    Vue.component('purchase-supplier', require('./components/Purchase/Purchase-Supplier.vue'));
+
+    Vue.component('sale', require('./components/Sale/Sale.vue'));
+    Vue.component('sale-row', require('./components/Sale/Sale-Row.vue'));
+    Vue.component('sale-customer', require('./components/Sale/Sale-Customer.vue'));
 
     vm = new Vue({
         el: '#app'
