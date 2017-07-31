@@ -17,13 +17,14 @@ class CreatePurchasesTable extends Migration
           $table->increments('id');
           $table->integer('supplier_id')->unsigned();
 
+          $table->string('ext_invoice')->nullable();
           $table->datetime('processed_at')->nullable();
 
           $table->foreign('supplier_id')->references('id')->on('suppliers');
           $table->timestamps();
       });
 
-      DB::update("ALTER TABLE purchases AUTO_INCREMENT = 10000;");
+      DB::update("ALTER TABLE purchases AUTO_INCREMENT = 10001;");
   }
 
   /**

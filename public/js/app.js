@@ -11383,7 +11383,7 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(44),
   /* template */
-  __webpack_require__(59),
+  __webpack_require__(58),
   /* scopeId */
   null,
   /* cssModules */
@@ -11451,7 +11451,41 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(46),
   /* template */
-  __webpack_require__(58),
+  __webpack_require__(59),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Sale/Sale-Customer.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Sale-Customer.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b4a42bce", Component.options)
+  } else {
+    hotAPI.reload("data-v-b4a42bce", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(47),
+  /* template */
+  __webpack_require__(57),
   /* scopeId */
   null,
   /* cssModules */
@@ -11478,7 +11512,6 @@ module.exports = Component.exports
 
 
 /***/ },
-/* 17 */,
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25799,6 +25832,50 @@ if (typeof jQuery === 'undefined') {
 //
 
 /* harmony default export */ exports["default"] = {
+    props: ['customer']
+};
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ exports["default"] = {
     props: ['row'],
     data: function() {
         return {
@@ -25832,7 +25909,6 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ },
-/* 47 */,
 /* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -58416,8 +58492,7 @@ if (false) {
 }
 
 /***/ },
-/* 57 */,
-/* 58 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -58595,7 +58670,7 @@ if (false) {
 }
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -58712,6 +58787,127 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-619ad2c7", module.exports)
+  }
+}
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('table', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer),
+      expression: "customer"
+    }],
+    staticClass: "table table-condensed pull-right text-right"
+  }, [_c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.telephone),
+      expression: "customer.telephone"
+    }]
+  }, [_vm._v("Telephone")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.telephone),
+      expression: "customer.telephone"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.telephone))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.email),
+      expression: "customer.email"
+    }]
+  }, [_vm._v("Email")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.email),
+      expression: "customer.email"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.email))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address),
+      expression: "customer.address"
+    }]
+  }, [_vm._v("Address")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address),
+      expression: "customer.address"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.address))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address_2),
+      expression: "customer.address_2"
+    }]
+  }, [_vm._v("Secondary Address")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address_2),
+      expression: "customer.address_2"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.address_2))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.city),
+      expression: "customer.city"
+    }]
+  }, [_vm._v("City")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.city),
+      expression: "customer.city"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.city))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.province),
+      expression: "customer.province"
+    }]
+  }, [_vm._v("Province")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.province),
+      expression: "customer.province"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.province))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.country),
+      expression: "customer.country"
+    }]
+  }, [_vm._v("State")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.country),
+      expression: "customer.country"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.country))])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-b4a42bce", module.exports)
   }
 }
 
@@ -58923,10 +59119,11 @@ document.addEventListener('turbolinks:load', function () {
     Vue.component('purchase', __webpack_require__(15));
     Vue.component('purchase-row', __webpack_require__(13));
     Vue.component('purchase-supplier', __webpack_require__(14));
+    Vue.component('purchase-process', __webpack_require__(65));
 
     Vue.component('sale', __webpack_require__(18));
-    Vue.component('sale-row', __webpack_require__(16));
-    Vue.component('sale-customer', __webpack_require__(65));
+    Vue.component('sale-row', __webpack_require__(17));
+    Vue.component('sale-customer', __webpack_require__(16));
 
     vm = new Vue({
         el: '#app'
@@ -59000,9 +59197,9 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Sale/Sale-Customer.vue"
+Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Purchase/Purchase-Process.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Sale-Customer.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] Purchase-Process.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -59011,9 +59208,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b4a42bce", Component.options)
+    hotAPI.createRecord("data-v-559e7cc4", Component.options)
   } else {
-    hotAPI.reload("data-v-b4a42bce", Component.options)
+    hotAPI.reload("data-v-559e7cc4", Component.options)
   }
 })()}
 
@@ -59025,14 +59222,7 @@ module.exports = Component.exports
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Errors__ = __webpack_require__(10);
 //
 //
 //
@@ -59059,8 +59249,36 @@ module.exports = Component.exports
 //
 //
 
+
+
 /* harmony default export */ exports["default"] = {
-    props: ['customer']
+    props: ['purchase'],
+
+    data: function() {
+        return {
+            ext_invoice: '',
+            errors: new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* Errors */]()
+        }
+    },
+    computed: {
+        request: function () {
+            var data = new FormData();
+            data.append('ext_invoice', this.ext_invoice);
+            return data;
+        }
+    },
+    methods: {
+        onSubmit: function() {
+            var this$1 = this;
+
+            this.errors.clear();
+            axios.post('/purchases/' + this.purchase + '/process', this.request)
+            .then(function (response) { return window.location = response.request.response; })
+            .catch(function (error) {
+                this$1.errors.record(error.response.data);
+            });
+        }
+    }
 };
 
 
@@ -59069,119 +59287,105 @@ module.exports = Component.exports
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('table', {
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "purchaseProcess",
+      "tabindex": "-1",
+      "role": "dialog",
+      "aria-labelledby": "purchaseProcessLbl"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_vm._m(0), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "purchaseProcessLbl"
+    }
+  }, [_vm._v("Purchase #" + _vm._s(_vm.purchase))])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('div', {
+    staticClass: "form-group has-feedback",
+    class: {
+      'has-error': _vm.errors.has('ext_invoice')
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "ext_invoice"
+    }
+  }, [_vm._v("External Invoice #")]), _vm._v(" "), _c('input', {
     directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer),
-      expression: "customer"
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.ext_invoice),
+      expression: "ext_invoice"
     }],
-    staticClass: "table table-condensed pull-right text-right"
-  }, [_c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.telephone),
-      expression: "customer.telephone"
-    }]
-  }, [_vm._v("Telephone")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.telephone),
-      expression: "customer.telephone"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.telephone))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.email),
-      expression: "customer.email"
-    }]
-  }, [_vm._v("Email")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.email),
-      expression: "customer.email"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.email))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address),
-      expression: "customer.address"
-    }]
-  }, [_vm._v("Address")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address),
-      expression: "customer.address"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.address))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address_2),
-      expression: "customer.address_2"
-    }]
-  }, [_vm._v("Secondary Address")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address_2),
-      expression: "customer.address_2"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.address_2))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.city),
-      expression: "customer.city"
-    }]
-  }, [_vm._v("City")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.city),
-      expression: "customer.city"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.city))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.province),
-      expression: "customer.province"
-    }]
-  }, [_vm._v("Province")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.province),
-      expression: "customer.province"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.province))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.country),
-      expression: "customer.country"
-    }]
-  }, [_vm._v("State")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.country),
-      expression: "customer.country"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.country))])])])
-},staticRenderFns: []}
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "ext_invoice",
+      "placeholder": "External Invoice #"
+    },
+    domProps: {
+      "value": (_vm.ext_invoice)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.ext_invoice = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(_vm.errors.get('ext_invoice'))
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.onSubmit($event)
+      }
+    }
+  }, [_vm._v("Save changes")])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-b4a42bce", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-559e7cc4", module.exports)
   }
 }
 

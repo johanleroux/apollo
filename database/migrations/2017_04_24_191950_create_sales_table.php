@@ -21,7 +21,7 @@ class CreateSalesTable extends Migration
           $table->timestamps();
       });
 
-      DB::update("ALTER TABLE sales AUTO_INCREMENT = 10000;");
+      DB::update("ALTER TABLE sales AUTO_INCREMENT = 10001;");
   }
 
   /**

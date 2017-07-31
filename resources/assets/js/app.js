@@ -21,6 +21,7 @@ document.addEventListener('turbolinks:load', () => {
     Vue.component('purchase', require('./components/Purchase/Purchase.vue'));
     Vue.component('purchase-row', require('./components/Purchase/Purchase-Row.vue'));
     Vue.component('purchase-supplier', require('./components/Purchase/Purchase-Supplier.vue'));
+    Vue.component('purchase-process', require('./components/Purchase/Purchase-Process.vue'));
 
     Vue.component('sale', require('./components/Sale/Sale.vue'));
     Vue.component('sale-row', require('./components/Sale/Sale-Row.vue'));

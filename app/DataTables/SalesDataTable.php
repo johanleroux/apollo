@@ -22,6 +22,9 @@ class SalesDataTable extends DataTable
             ->editColumn('customer', function (Sale $sale) {
                 return $sale->customer->name;
             })
+            ->addColumn('total', function (Sale $sale) {
+                return price_format($sale->total);
+            })
             ->rawColumns(['actions']);
     }
 
@@ -61,10 +64,11 @@ class SalesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'           => ['title' => 'Sale #'],
-            'customer'     => ['name' => 'customer.name', 'sortable' => false, 'searchable' => true],
-            'created_at'   => ['title' => 'Created Date'],
-            'actions'
+            'id'         => ['title' => 'Sale #'],
+            'customer'   => ['name' => 'customer.name', 'orderable' => true, 'searchable' => true],
+            'created_at' => ['title' => 'Created Date'],
+            'total'      => ['orderable' => false, 'searchable' => false, 'class' => 'text-right'],
+            'actions'    => ['class' => 'text-center']
         ];
     }
 

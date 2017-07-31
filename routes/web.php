@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('customers', 'CustomersController');
     Route::resource('products', 'ProductsController');
     Route::resource('suppliers', 'SuppliersController');
-    Route::resource('orders', 'OrdersController');
-    Route::resource('purchases', 'PurchasesController');
-    Route::resource('sales', 'SalesController');
+    Route::resource('purchases', 'PurchasesController', ['only' => ['index', 'show', 'create', 'store', 'edit', 'update']]);
+    Route::post('purchases/{purchase}/process', 'PurchasesController@process');
+    Route::resource('sales', 'SalesController', ['only' => ['index', 'show', 'create', 'store']]);
 });
