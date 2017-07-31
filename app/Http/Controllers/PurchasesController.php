@@ -134,17 +134,22 @@ class PurchasesController extends Controller
         return redirect()->action('PurchasesController@show', $purchase);
     }
 
-    /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function destroy(Purchase $purchase)
+    public function process(Purchase $purchase)
     {
-        $purchase->delete();
+        abort_if($purchase->processed_at, 403);
 
-        notify()->flash('Purchase has been archived!', 'success');
-        return redirect()->action('PurchasesController@index');
+        $this->validate(request(), [
+            'ext_invoice' => 'required|string',
+        ]);
+
+        $purchase->forceFill([
+            'ext_invoice'  => request()->ext_invoice,
+            'processed_at' => \Carbon\Carbon::now()
+        ]);
+
+        $purchase->save();
+
+        notify()->flash('Purchase has been processed!', 'success');
+        return action('PurchasesController@show', $purchase);
     }
 }

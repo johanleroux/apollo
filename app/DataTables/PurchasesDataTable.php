@@ -22,6 +22,9 @@ class PurchasesDataTable extends DataTable
             ->editColumn('supplier', function (Purchase $purchase) {
                 return $purchase->supplier->name;
             })
+            ->addColumn('total', function (Purchase $purchase) {
+                return price_format($purchase->total);
+            })
             ->rawColumns(['actions']);
     }
 
@@ -61,11 +64,11 @@ class PurchasesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'           => ['title' => 'Purchase #'],
-            'supplier'     => ['name' => 'supplier.name', 'sortable' => false, 'searchable' => true],
-            'created_at'   => ['title' => 'Created Date'],
-            'processed_at' => ['title' => 'Processed At'],
-            'actions'
+            'id'         => ['title' => 'Purchase #'],
+            'supplier'   => ['name' => 'supplier.name', 'sortable' => false, 'searchable' => true],
+            'created_at' => ['title' => 'Created Date'],
+            'total'      => ['orderable' => false, 'searchable' => false, 'class' => 'text-right'],
+            'actions'    => ['class' => 'text-center']
         ];
     }
 

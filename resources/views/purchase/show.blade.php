@@ -3,12 +3,14 @@
 @section('content-header')
     {!! Breadcrumbs::render('purchase_show', $purchase) !!}
 
-<div class="btn-group pull-right">
-    <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
-    <ul class="dropdown-menu pull-right" role="menu">
-        <li><a href="#"><i class="fa fa-pencil"></i> Action</a></li>
-    </ul>
-</div>
+    @if(!$purchase->processed_at)
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li><a href="#" data-toggle="modal" data-target="#purchaseProcess"><i class="fa fa-pencil"></i> Process Purchase</a></li>
+            </ul>
+        </div>
+    @endif
 @endsection
 @section('content')
 <section class="invoice">
@@ -37,6 +39,10 @@
             <b>Purchase ID:</b> #{{ $purchase->id }}
             <br>
             <b>Process Date:</b> {{ $purchase->processed_at ?  $purchase->processed_at->toDateTimeString() : 'Not Yet Processed' }}
+            <br>
+            @if($purchase->processed_at)
+                <b>External Invoice #:</b> {{ $purchase->ext_invoice }}
+            @endif
         </div>
     </div>
 
@@ -71,4 +77,8 @@
         </div>
     </div>
 </section>
+
+@if(!$purchase->processed_at)
+<purchase-process :purchase="{{ $purchase->id }}"></purchase-process>
+@endif
 @endsection
