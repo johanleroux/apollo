@@ -49,7 +49,7 @@ class PurchasesDataTable extends DataTable
                     ->parameters([
                         'dom'        => 'Bfrtip',
                         'pageLength' => '25',
-                        'purchase'      => [[0, 'desc']],
+                        'order'      => [[0, 'desc']],
                     ]);
     }
 
