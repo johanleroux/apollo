@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\DataTables\PurchasesDataTable;
 
 class PurchasesController extends Controller
@@ -40,20 +41,41 @@ class PurchasesController extends Controller
     public function store()
     {
         $this->validate(request(), [
-            'name'      => 'required|string',
-            'telephone' => 'required|string',
-            'email'     => 'required|string',
-            'address'   => 'nullable|string',
-            'address_2' => 'nullable|string',
-            'city'      => 'nullable|string',
-            'province'  => 'nullable|string',
-            'country'   => 'nullable|string',
+            'supplier_id'          => 'required|exists:suppliers,id',
+            'product.1.sku'        => 'required',
+            'product.*.sku'        => [
+                'nullable',
+                Rule::exists('products', 'id')->where(function ($query) {
+                    $query->where('supplier_id', request()->supplier_id);
+                })
+            ],
+            'product.*.unit_price'               => 'nullable|required_with:product.*.sku|numeric|min:1',
+            'product.*.quantity'                 => 'nullable|required_with:product.*.sku|numeric|min:1',
+        ], [
+            'supplier_id.required'               => 'A Supplier ID is Required',
+            'product.1.sku.required'             => 'Atleast 1 Product is Required',
+            'product.*.sku.exists'               => 'The Select SKU is Invalid',
+            'product.*.unit_price.required_with' => 'Unit Price Field is Required',
+            'product.*.quantity.required_with'   => 'Quantity Field is Required'
         ]);
 
-        $purchase = Purchase::create(request()->all());
+        $purchase = Purchase::forceCreate([
+            'supplier_id' => request()->supplier_id
+        ]);
+
+        $products = collect(request()->product)
+        ->where('sku', '!=', '')
+        ->each(function ($item) use ($purchase) {
+            $purchase->addProduct([
+                'purchase_id' => $purchase->id,
+                'product_id'  => $item['sku'],
+                'price'       => $item['unit_price'],
+                'quantity'    => $item['quantity'],
+            ]);
+        });
 
         notify()->flash('Purchase has been created!', 'success');
-        return redirect()->action('PurchasesController@show', $purchase);
+        return action('PurchasesController@show', $purchase);
     }
 
     /**

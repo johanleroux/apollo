@@ -26,4 +26,9 @@ class Purchase extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    public function addProduct($payload)
+    {
+        return $this->items()->forceCreate($payload);
+    }
 }
