@@ -52,11 +52,11 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="{{ asset('img/avatar.png') }}" class="user-image" alt="User Image">
-            <span class="hidden-xs">John Doe</span>
+            <span class="hidden-xs">{{ auth()->user()->name }}</span>
           </a>
           <ul class="dropdown-menu" style="width: 50%">
             <li>
-              <a href="{{ url('/modify_password') }}"><i class="fa fa-gears"></i>Settings</a>
+              <a href="{{ url('settings') }}"><i class="fa fa-gears"></i>Settings</a>
               <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-lock"></i>Sign Out</a>
               {{ html()->form('POST', route('logout'))->id('logout-form')->open() }}{{ html()->form()->close() }}
             </li>

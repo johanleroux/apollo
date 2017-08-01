@@ -11,7 +11,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    {{ html()->modelForm($company, 'POST', action('CompaniesController@update'))->open() }}
+                    {{ html()->modelForm($company, 'PUT', action('CompaniesController@update'))->open() }}
 
                     @include('company._form')
 

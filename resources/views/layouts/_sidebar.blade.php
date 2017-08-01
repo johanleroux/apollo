@@ -5,7 +5,7 @@
                 <img src="{{ asset('img/avatar.png') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>John Doe [Manager]</p>
+                <p>{{ auth()->user()->name }} [Manager]</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

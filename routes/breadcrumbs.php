@@ -10,6 +10,11 @@ Breadcrumbs::register('company_edit', function ($breadcrumbs) {
     $breadcrumbs->push('Company Info', action('CompaniesController@edit'));
 });
 
+// Settings
+Breadcrumbs::register('settings', function ($breadcrumbs) {
+    $breadcrumbs->push('User Settings', action('UsersController@edit'));
+});
+
 // Customer
 Breadcrumbs::register('customer', function ($breadcrumbs) {
     $breadcrumbs->push('Customers', action('CustomersController@index'));

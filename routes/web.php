@@ -23,17 +23,17 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     });
 
-    Route::get('/modify_password', function () {
-        return view('auth.modify_password');
-    });
+    Route::get('settings', 'UsersController@edit');
+    Route::put('settings', 'UsersController@update');
 
     Route::resource('customers', 'CustomersController');
     Route::resource('products', 'ProductsController');
     Route::resource('suppliers', 'SuppliersController');
+
     Route::resource('purchases', 'PurchasesController', ['only' => ['index', 'show', 'create', 'store', 'edit', 'update']]);
     Route::post('purchases/{purchase}/process', 'PurchasesController@process');
     Route::resource('sales', 'SalesController', ['only' => ['index', 'show', 'create', 'store']]);
 
     Route::get('company', 'CompaniesController@edit');
-    Route::post('company', 'CompaniesController@update');
+    Route::put('company', 'CompaniesController@update');
 });
