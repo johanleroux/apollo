@@ -11,8 +11,8 @@ A software based solution can bring efficiency to inventory management, and perf
 Here is a server running the website:
 https://apollo.lomejo.co.za
 
-Default User Credentials
+Default User Credentials:
 johndoe@paradox.com:secret
 
-Project Apollo Mobile Repository
+Project Apollo Mobile Repository:
 https://github.com/Slaysenfite/Project_Apollo_Mobile
