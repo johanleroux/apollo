@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -87,11 +88,13 @@ class PurchasesController extends Controller
     public function show($id)
     {
         $purchase = Purchase::with(['supplier', 'items.product'])->findOrFail($id);
+        $company = Company::firstOrFail();
 
         return view('purchase.show', [
-            'purchase'    => $purchase,
+            'purchase' => $purchase,
             'items'    => $purchase->items,
-            'supplier' => $purchase->supplier
+            'supplier' => $purchase->supplier,
+            'company'  => $company
         ]);
     }
 

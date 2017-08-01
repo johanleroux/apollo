@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
+use App\Models\Company;
 use App\Models\Product;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -84,11 +85,13 @@ class SalesController extends Controller
     public function show($id)
     {
         $sale = Sale::with(['customer', 'items.product'])->findOrFail($id);
+        $company = Company::firstOrFail();
 
         return view('sale.show', [
             'sale'     => $sale,
             'items'    => $sale->items,
-            'customer' => $sale->customer
+            'customer' => $sale->customer,
+            'company'  => $company
         ]);
     }
 

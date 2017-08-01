@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h2 class="page-header">
-                <i class="fa fa-globe"></i> Company, Inc.
+                <i class="fa fa-globe"></i> {{ $company->name }}
                 <small class="pull-right">Date: {{ $sale->created_at->toDateString() }}</small>
               </h2>
         </div>
@@ -23,7 +23,7 @@
 
     <div class="row invoice-info">
         <div class="col-sm-6 invoice-col">
-            To
+            To:
             <address>
                 <strong>{{ $customer->name }}</strong><br>
                 {{ $customer->address }}, {{ $customer->address_2 }}<br>
@@ -34,9 +34,15 @@
               </address>
         </div>
         <div class="col-sm-6 invoice-col text-right">
-            <b>Sale ID:</b> #{{ $sale->id }}
-            <br>
-            <b>Process Date:</b> {{ $sale->processed_at ?  $sale->processed_at->toDateTimeString() : 'Not Yet Processed' }}
+            <b>Sale ID:</b> #{{ $sale->id }} <br>
+            <address>
+                <b>Company Information:</b><br>
+                {{ $company->address }}, {{ $company->address_2 }}<br>
+                {{ $company->city }}, {{ $company->province }}<br>
+                {{ $company->country }}<br>
+                Phone: {{ $company->telephone }}<br>
+                Email: {{ $company->email }}
+              </address>
         </div>
     </div>
 
