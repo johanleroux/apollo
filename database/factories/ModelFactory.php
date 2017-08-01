@@ -1,5 +1,18 @@
 <?php
 
+$factory->define(App\Models\Company::class, function (Faker\Generator $faker) {
+    return [
+    'name'      => $faker->company,
+    'telephone' => $faker->phoneNumber,
+    'email'     => $faker->email,
+    'address'   => $faker->streetAddress,
+    'address_2' => $faker->secondaryAddress,
+    'city'      => $faker->city,
+    'province'  => $faker->state,
+    'country'   => $faker->country,
+  ];
+});
+
 $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
