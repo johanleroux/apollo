@@ -129,3 +129,26 @@ Breadcrumbs::register('sale_show', function ($breadcrumbs, $sale) {
     $breadcrumbs->parent('sale');
     $breadcrumbs->push('#' . $sale->id, action('SalesController@show', $sale));
 });
+
+// Message
+Breadcrumbs::register('message', function ($breadcrumbs) {
+    $breadcrumbs->push('Messages', action('MessagesController@index'));
+});
+
+// Message >> Create
+Breadcrumbs::register('message_create', function ($breadcrumbs) {
+    $breadcrumbs->parent('message');
+    $breadcrumbs->push('Create', action('MessagesController@create'));
+});
+
+// Message >> Edit
+Breadcrumbs::register('message_edit', function ($breadcrumbs, $message) {
+    $breadcrumbs->parent('message_show', $message);
+    $breadcrumbs->push('Edit', action('MessagesController@edit', $message));
+});
+
+// Message >> Show
+Breadcrumbs::register('message_show', function ($breadcrumbs, $message) {
+    $breadcrumbs->parent('message');
+    $breadcrumbs->push($message->subject, action('MessagesController@show', $message));
+});

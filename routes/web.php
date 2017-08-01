@@ -36,4 +36,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('company', 'CompaniesController@edit');
     Route::put('company', 'CompaniesController@update');
+
+    Route::resource('messages', 'MessagesController');
 });
