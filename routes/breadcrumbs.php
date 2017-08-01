@@ -5,6 +5,11 @@ Breadcrumbs::register('dashboard', function ($breadcrumbs) {
     $breadcrumbs->push('Dashboard', url('dashboard'));
 });
 
+// Company
+Breadcrumbs::register('company_edit', function ($breadcrumbs) {
+    $breadcrumbs->push('Company Info', action('CompaniesController@edit'));
+});
+
 // Customer
 Breadcrumbs::register('customer', function ($breadcrumbs) {
     $breadcrumbs->push('Customers', action('CustomersController@index'));
