@@ -167,6 +167,7 @@ return [
   * Package Service Providers...
   */
   Barryvdh\Debugbar\ServiceProvider::class,
+  Cmgmyr\Messenger\MessengerServiceProvider::class,
   Codecourse\Notify\NotifyServiceProvider::class,
   DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
   Laravel\Tinker\TinkerServiceProvider::class,
