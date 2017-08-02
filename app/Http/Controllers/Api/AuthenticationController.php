@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use JWTAuth;
+use App\Models\User;
 use Tymon\JWTAuthExceptions\JWTException;
 
 class AuthenticationController extends ApiController
@@ -19,6 +20,15 @@ class AuthenticationController extends ApiController
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        return response()->json(compact('token'));
+        $user = User::where('email', request()->email)->select('name', 'email')->first();
+
+        return response()->json([
+            'data' => [
+                'user' => $user
+            ],
+            'meta' => [
+                'token' => $token
+            ]
+        ]);
     }
 }
