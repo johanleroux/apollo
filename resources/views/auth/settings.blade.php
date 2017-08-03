@@ -11,7 +11,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
-                    {{ html()->modelForm(auth()->user(), 'PUT', action('UsersController@update'))->open() }}
+                    {{ html()->modelForm(auth()->user(), 'PUT', action('UsersController@update', auth()->user()->id))->open() }}
 
                     <div class="form-group has-feedback @if ($errors->has('name')) has-error @endif">
                         <label for="name">Name:</label>

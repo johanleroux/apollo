@@ -19,7 +19,8 @@
             <li><a href="{{ action('SalesController@index') }}"><i class="fa fa-money"></i><span>Sales</span></a></li>
             <li class="header">MANAGEMENT</li>
             <li><a href="{{ action('CompaniesController@edit') }}"><i class="fa fa-info-circle"></i><span>Company Info</span></a></li>
-            <li><a href="#"><i class="fa fa-user-circle-o"></i><span>Users</span></a></li>
+            <li><a href="{{ action('UsersController@index') }}"><i class="fa fa-user-circle-o"></i><span>Manage Users</span></a></li>
+            <li><a href="{{ action('RolesController@index') }}"><i class="fa fa-link"></i><span>Roles &amp; Permissions</span></a></li>
         </ul>
     </section>
 </aside>

@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     });
 
-    Route::get('settings', 'UsersController@edit');
+    Route::get('settings', 'UsersController@settings');
     Route::put('settings', 'UsersController@update');
 
     Route::resource('customers', 'CustomersController');
@@ -37,5 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('company', 'CompaniesController@edit');
     Route::put('company', 'CompaniesController@update');
 
+    Route::resource('users', 'UsersController');
+    Route::delete('users/{user}/restore', 'UsersController@restore')->name('users.restore');
+
+    Route::resource('roles', 'RolesController');
     Route::resource('messages', 'MessagesController');
 });

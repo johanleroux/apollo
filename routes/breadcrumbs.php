@@ -12,7 +12,7 @@ Breadcrumbs::register('company_edit', function ($breadcrumbs) {
 
 // Settings
 Breadcrumbs::register('settings', function ($breadcrumbs) {
-    $breadcrumbs->push('User Settings', action('UsersController@edit'));
+    $breadcrumbs->push('User Settings', action('UsersController@settings'));
 });
 
 // Customer
@@ -151,4 +151,44 @@ Breadcrumbs::register('message_edit', function ($breadcrumbs, $message) {
 Breadcrumbs::register('message_show', function ($breadcrumbs, $message) {
     $breadcrumbs->parent('message');
     $breadcrumbs->push($message->subject, action('MessagesController@show', $message));
+});
+
+// User
+Breadcrumbs::register('user', function ($breadcrumbs) {
+    $breadcrumbs->push('Users', action('UsersController@index'));
+});
+
+// User >> Create
+Breadcrumbs::register('user_create', function ($breadcrumbs) {
+    $breadcrumbs->parent('user');
+    $breadcrumbs->push('Create', action('UsersController@create'));
+});
+
+// User >> Edit
+Breadcrumbs::register('user_edit', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('user_show', $user);
+    $breadcrumbs->push('Edit', action('UsersController@edit', $user));
+});
+
+// User >> Show
+Breadcrumbs::register('user_show', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('user');
+    $breadcrumbs->push('[#' . $user->id . '] ' . $user->name, action('UsersController@show', $user));
+});
+
+// Role
+Breadcrumbs::register('role', function ($breadcrumbs) {
+    $breadcrumbs->push('Roles', action('RolesController@index'));
+});
+
+// Role >> Create
+Breadcrumbs::register('role_create', function ($breadcrumbs) {
+    $breadcrumbs->parent('role');
+    $breadcrumbs->push('Create', action('RolesController@create'));
+});
+
+// Role >> Edit
+Breadcrumbs::register('role_edit', function ($breadcrumbs, $role) {
+    $breadcrumbs->parent('role');
+    $breadcrumbs->push('Edit ' . title_case($role->name), action('RolesController@edit', $role));
 });
