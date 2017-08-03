@@ -171,6 +171,7 @@ return [
   Codecourse\Notify\NotifyServiceProvider::class,
   DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
   Laravel\Tinker\TinkerServiceProvider::class,
+  Silber\Bouncer\BouncerServiceProvider::class,
   Spatie\Fractal\FractalServiceProvider::class,
   Spatie\Html\HtmlServiceProvider::class,
   Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
@@ -235,6 +236,7 @@ return [
   'Validator'    => Illuminate\Support\Facades\Validator::class,
   'View'         => Illuminate\Support\Facades\View::class,
 
+  'Bouncer'      => Silber\Bouncer\BouncerFacade::class,
   'Breadcrumbs'  => DaveJamesMiller\Breadcrumbs\Facade::class,
   'Debugbar'     => Barryvdh\Debugbar\Facade::class,
   'Fractal'      => Spatie\Fractal\FractalFacade::class,
