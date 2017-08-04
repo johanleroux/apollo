@@ -25659,6 +25659,7 @@ if (typeof jQuery === 'undefined') {
 //
 //
 //
+//
 
 /* harmony default export */ exports["default"] = {
     props: ['row'],
@@ -25667,6 +25668,12 @@ if (typeof jQuery === 'undefined') {
             sku: ''
         }
     },
+    methods : {
+        deleteRow: function() {
+            this.$parent.deleteRow(this.row.id);
+        }
+    },
+
     watch: {
         row: {
             handler: function(newRow) {
@@ -25789,11 +25796,12 @@ if (typeof jQuery === 'undefined') {
 //
 //
 //
+//
 
 
 
 /* harmony default export */ exports["default"] = {
-    props: ['suppliers'],
+    props: ['suppliers', 'purchases'],
 
     data: function () {
         return {
@@ -25801,31 +25809,109 @@ if (typeof jQuery === 'undefined') {
             supplier: '',
             purchase_rows: '',
             total: 0,
-            errors: new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* Errors */]()
+            errors: new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* Errors */](),
+            request: ''
         }
     },
+
     created: function() {
-        this.reset();
+        if(this.purchases == undefined)
+        {
+            this.reset();
+        } else {
+            this.supplier_id = this.purchases.supplier_id;
+            this.$nextTick(function () {
+                var this$1 = this;
+
+                this.purchase_rows = [];
+
+                var i = 1;
+                this.purchases.items.forEach(function (item) {
+                    this$1.purchase_rows.push({
+                        id: i,
+                        product: {
+                            sku: item.product_id,
+                            description: '',
+                            unit_price: '',
+                            quantity: ''
+                        }
+                    });
+
+                    i++;
+                });
+
+                this.$nextTick(function () {
+                    var this$1 = this;
+
+                    for (var i = 1; i < this.purchase_rows.length - 1; i++) {
+                        this$1.purchase_rows[i].product.description = 'reset';
+                    }
+
+                    var i = 0;
+                    this.$nextTick(function () {
+                        var this$1 = this;
+
+                        this.purchases.items.forEach(function (item) {
+                            this$1.purchase_rows[i].product.quantity   = item.quantity;
+                            this$1.purchase_rows[i].product.unit_price = item.price;
+
+                            i++;
+                        });
+                    });
+                });
+            });
+        }
     },
+
     methods: {
         onSubmit: function() {
             var this$1 = this;
 
+            this.generateRequest();
+
             this.errors.clear();
-            axios.post('/purchases', this.request)
-            .then(function (response) { return window.location = response.request.response; })
+            axios.post(this.url, this.request)
+            .then(function (response) {
+                window.location = response.request.response;
+            })
             .catch(function (error) {
                 this$1.errors.record(error.response.data);
             });
         },
+
+        deleteRow: function(deleteRow) {
+            var this$1 = this;
+
+            var old_rows = this.purchase_rows;
+
+            this.reset();
+
+            var i = 1;
+            old_rows.forEach(function (row) {
+                if(row.id == deleteRow) return;
+
+                this$1.purchase_rows[i-1] = {
+                    id: i,
+                    product: {
+                        sku:         row.product.sku,
+                        description: row.product.description,
+                        unit_price:  row.product.unit_price,
+                        quantity:    row.product.quantity
+                    }
+                };
+
+                i++;
+            });
+        },
+
         reset: function () {
             // Reset Rows
             this.purchase_rows = [];
             this.createRow(1);
         },
+
         createRow: function() {
-            this.purchase_rows.push(
-            {
+            this.purchase_rows.push({
                 id: this.purchase_rows.length+1,
                 product: {
                     sku: '',
@@ -25833,9 +25919,9 @@ if (typeof jQuery === 'undefined') {
                     unit_price: '',
                     quantity: ''
                 }
-            }
-            )
+            })
         },
+
         calcTotal: function() {
             var total = 0;
             this.purchase_rows.forEach(function (row) {
@@ -25844,6 +25930,25 @@ if (typeof jQuery === 'undefined') {
             });
 
             this.total = total.toFixed(2);
+        },
+
+        generateRequest: function () {
+            var data = new FormData();
+            data.append('supplier_id', this.supplier_id);
+            if(this.isEdit())
+                data.append('_method', 'patch');
+
+            this.purchase_rows.forEach(function (row) {
+                data.append('product[' + row.id + '][sku]', row.product.sku);
+                data.append('product[' + row.id + '][unit_price]', row.product.unit_price);
+                data.append('product[' + row.id + '][quantity]', row.product.quantity);
+            });
+
+            this.request = data;
+        },
+
+        isEdit: function() {
+            return (this.purchases != undefined);
         }
     },
     computed: {
@@ -25852,17 +25957,12 @@ if (typeof jQuery === 'undefined') {
 
             return this.supplier.products;
         },
-        request: function () {
-            var data = new FormData();
-            data.append('supplier_id', this.supplier_id);
 
-            this.purchase_rows.forEach(function (row) {
-                data.append('product[' + row.id + '][sku]', row.product.sku);
-                data.append('product[' + row.id + '][unit_price]', row.product.unit_price);
-                data.append('product[' + row.id + '][quantity]', row.product.quantity);
-            });
-
-            return data;
+        url: function () {
+            if(!this.isEdit())
+                return '/purchases';
+            else
+                return '/purchases/' + this.purchases.id;
         }
     },
     watch: {
@@ -25877,6 +25977,7 @@ if (typeof jQuery === 'undefined') {
             // Set Supplier
             this.supplier = this.suppliers.find(function (supplier) { return this$1.supplier_id == supplier.id; });
         },
+
         purchase_rows: {
             handler: function()
             {
@@ -58278,7 +58379,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_c('div', {
+  return _c('tr', [_c('td', [_c('i', {
+    staticClass: "fa fa-times",
+    staticStyle: {
+      "line-height": "34px"
+    },
+    on: {
+      "click": _vm.deleteRow
+    }
+  })]), _vm._v(" "), _c('td', [_c('div', {
     staticClass: "form-group",
     class: {
       'has-error': this.$parent.errors.has('product.' + _vm.row.id + '.sku')
@@ -59124,8 +59233,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('form', {
     attrs: {
-      "method": "POST",
-      "action": "/purchases"
+      "method": "POST"
     },
     on: {
       "submit": function($event) {
@@ -59206,7 +59314,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   }), _vm._v(" "), _c('tr', [_c('td', {
     attrs: {
-      "colspan": "4"
+      "colspan": "5"
     }
   }), _vm._v(" "), _c('td', [_c('input', {
     directives: [{
@@ -59230,7 +59338,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])])], 2)])]), _vm._v(" "), _vm._m(1)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("SKU")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', {
+  return _c('thead', [_c('tr', [_c('th'), _vm._v(" "), _c('th', [_vm._v("SKU")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', {
     staticClass: "text-right"
   }, [_vm._v("Unit Price")]), _vm._v(" "), _c('th', {
     staticClass: "text-right"
@@ -59244,7 +59352,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn btn-primary pull-right",
     attrs: {
       "type": "submit",
-      "value": "Create Purchase"
+      "value": "Save Purchase"
     }
   })])
 }]}

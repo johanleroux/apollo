@@ -21,8 +21,12 @@ class CreatePurchaseItemsTable extends Migration
           $table->double('price', 10, 2);
           $table->integer('quantity');
 
-          $table->foreign('purchase_id')->references('id')->on('purchases');
-          $table->foreign('product_id')->references('id')->on('products');
+          $table->foreign('purchase_id')
+            ->references('id')->on('purchases')
+            ->onDelete('cascade');
+          $table->foreign('product_id')
+            ->references('id')->on('products')
+            ->onDelete('cascade');
           $table->timestamps();
       });
   }

@@ -116,9 +116,14 @@ class PurchasesController extends Controller
     {
         user_can('edit-purchase');
 
-        $purchase = Purchase::findOrFail($id);
+        $purchase = Purchase::select('id', 'supplier_id')->with([
+            'items' => function ($query) {
+                $query->select('id', 'purchase_id', 'product_id', 'price', 'quantity');
+            }
+        ])->findOrFail($id);
+        $suppliers = Supplier::with(['products'])->get();
 
-        return view('purchase.edit', compact('purchase'));
+        return view('purchase.edit', compact('purchase', 'suppliers'));
     }
 
     /**
@@ -132,21 +137,50 @@ class PurchasesController extends Controller
     {
         user_can('edit-purchase');
 
+        abort_if($purchase->processed_at, 400);
+
         $this->validate(request(), [
-            'name'      => 'required|string',
-            'telephone' => 'required|string',
-            'email'     => 'required|string',
-            'address'   => 'nullable|string',
-            'address_2' => 'nullable|string',
-            'city'      => 'nullable|string',
-            'province'  => 'nullable|string',
-            'country'   => 'nullable|string',
+            'supplier_id'          => 'required|exists:suppliers,id',
+            'product.1.sku'        => 'required',
+            'product.*.sku'        => [
+                'nullable',
+                Rule::exists('products', 'id')->where(function ($query) {
+                    $query->where('supplier_id', request()->supplier_id);
+                })
+            ],
+            'product.*.unit_price'               => 'nullable|required_with:product.*.sku|numeric|min:1',
+            'product.*.quantity'                 => 'nullable|required_with:product.*.sku|numeric|min:1',
+        ], [
+            'supplier_id.required'               => 'A Supplier ID is Required',
+            'product.1.sku.required'             => 'Atleast 1 Product is Required',
+            'product.*.sku.exists'               => 'The Select SKU is Invalid',
+            'product.*.unit_price.required_with' => 'Unit Price Field is Required',
+            'product.*.quantity.required_with'   => 'Quantity Field is Required'
         ]);
 
-        $purchase->update(request()->all());
+        $purchase->forceFill([
+            'supplier_id' => request()->supplier_id
+        ]);
+
+        $purchase->save();
+
+        $purchase->items->each(function ($item) {
+            $item->delete();
+        });
+
+        $products = collect(request()->product)
+        ->where('sku', '!=', '')
+        ->each(function ($item) use ($purchase) {
+            $purchase->addProduct([
+                'purchase_id' => $purchase->id,
+                'product_id'  => $item['sku'],
+                'price'       => $item['unit_price'],
+                'quantity'    => $item['quantity'],
+            ]);
+        });
 
         notify()->flash('Purchase has been updated!', 'success');
-        return redirect()->action('PurchasesController@show', $purchase);
+        return action('PurchasesController@show', $purchase);
     }
 
     public function process(Purchase $purchase)
@@ -168,5 +202,21 @@ class PurchasesController extends Controller
 
         notify()->flash('Purchase has been processed!', 'success');
         return action('PurchasesController@show', $purchase);
+    }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(Purchase $purchase)
+    {
+        user_can('delete-purchase');
+
+        $purchase->delete();
+
+        notify()->flash('Purchase has been deleted!', 'success');
+        return redirect()->action('PurchasesController@index');
     }
 }
