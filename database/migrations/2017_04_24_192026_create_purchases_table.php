@@ -24,7 +24,9 @@ class CreatePurchasesTable extends Migration
           $table->timestamps();
       });
 
-      DB::update("ALTER TABLE purchases AUTO_INCREMENT = 10001;");
+      if (env('APP_ENV') != 'testing') {
+          DB::update("ALTER TABLE purchases AUTO_INCREMENT = 10001;");
+      }
   }
 
   /**

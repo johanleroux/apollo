@@ -19,6 +19,11 @@ Route::namespace('Api')->group(function () {
         Route::apiResource('customer', 'CustomersController');
 
         /**
+        * Suppliers REST
+        */
+        Route::apiResource('supplier', 'SuppliersController');
+
+        /**
          * Products REST
          */
         Route::apiResource('product', 'ProductsController');

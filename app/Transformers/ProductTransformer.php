@@ -14,12 +14,12 @@ class ProductTransformer extends TransformerAbstract
     public function transform($product)
     {
         return [
-            'id'          => $product->id,
-            'sku'         => $product->sku,
-            'description' => $product->description,
-            'price'       => (double) number_format($product->price, 2, '.', ''),
-            'created_at'  => $product->created_at->toDateTimeString(),
-            'updated_at'  => $product->updated_at->toDateTimeString(),
+            'id'                        => $product->id,
+            'sku'                       => $product->sku,
+            'description'               => $product->description,
+            'cost_price'                => (double) number_format($product->cost_price, 2, '.', ''),
+            'retail_price'              => (double) number_format($product->retail_price, 2, '.', ''),
+            'recommended_selling_price' => (double) number_format($product->recommended_selling_price, 2, '.', '')
         ];
     }
 }

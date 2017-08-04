@@ -22,9 +22,7 @@ class CustomerTransformer extends TransformerAbstract
             'address_2'  => $customer->address_2,
             'city'       => $customer->city,
             'province'   => $customer->province,
-            'country'    => $customer->country,
-            'created_at' => $customer->created_at->toDateTimeString(),
-            'updated_at' => $customer->updated_at->toDateTimeString(),
+            'country'    => $customer->country
         ];
     }
 }
