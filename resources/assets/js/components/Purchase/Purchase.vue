@@ -1,5 +1,5 @@
 <template>
-    <form method="POST" action="/purchases" @submit.prevent="onSubmit">
+    <form method="POST" @submit.prevent="onSubmit">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group has-feedback" v-bind:class="{ 'has-error': errors.has('supplier_id') }">
@@ -21,6 +21,7 @@
                     <thead>
 
                         <tr>
+                            <th></th>
                             <th>SKU</th>
                             <th>Description</th>
                             <th class="text-right">Unit Price</th>
@@ -31,14 +32,14 @@
                     <tbody>
                         <purchase-row v-for="row in purchase_rows" :row="row"></purchase-row>
                         <tr>
-                            <td colspan="4"></td>
+                            <td colspan="5"></td>
                             <td><input type="text" class="form-control text-right" v-model="total"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-md-12">
-                <input class="btn btn-primary pull-right" type="submit" value="Create Purchase">
+                <input class="btn btn-primary pull-right" type="submit" value="Save Purchase">
             </div>
         </div>
     </form>
@@ -48,7 +49,7 @@
 import {Errors} from '../../Errors'
 
 export default {
-    props: ['suppliers'],
+    props: ['suppliers', 'purchases'],
 
     data: function () {
         return {
@@ -56,29 +57,99 @@ export default {
             supplier: '',
             purchase_rows: '',
             total: 0,
-            errors: new Errors()
+            errors: new Errors(),
+            request: ''
         }
     },
+
     created: function() {
-        this.reset();
+        if(this.purchases == undefined)
+        {
+            this.reset();
+        } else {
+            this.supplier_id = this.purchases.supplier_id;
+            this.$nextTick(function () {
+                this.purchase_rows = [];
+
+                var i = 1;
+                this.purchases.items.forEach(item => {
+                    this.purchase_rows.push({
+                        id: i,
+                        product: {
+                            sku: item.product_id,
+                            description: '',
+                            unit_price: '',
+                            quantity: ''
+                        }
+                    });
+
+                    i++;
+                });
+
+                this.$nextTick(function () {
+                    for (var i = 1; i < this.purchase_rows.length - 1; i++) {
+                        this.purchase_rows[i].product.description = 'reset';
+                    }
+
+                    var i = 0;
+                    this.$nextTick(function () {
+                        this.purchases.items.forEach(item => {
+                            this.purchase_rows[i].product.quantity   = item.quantity;
+                            this.purchase_rows[i].product.unit_price = item.price;
+
+                            i++;
+                        });
+                    });
+                });
+            });
+        }
     },
+
     methods: {
         onSubmit: function() {
+            this.generateRequest();
+
             this.errors.clear();
-            axios.post('/purchases', this.request)
-            .then(response => window.location = response.request.response)
+            axios.post(this.url, this.request)
+            .then(response => {
+                window.location = response.request.response;
+            })
             .catch(error => {
                 this.errors.record(error.response.data);
             });
         },
+
+        deleteRow: function(deleteRow) {
+            var old_rows = this.purchase_rows;
+
+            this.reset();
+
+            var i = 1;
+            old_rows.forEach(row => {
+                if(row.id == deleteRow) return;
+
+                this.purchase_rows[i-1] = {
+                    id: i,
+                    product: {
+                        sku:         row.product.sku,
+                        description: row.product.description,
+                        unit_price:  row.product.unit_price,
+                        quantity:    row.product.quantity
+                    }
+                };
+
+                i++;
+            });
+        },
+
         reset: function () {
             // Reset Rows
             this.purchase_rows = [];
             this.createRow(1);
         },
+
         createRow: function() {
-            this.purchase_rows.push(
-            {
+            this.purchase_rows.push({
                 id: this.purchase_rows.length+1,
                 product: {
                     sku: '',
@@ -86,9 +157,9 @@ export default {
                     unit_price: '',
                     quantity: ''
                 }
-            }
-            )
+            })
         },
+
         calcTotal: function() {
             let total = 0;
             this.purchase_rows.forEach(row => {
@@ -97,6 +168,25 @@ export default {
             });
 
             this.total = total.toFixed(2);
+        },
+
+        generateRequest: function () {
+            let data = new FormData();
+            data.append('supplier_id', this.supplier_id);
+            if(this.isEdit())
+                data.append('_method', 'patch');
+
+            this.purchase_rows.forEach(row => {
+                data.append('product[' + row.id + '][sku]', row.product.sku);
+                data.append('product[' + row.id + '][unit_price]', row.product.unit_price);
+                data.append('product[' + row.id + '][quantity]', row.product.quantity);
+            });
+
+            this.request = data;
+        },
+
+        isEdit: function() {
+            return (this.purchases != undefined);
         }
     },
     computed: {
@@ -105,17 +195,12 @@ export default {
 
             return this.supplier.products;
         },
-        request: function () {
-            let data = new FormData();
-            data.append('supplier_id', this.supplier_id);
 
-            this.purchase_rows.forEach(row => {
-                data.append('product[' + row.id + '][sku]', row.product.sku);
-                data.append('product[' + row.id + '][unit_price]', row.product.unit_price);
-                data.append('product[' + row.id + '][quantity]', row.product.quantity);
-            });
-
-            return data;
+        url: function () {
+            if(!this.isEdit())
+                return '/purchases';
+            else
+                return '/purchases/' + this.purchases.id;
         }
     },
     watch: {
@@ -128,6 +213,7 @@ export default {
             // Set Supplier
             this.supplier = this.suppliers.find(supplier => this.supplier_id == supplier.id);
         },
+
         purchase_rows: {
             handler: function()
             {

@@ -2,13 +2,6 @@
 
 @section('content-header')
     {!! Breadcrumbs::render('sale_show', $sale) !!}
-
-<div class="btn-group pull-right">
-    <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
-    <ul class="dropdown-menu pull-right" role="menu">
-        <li><a href="#"><i class="fa fa-pencil"></i> Action</a></li>
-    </ul>
-</div>
 @endsection
 @section('content')
 <section class="invoice">

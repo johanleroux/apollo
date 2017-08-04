@@ -1,5 +1,6 @@
 <template>
     <tr>
+        <td><i class="fa fa-times" style="line-height: 34px" v-on:click="deleteRow"></i></td>
         <td>
             <div class="form-group" v-bind:class="{ 'has-error': this.$parent.errors.has('product.' + row.id + '.sku') }">
                 <select name="sku" id="sku" class="form-control" v-model="row.product.sku">
@@ -39,6 +40,12 @@ export default {
             sku: ''
         }
     },
+    methods : {
+        deleteRow: function() {
+            this.$parent.deleteRow(this.row.id);
+        }
+    },
+
     watch: {
         row: {
             handler: function(newRow) {
