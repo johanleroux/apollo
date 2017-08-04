@@ -8,11 +8,15 @@ Before digital integration into business processes, inventory management tools w
 
 A software based solution can bring efficiency to inventory management, and perform inventory management tasks accurately and effortlessly.
 
-Here is a server running the website:
-https://apollo.lomejo.co.za
+[Live Server](https://apollo.lomejo.co.za)
 
-Default User Credentials:
-johndoe@paradox.com:secret
+**Sales Rep. Credentials**
+sale@paradox.com:secret
 
-Project Apollo Mobile Repository:
-https://github.com/Slaysenfite/Project_Apollo_Mobile
+**Manager Credentials**
+manager@paradox.com:secret
+
+**Administator Credentials**
+admin@paradox.com:secret
+
+[Project Apollo Mobile Repository](https://github.com/Slaysenfite/Project_Apollo_Mobile)
