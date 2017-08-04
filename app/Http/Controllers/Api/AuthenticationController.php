@@ -20,11 +20,20 @@ class AuthenticationController extends ApiController
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        $user = User::where('email', request()->email)->select('name', 'email')->first();
+        $user = User::where('email', request()->email)->first();
+
+        foreach ($user->getAbilities() as $ability) {
+            $abilities[] = $ability->name;
+        }
 
         return response()->json([
             'data' => [
-                'user' => $user
+                'user' => [
+                    'name'  => $user->name,
+                    'email' => $user->email,
+                ],
+                'role'      => $user->role->name,
+                'abilities' => $abilities
             ],
             'meta' => [
                 'token' => $token
