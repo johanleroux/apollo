@@ -11,52 +11,83 @@ class UsersSeeder extends Seeder
     */
     public function run()
     {
-        $abilities = [
-            'land',
-            'offbeat',
-            'annoyed',
-            'grate',
-            'cemetery',
-            'care',
-            'trap',
-            'misty',
-            'nasty',
-            'unfasten',
-            'ill',
-            'heat',
-            'brake',
-            'destruction',
-            'pets',
-            'back',
-            'faint',
-            'axiomatic',
-            'better',
-            'sail',
-            'recondite',
-            'blushing',
-            'glistening',
-            'yam',
+        $salesAbilities = [
+            'view-customer',
+            'view-product',
+            'view-supplier',
+            'view-purchase',
+            'view-sale',
         ];
 
-        foreach ($abilities as $ability) {
-            Bouncer::allow('admin')->to($ability);
+
+        $managerAbilities = [
+            'create-customer',
+            'edit-customer',
+            'delete-customer',
+
+            'create-product',
+            'edit-product',
+            'delete-product',
+
+            'create-supplier',
+            'edit-supplier',
+            'delete-supplier',
+
+            'create-purchase',
+            'edit-purchase',
+            'delete-purchase',
+
+            'create-sale'
+        ];
+
+        $adminAbilities = [
+            'manage-users',
+            'manage-roles',
+            'manage-company'
+        ];
+
+        $managerAbilities = array_merge($managerAbilities, $salesAbilities);
+        $adminAbilities = array_merge($adminAbilities, $managerAbilities);
+
+        foreach ($salesAbilities as $ability) {
+            Bouncer::allow('sales')->to($ability);
+        }
+
+        foreach ($managerAbilities as $ability) {
             Bouncer::allow('manager')->to($ability);
         }
 
-        Bouncer::allow('admin')->to('manage-users');
-        Bouncer::allow('manager')->to('manage-users');
+        foreach ($adminAbilities as $ability) {
+            Bouncer::allow('admin')->to($ability);
+        }
 
-        $user = App\Models\User::create([
-            'name'           => 'John Doe',
-            'email'          => 'johndoe@paradox.com',
+        $sale = App\Models\User::create([
+            'name'           => 'Sale Doe',
+            'email'          => 'sale@paradox.com',
             'password'       => bcrypt('secret'),
             'remember_token' => str_random(10),
         ]);
 
-        $user->assign('admin');
+        $manager = App\Models\User::create([
+            'name'           => 'Manager Doe',
+            'email'          => 'manager@paradox.com',
+            'password'       => bcrypt('secret'),
+            'remember_token' => str_random(10),
+        ]);
 
-        factory(App\Models\User::class, 50)->create()->each(function ($user) {
-            $user->assign('user');
+        $admin = App\Models\User::create([
+            'name'           => 'Admin Doe',
+            'email'          => 'admin@paradox.com',
+            'password'       => bcrypt('secret'),
+            'remember_token' => str_random(10),
+        ]);
+
+        $sale->assign('sales');
+        $manager->assign('manager');
+        $admin->assign('admin');
+
+        factory(App\Models\User::class, 5)->create()->each(function ($user) {
+            $user->assign('sales');
         });
     }
 }
