@@ -14,6 +14,8 @@ class CompaniesController extends Controller
     */
     public function edit()
     {
+        user_can('manage-company');
+        
         $company = Company::firstOrFail();
 
         return view('company.edit', compact('company'));
@@ -28,6 +30,8 @@ class CompaniesController extends Controller
     */
     public function update()
     {
+        user_can('manage-company');
+        
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',

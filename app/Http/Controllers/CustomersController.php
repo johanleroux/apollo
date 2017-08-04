@@ -14,6 +14,8 @@ class CustomersController extends Controller
     */
     public function index(CustomersDataTable $dt)
     {
+        user_can('view-customer');
+
         return $dt->render('customer.index');
     }
 
@@ -24,6 +26,8 @@ class CustomersController extends Controller
     */
     public function create()
     {
+        user_can('create-customer');
+
         return view('customer.create');
     }
 
@@ -35,6 +39,8 @@ class CustomersController extends Controller
     */
     public function store()
     {
+        user_can('create-customer');
+
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
@@ -60,6 +66,8 @@ class CustomersController extends Controller
     */
     public function show($id)
     {
+        user_can('view-customer');
+
         $customer = Customer::findOrFail($id);
 
         return view('customer.show', compact('customer'));
@@ -73,6 +81,8 @@ class CustomersController extends Controller
     */
     public function edit($id)
     {
+        user_can('edit-customer');
+
         $customer = Customer::findOrFail($id);
 
         return view('customer.edit', compact('customer'));
@@ -87,6 +97,8 @@ class CustomersController extends Controller
     */
     public function update(Customer $customer)
     {
+        user_can('edit-customer');
+
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
@@ -112,6 +124,8 @@ class CustomersController extends Controller
     */
     public function destroy(Customer $customer)
     {
+        user_can('delete-customer');
+
         $customer->delete();
 
         notify()->flash('Customer has been archived!', 'success');

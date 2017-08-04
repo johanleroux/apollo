@@ -15,6 +15,8 @@ class ProductsController extends Controller
     */
     public function index(ProductsDataTable $dt)
     {
+        user_can('view-product');
+
         return $dt->render('product.index');
     }
 
@@ -25,6 +27,8 @@ class ProductsController extends Controller
     */
     public function create()
     {
+        user_can('create-product');
+
         $suppliers = Supplier::orderBy('name', 'asc')->pluck('name', 'id');
         return view('product.create', compact('suppliers'));
     }
@@ -37,6 +41,8 @@ class ProductsController extends Controller
     */
     public function store()
     {
+        user_can('create-product');
+
         $this->validate(request(), [
             'supplier_id'               => 'required|exists:suppliers,id',
             'sku'                       => 'required|unique:products|string',
@@ -63,6 +69,8 @@ class ProductsController extends Controller
     */
     public function show($id)
     {
+        user_can('view-product');
+
         $product = Product::findOrFail($id);
 
         return view('product.show', compact('product'));
@@ -76,6 +84,8 @@ class ProductsController extends Controller
     */
     public function edit($id)
     {
+        user_can('edit-product');
+
         $product = Product::findOrFail($id);
         $suppliers = Supplier::orderBy('name', 'asc')->pluck('name', 'id');
 
@@ -91,6 +101,8 @@ class ProductsController extends Controller
     */
     public function update(Product $product)
     {
+        user_can('edit-product');
+
         $this->validate(request(), [
             'description'               => 'required|string',
             'cost_price'                => 'required|numeric',
@@ -112,6 +124,8 @@ class ProductsController extends Controller
     */
     public function destroy(Product $product)
     {
+        user_can('delete-product');
+
         $product->delete();
 
         notify()->flash('Product has been archived!', 'success');

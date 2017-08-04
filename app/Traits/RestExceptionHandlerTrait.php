@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 trait RestExceptionHandlerTrait
 {
@@ -30,6 +31,10 @@ trait RestExceptionHandlerTrait
 
         if ($e instanceof ValidationException) {
             return $this->validation();
+        }
+
+        if ($e instanceof HttpException && $e->getStatusCode() == 403) {
+            return $this->badRequest('Unauthorized Access', 403);
         }
 
         return $this->badRequest();

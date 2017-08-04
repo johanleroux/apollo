@@ -15,6 +15,8 @@ class CustomersController extends ApiController
      */
     public function index()
     {
+        user_can('view-customer');
+
         $paginator = Customer::paginate(25);
         $customers = $paginator->getCollection();
 
@@ -33,6 +35,8 @@ class CustomersController extends ApiController
      */
     public function show($id)
     {
+        user_can('view-customer');
+
         $customer = Customer::findOrFail($id);
 
         return response()
@@ -48,6 +52,8 @@ class CustomersController extends ApiController
      */
     public function store()
     {
+        user_can('create-customer');
+
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
@@ -73,6 +79,8 @@ class CustomersController extends ApiController
      */
     public function update($id)
     {
+        user_can('edit-customer');
+
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
@@ -101,6 +109,8 @@ class CustomersController extends ApiController
      */
     public function destroy($id)
     {
+        user_can('delete-customer');
+
         $customer = Customer::findOrFail($id);
         $customer->delete();
 

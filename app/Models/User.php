@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Cmgmyr\Messenger\Traits\Messagable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Messagable, Notifiable;
+    use HasRolesAndAbilities, Messagable, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -27,4 +29,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
+    public function getRoleAttribute()
+    {
+        return $this->roles->first();
+    }
 }
