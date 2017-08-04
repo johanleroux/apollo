@@ -16,6 +16,8 @@ class RolesController extends Controller
     */
     public function index()
     {
+        user_can('manage-roles');
+
         $roles = Role::where('name', '!=', 'admin')->get();
         return view('role.index', compact('roles'));
     }
@@ -27,6 +29,8 @@ class RolesController extends Controller
     */
     public function create()
     {
+        user_can('manage-roles');
+
         $abilities = partition(Ability::orderBy('name', 'asc')->get()->toArray(), 4);
 
         return view('role.create', compact('abilities'));
@@ -40,6 +44,8 @@ class RolesController extends Controller
     */
     public function store()
     {
+        user_can('manage-roles');
+
         $this->validate(request(), [
             'name' => 'required|string|unique:roles',
         ]);
@@ -64,6 +70,8 @@ class RolesController extends Controller
     */
     public function edit($id)
     {
+        user_can('manage-roles');
+        
         $role = Role::findOrFail($id);
         $roleAbilities = $role->getAbilities();
         $abilities = partition(Ability::orderBy('name', 'asc')->get()->toArray(), 4);
@@ -80,6 +88,8 @@ class RolesController extends Controller
     */
     public function update(Role $role)
     {
+        user_can('manage-roles');
+        
         abort_if($role->name == 'admin', 404);
         $abilities = Ability::select('name')->get();
 
@@ -103,6 +113,8 @@ class RolesController extends Controller
     */
     public function destroy(Role $role)
     {
+        user_can('manage-roles');
+        
         // Reset Users Roles User DEFAULT
         $role->delete();
 

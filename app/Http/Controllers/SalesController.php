@@ -19,6 +19,8 @@ class SalesController extends Controller
     */
     public function index(SalesDataTable $dt)
     {
+        user_can('view-sale');
+
         return $dt->render('sale.index');
     }
 
@@ -29,6 +31,8 @@ class SalesController extends Controller
     */
     public function create()
     {
+        user_can('create-sale');
+
         $customers = Customer::get();
         $products = Product::get();
 
@@ -43,6 +47,8 @@ class SalesController extends Controller
     */
     public function store()
     {
+        user_can('create-sale');
+
         $this->validate(request(), [
             'customer_id'                        => 'required|exists:customers,id',
             'product.1.sku'                      => 'required',
@@ -84,6 +90,8 @@ class SalesController extends Controller
     */
     public function show($id)
     {
+        user_can('view-sale');
+
         $sale = Sale::with(['customer', 'items.product'])->findOrFail($id);
         $company = Company::firstOrFail();
 

@@ -11,11 +11,15 @@ class UsersController extends Controller
 {
     public function index(UsersDataTable $dt)
     {
+        user_can('manage-users');
+
         return $dt->render('user.index');
     }
 
     public function create()
     {
+        user_can('manage-users');
+
         $roles = Role::pluck('name', 'name');
 
         return view('user.create', compact('roles'));
@@ -23,6 +27,8 @@ class UsersController extends Controller
 
     public function store()
     {
+        user_can('manage-users');
+
         $this->validate(request(), [
             'name'                  => 'required|string',
             'email'                 => 'required|unique:users,email',
@@ -50,6 +56,8 @@ class UsersController extends Controller
     */
     public function edit($id)
     {
+        user_can('manage-users');
+
         $user  = User::findOrFail($id);
         $roles = Role::pluck('name', 'name');
 
@@ -71,6 +79,9 @@ class UsersController extends Controller
     public function update($id)
     {
         $user = User::findOrFail($id) ?? auth()->user();
+        if ($user != auth()->user()) {
+            user_can('manage-users');
+        }
 
         $this->validate(request(), [
             'name'                  => 'required|string',
@@ -111,6 +122,8 @@ class UsersController extends Controller
     */
     public function destroy(User $user)
     {
+        user_can('manage-users');
+
         $user->delete();
 
         notify()->flash('User has been deactivated!', 'success');
@@ -125,6 +138,8 @@ class UsersController extends Controller
     */
     public function restore($id)
     {
+        user_can('manage-users');
+
         $user = User::withTrashed()->findOrFail($id);
         $user->restore();
 

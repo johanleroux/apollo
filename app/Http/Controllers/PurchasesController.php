@@ -18,6 +18,8 @@ class PurchasesController extends Controller
     */
     public function index(PurchasesDataTable $dt)
     {
+        user_can('view-purchase');
+
         return $dt->render('purchase.index');
     }
 
@@ -28,6 +30,8 @@ class PurchasesController extends Controller
     */
     public function create()
     {
+        user_can('create-purchase');
+
         $suppliers = Supplier::with(['products'])->get();
 
         return view('purchase.create', compact('suppliers'));
@@ -41,6 +45,8 @@ class PurchasesController extends Controller
     */
     public function store()
     {
+        user_can('create-purchase');
+
         $this->validate(request(), [
             'supplier_id'          => 'required|exists:suppliers,id',
             'product.1.sku'        => 'required',
@@ -87,6 +93,8 @@ class PurchasesController extends Controller
     */
     public function show($id)
     {
+        user_can('view-purchase');
+
         $purchase = Purchase::with(['supplier', 'items.product'])->findOrFail($id);
         $company = Company::firstOrFail();
 
@@ -106,6 +114,8 @@ class PurchasesController extends Controller
     */
     public function edit($id)
     {
+        user_can('edit-purchase');
+
         $purchase = Purchase::findOrFail($id);
 
         return view('purchase.edit', compact('purchase'));
@@ -120,6 +130,8 @@ class PurchasesController extends Controller
     */
     public function update(Purchase $purchase)
     {
+        user_can('edit-purchase');
+
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
@@ -139,7 +151,9 @@ class PurchasesController extends Controller
 
     public function process(Purchase $purchase)
     {
-        abort_if($purchase->processed_at, 403);
+        user_can('edit-purchase');
+
+        abort_if($purchase->processed_at, 400);
 
         $this->validate(request(), [
             'ext_invoice' => 'required|string',

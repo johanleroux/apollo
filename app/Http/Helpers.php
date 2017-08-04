@@ -19,3 +19,8 @@ function partition(array $list, $p)
     }
     return $partition;
 }
+
+function user_can($ability)
+{
+    abort_unless(Bouncer::allows($ability), 403);
+}
