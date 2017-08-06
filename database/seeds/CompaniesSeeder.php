@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 
 class CompaniesSeeder extends Seeder
@@ -11,7 +12,8 @@ class CompaniesSeeder extends Seeder
   */
   public function run()
   {
-      App\Models\Company::create([
+      Company::flushEventListeners();
+      Company::create([
           'name'      => 'Paradox',
           'telephone' => '0860 000 000',
           'email'     => 'indo@paradox.com',

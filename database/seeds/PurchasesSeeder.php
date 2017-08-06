@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Purchase;
 use Illuminate\Database\Seeder;
 
 class PurchasesSeeder extends Seeder
@@ -11,7 +12,8 @@ class PurchasesSeeder extends Seeder
   */
   public function run()
   {
-      factory(App\Models\Purchase::class, 250)->create()->each(function ($p) {
+      Purchase::flushEventListeners();
+      factory(Purchase::class, 250)->create()->each(function ($p) {
           for ($i=0; $i < rand(1, 10); $i++) {
               $p->items()->save(factory(App\Models\PurchaseItem::class)->make());
           }

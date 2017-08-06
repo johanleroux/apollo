@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Sale;
 use Illuminate\Database\Seeder;
 
 class SalesSeeder extends Seeder
@@ -11,7 +12,8 @@ class SalesSeeder extends Seeder
   */
   public function run()
   {
-      factory(App\Models\Sale::class, 250)->create()->each(function ($p) {
+      Sale::flushEventListeners();
+      factory(Sale::class, 250)->create()->each(function ($p) {
           for ($i=0; $i < rand(1, 10); $i++) {
               $p->items()->save(factory(App\Models\SaleItem::class)->make());
           }

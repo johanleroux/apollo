@@ -41,20 +41,22 @@
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning">10</span>
+                        @if(auth()->user()->unreadNotifications()->count() > 0)
+                            <span class="label label-warning">{{ auth()->user()->unreadNotifications()->count() }}</span>
+                        @endif
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 10 notifications</li>
+                        <li class="header">You have {{ auth()->user()->unreadNotifications()->count() }} unread notifications</li>
                         <li>
                             <ul class="menu">
+                                @foreach(auth()->user()->unreadNotifications as $notification)
                                 <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-red"></i> 5 products have low stock
-                                    </a>
+                                    <a href="{{ action('NotificationsController@show', $notification) }}"><i class="fa fa-users text-red"></i> {{ $notification->data['message'] }}</a>
                                 </li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">View all</a></li>
+                        <li class="footer"><a href="{{ action('NotificationsController@index') }}">Remove all</a></li>
                     </ul>
                 </li>
                 <li class="dropdown user user-menu">
