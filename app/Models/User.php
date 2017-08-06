@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->roles->first();
     }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForSlack()
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
 }

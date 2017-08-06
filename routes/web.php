@@ -42,4 +42,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('roles', 'RolesController');
     Route::resource('messages', 'MessagesController');
+
+    Route::get('notifications/', 'NotificationsController@index');
+    Route::get('notifications/{notification}', 'NotificationsController@show');
 });

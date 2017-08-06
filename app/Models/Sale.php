@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\NotifyModel;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
+    use NotifyModel;
+    
     public function getTotalAttribute()
     {
         return $this->items->sum(function ($item) {

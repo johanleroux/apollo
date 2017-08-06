@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\NotifyModel;
 use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
 {
+    use NotifyModel;
+
     protected $dates = [
         'processed_at'
     ];

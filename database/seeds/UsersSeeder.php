@@ -86,8 +86,8 @@ class UsersSeeder extends Seeder
         $manager->assign('manager');
         $admin->assign('admin');
 
-        factory(App\Models\User::class, 5)->create()->each(function ($user) {
-            $user->assign('sales');
-        });
+        // factory(App\Models\User::class, 5)->create()->each(function ($user) {
+        //     $user->assign('sales');
+        // });
     }
 }
