@@ -45,6 +45,27 @@ class Report
 
     public function yearlyRecap()
     {
-        return null;
+        $endDate   = new \Carbon\Carbon('last day of last month');
+        $endDate   = $endDate->endOfDay();
+        $startDate = new \Carbon\Carbon('last day of last month');
+        $startDate = $startDate->subMonths(11)->startOfMonth()->startOfDay();
+
+        $data['startDate'] = $startDate->format('j M, Y');
+        $data['endDate']   = $endDate->format('j M, Y');
+
+        $monthlySales =  SaleItem::select(DB::raw('SUM(price * quantity) value'), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+                ->groupBy('year', 'month')
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->get();
+
+        foreach ($monthlySales as $month) {
+            $data['labels'][] = '"'.(string) date('M', mktime(0, 0, 0, $month->month, 10)).'"';
+            $data['data'][]   = $month->value;
+        }
+
+        $data['data']   = implode(',', $data['data']);
+        $data['labels'] = implode(',', $data['labels']);
+
+        return $data;
     }
 }

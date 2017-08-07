@@ -13,10 +13,21 @@ class SalesSeeder extends Seeder
   public function run()
   {
       Sale::flushEventListeners();
-      factory(Sale::class, 250)->create()->each(function ($p) {
-          for ($i=0; $i < rand(1, 10); $i++) {
-              $p->items()->save(factory(App\Models\SaleItem::class)->make());
-          }
-      });
+      $date = new Carbon\Carbon;
+      $date = $date->subMonths(12);
+      for ($i=0; $i < 12; $i++) {
+          factory(Sale::class, 20)->create([
+              'created_at' => $date,
+              'updated_at' => $date
+              ])->each(function ($p) use ($date) {
+                  for ($i=0; $i < rand(1, 10); $i++) {
+                      $p->items()->save(factory(App\Models\SaleItem::class)->make([
+                          'created_at' => $date,
+                          'updated_at' => $date
+                          ]));
+                  }
+              });
+          $date = $date->addMonth();
+      }
   }
 }

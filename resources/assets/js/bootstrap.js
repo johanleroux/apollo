@@ -1,8 +1,8 @@
-window.$                 = window.jQuery = require('jquery');
-window.AutoComplete      = require("autocomplete-js");
-window.axios             = require('axios');
-window.toastr            = require('toastr');
-window.vm                = null;
+window.$            = window.jQuery = require('jquery');
+window.AutoComplete = require("autocomplete-js");
+window.axios        = require('axios');
+window.toastr       = require('toastr');
+window.vm           = null;
 
 require('bootstrap-less');
 require('jquery-slimscroll');
