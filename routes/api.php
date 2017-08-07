@@ -27,5 +27,10 @@ Route::namespace('Api')->group(function () {
          * Products REST
          */
         Route::apiResource('product', 'ProductsController');
+
+        /**
+         * Users REST
+         */
+        Route::patch('user', 'UsersController@update')->name('user.update');
     });
 });
