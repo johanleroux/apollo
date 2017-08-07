@@ -8,13 +8,21 @@ use League\Fractal\TransformerAbstract;
 class PurchaseTransformer extends TransformerAbstract
 {
     /**
-    * List of resources possible to include
+     * List of resources possible to include
+     *
+     * @var array
+     */
+    protected $availableIncludes = [
+        'items'
+    ];
+
+    /**
+    * List of resources to automatically include
     *
     * @var array
     */
     protected $defaultIncludes = [
         'supplier',
-        'items'
     ];
 
     /**

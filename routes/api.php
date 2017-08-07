@@ -34,6 +34,11 @@ Route::namespace('Api')->group(function () {
         Route::apiResource('purchase', 'PurchasesController', ['only' => ['index', 'show']]);
 
         /**
+        * Sales REST
+        */
+        Route::apiResource('sale', 'SalesController', ['only' => ['index', 'show']]);
+
+        /**
         * Users REST
         */
         Route::patch('user', 'UsersController@update')->name('user.update');
