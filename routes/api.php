@@ -5,13 +5,13 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 Route::namespace('Api')->group(function () {
     /**
-     * Authentication REST
-     */
+    * Authentication REST
+    */
     Route::post('authenticate', 'AuthenticationController@authenticate')->name('authenticate');
 
     /**
-     * Authenticated Group
-     */
+    * Authenticated Group
+    */
     Route::middleware(['jwt.auth'])->group(function () {
         /**
         * Customers REST
@@ -19,13 +19,33 @@ Route::namespace('Api')->group(function () {
         Route::apiResource('customer', 'CustomersController');
 
         /**
+         * Dashboard GET
+         */
+        Route::get('dashboard', 'DashboardsController@index');
+
+        /**
         * Suppliers REST
         */
         Route::apiResource('supplier', 'SuppliersController');
 
         /**
-         * Products REST
-         */
+        * Products REST
+        */
         Route::apiResource('product', 'ProductsController');
+
+        /**
+        * Purchases REST
+        */
+        Route::apiResource('purchase', 'PurchasesController', ['only' => ['index', 'show']]);
+
+        /**
+        * Sales REST
+        */
+        Route::apiResource('sale', 'SalesController', ['only' => ['index', 'show']]);
+
+        /**
+        * Users REST
+        */
+        Route::patch('user', 'UsersController@update')->name('user.update');
     });
 });
