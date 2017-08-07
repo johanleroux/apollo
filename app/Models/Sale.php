@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
     use NotifyModel;
-    
+
     public function getTotalAttribute()
     {
         return $this->items->sum(function ($item) {
@@ -23,7 +23,7 @@ class Sale extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class)->withTrashed();
     }
 
     public function addProduct($payload)
