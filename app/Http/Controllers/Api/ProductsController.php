@@ -55,9 +55,15 @@ class ProductsController extends ApiController
         user_can('create-product');
 
         $this->validate(request(), [
-            'sku'         => 'required|string',
-            'description' => 'required|string',
-            'price'       => 'required|numeric',
+            'supplier_id'               => 'required|exists:suppliers,id',
+            'sku'                       => 'required|unique:products|string',
+            'description'               => 'required|string',
+            'cost_price'                => 'required|numeric',
+            'retail_price'              => 'required|numeric',
+            'recommended_selling_price' => 'required|numeric',
+        ], [
+            'supplier_id.required' => 'The supplier field is required.',
+            'supplier_id.exists'   => 'The supplier field is required.',
         ]);
 
         return response()
@@ -77,9 +83,10 @@ class ProductsController extends ApiController
         user_can('edit-product');
 
         $this->validate(request(), [
-            'sku'         => 'required|string',
-            'description' => 'required|string',
-            'price'       => 'required|numeric',
+            'description'               => 'required|string',
+            'cost_price'                => 'required|numeric',
+            'retail_price'              => 'required|numeric',
+            'recommended_selling_price' => 'required|numeric',
         ]);
 
         $product = Product::findOrFail($id);
