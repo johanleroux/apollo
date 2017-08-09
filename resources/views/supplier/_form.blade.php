@@ -16,6 +16,12 @@
     <span class="glyphicon glyphicon-phone form-control-feedback"></span>
     @include('errors._helpblock', ['field' => 'telephone'])
 </div>
+<div class="form-group has-feedback @if ($errors->has('lead_time')) has-error @endif">
+    <label for="lead_time">Lead Time: <small>(Days)</small></label>
+    {{ html()->text('lead_time')->id('lead_time')->class('form-control')->placeholder('Lead Time') }}
+    <span class="glyphicon glyphicon-road form-control-feedback"></span>
+    @include('errors._helpblock', ['field' => 'lead_time'])
+</div>
 <div class="form-group has-feedback @if ($errors->has('address')) has-error @endif">
     <label for="address">Address:</label>
     {{ html()->text('address')->id('address')->class('form-control')->placeholder('Address') }}

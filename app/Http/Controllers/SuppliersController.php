@@ -50,6 +50,7 @@ class SuppliersController extends Controller
             'city'      => 'nullable|string',
             'province'  => 'nullable|string',
             'country'   => 'nullable|string',
+            'lead_time' => 'required|numeric',
         ]);
 
         $supplier = Supplier::create(request()->all());
@@ -108,6 +109,7 @@ class SuppliersController extends Controller
             'city'      => 'nullable|string',
             'province'  => 'nullable|string',
             'country'   => 'nullable|string',
+            'lead_time' => 'required|numeric',
         ]);
 
         $supplier->update(request()->all());

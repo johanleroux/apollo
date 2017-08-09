@@ -22,7 +22,8 @@ class SupplierTransformer extends TransformerAbstract
             'address_2'  => $supplier->address_2,
             'city'       => $supplier->city,
             'province'   => $supplier->province,
-            'country'    => $supplier->country
+            'country'    => $supplier->country,
+            'lead_time'  => $supplier->lead_time,
         ];
     }
 }
