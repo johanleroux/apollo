@@ -43,6 +43,10 @@ class ProductsDataTable extends DataTable
     {
         $query = Product::query()->with(['supplier']);
 
+        if (request()->supplier_id) {
+            $query->where('supplier_id', request()->supplier_id);
+        }
+
         return $this->applyScopes($query);
     }
 

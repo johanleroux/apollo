@@ -24,3 +24,8 @@ function user_can($ability)
 {
     abort_unless(Bouncer::allows($ability), 403);
 }
+
+function chartify($array)
+{
+    return "'" . implode("','", $array) . "'";
+}

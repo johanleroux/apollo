@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SaleItem;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\DataTables\ProductsDataTable;
@@ -17,7 +18,9 @@ class ProductsController extends Controller
     {
         user_can('view-product');
 
-        return $dt->render('product.index');
+        $report = new \App\Queries\Report;
+
+        return $dt->render('product.index', compact('report'));
     }
 
     /**
@@ -72,8 +75,19 @@ class ProductsController extends Controller
         user_can('view-product');
 
         $product = Product::findOrFail($id);
+        $reportQuery = new \App\Queries\Report($preload = false);
 
-        return view('product.show', compact('product'));
+        $report['recap'] = $reportQuery->yearlyRecap($product->id);
+        $report['sales'] = $reportQuery->lastSalesOfProduct($product->id);
+        $report['stock'] = $reportQuery->unitsInStock($product->id);
+
+        // ---summary----
+        // top seller
+        // last 5 sales
+        // in stock items
+        // --------------
+
+        return view('product.show', compact('product', 'report'));
     }
 
     /**

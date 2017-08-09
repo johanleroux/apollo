@@ -37,6 +37,10 @@ class SalesDataTable extends DataTable
     {
         $query = Sale::query()->with(['customer', 'items']);
 
+        if (request()->customer_id) {
+            $query->where('customer_id', request()->customer_id);
+        }
+
         return $this->applyScopes($query);
     }
 

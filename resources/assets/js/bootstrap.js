@@ -3,6 +3,7 @@ window.AutoComplete = require("autocomplete-js");
 window.axios        = require('axios');
 window.toastr       = require('toastr');
 window.vm           = null;
+window.Chart       = require('chart.js');
 
 require('bootstrap-less');
 require('jquery-slimscroll');

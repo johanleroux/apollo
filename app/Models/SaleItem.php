@@ -10,9 +10,14 @@ class SaleItem extends Model
     {
         return $this->price * $this->quantity;
     }
-    
+
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class);
     }
 }

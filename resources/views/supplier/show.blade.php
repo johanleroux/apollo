@@ -20,6 +20,8 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
                     <li class="active"><a href="#account" data-toggle="tab" aria-expanded="false">Account</a></li>
+                    <li><a href="{{ action('ProductsController@index', ['supplier_id' => $supplier->id]) }}">Products</a></li>
+                    <li><a href="{{ action('PurchasesController@index', ['supplier_id' => $supplier->id]) }}">Purchases</a></li>
                     <li class="pull-left header"><i class="fa fa-user"></i> {{ $supplier->name }}</li>
                 </ul>
 

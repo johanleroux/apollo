@@ -24,7 +24,6 @@
         </div>
       </div>
     </div>
-    <div class="clearfix visible-sm-block"></div>
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
@@ -44,9 +43,9 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <p class="text-center"><strong>Stock Levels: {{ $report->yearlyRecap()['startDate'] }} - {{ $report->yearlyRecap()['endDate'] }}</strong></p>
+              <p class="text-center"><strong>Monthly Sales: {{ $report->yearlyRecap()['startDate'] }} - {{ $report->yearlyRecap()['endDate'] }}</strong></p>
               <div class="chart">
-                  <canvas id="areaChart" style="height:300px"></canvas>
+                  <canvas id="yearlyRecap" style="height:300px"></canvas>
               </div>
             </div>
           </div>
@@ -57,36 +56,34 @@
 @endsection
 
 @push('js-after')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
     <script>
-      $(function () {
-        var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-        var areaChart       = new Chart(areaChartCanvas)
+    $(function () {
+        var chartData = {
+            labels  : [{!! chartify($report->yearlyRecap()['labels']) !!}],
+            datasets: [
+                {
+                    label:       'Monthly Sales',
+                    fillColor:   '#ecf0f5',
+                    borderColor: '#00c0ef',
+                    pointRadius: 2,
+                    borderWidth: 1,
+                    data:        [{!! chartify($report->yearlyRecap()['data']) !!}],
+                }
+            ]
+        }
 
-        var areaChartData = {
-          labels  : [{!! $report->yearlyRecap()['labels'] !!}],
-          datasets: [
-            {
-              label:            'Monthly Sales',
-              fillColor:        '#ecf0f5',
-              strokeColor:      '#00c0ef',
-              pointColor:       '#00c0ef',
-              pointStrokeColor: '#00c0ef',
-              data:             [{!! $report->yearlyRecap()['data'] !!}]
+        var chartOptions = {
+            maintainAspectRatio: false,
+            legend: {
+                display: false
             }
-          ]
         }
 
-        var areaChartOptions = {
-          showScale:           true,
-          scaleShowGridLines:  false,
-          pointDot:            false,
-          maintainAspectRatio: true,
-          responsive:          true,
-          maintainAspectRatio: false,
-        }
-
-        areaChart.Line(areaChartData, areaChartOptions)
-      })
+        var chart = new Chart('yearlyRecap', {
+            type:    'line',
+            data:    chartData,
+            options: chartOptions
+        });
+    })
     </script>
 @endpush
