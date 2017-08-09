@@ -71,11 +71,15 @@ class SalesController extends Controller
         ->where('sku', '!=', '')
         ->each(function ($item) use ($sale) {
             $sale->addProduct([
-                'sale_id' => $sale->id,
+                'sale_id'     => $sale->id,
                 'product_id'  => $item['sku'],
                 'price'       => $item['unit_price'],
                 'quantity'    => $item['quantity'],
             ]);
+        });
+
+        $sale->items->each(function ($item) {
+            dispatch(new \App\Jobs\GenerateForecast($item->product_id));
         });
 
         notify()->flash('Sale has been created!', 'success');

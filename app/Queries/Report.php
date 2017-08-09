@@ -3,8 +3,10 @@
 namespace App\Queries;
 
 use DB;
+use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\Product;
+use App\Models\Forecast;
 use App\Models\Purchase;
 use App\Models\SaleItem;
 use App\Models\PurchaseItem;
@@ -25,9 +27,9 @@ class Report
             ->get();
         }
 
-        $this->endDate   = new \Carbon\Carbon('last day of last month');
+        $this->endDate   = new Carbon('last day of last month');
         $this->endDate   = $this->endDate->endOfDay();
-        $this->startDate = new \Carbon\Carbon('last day of last month');
+        $this->startDate = new Carbon('last day of last month');
         $this->startDate = $this->startDate->subMonths(11)->startOfMonth()->startOfDay();
     }
 
@@ -100,13 +102,13 @@ class Report
         });
     }
 
-    public function yearlyRecap($limitToProduct = null)
+    public function yearlyRecap($limitToProduct = null, $output = 'value')
     {
         $data['startDate'] = $this->startDate->format('j M, Y');
         $data['endDate']   = $this->endDate->format('j M, Y');
 
 
-        $monthlySales =  SaleItem::select(DB::raw('SUM(price * quantity) value'), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+        $monthlySales =  SaleItem::select(DB::raw('SUM(price * quantity) value'), DB::raw('SUM(quantity) quantity'), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupBy('year', 'month')
                 ->whereBetween('created_at', [$this->startDate, $this->endDate]);
 
@@ -116,9 +118,40 @@ class Report
 
         $monthlySales = $monthlySales->get();
 
-        foreach ($monthlySales as $month) {
-            $data['labels'][] = date('M', mktime(0, 0, 0, $month->month, 10));
-            $data['data'][]   = $month->value;
+        $date = clone $this->startDate;
+
+        while ($date < $this->endDate) {
+            $data['labels'][] = $date->format('M - Y');
+
+            if ($sale = $monthlySales->where('month', $date->month)->where('year', $date->year)->first()) {
+                $data['data'][] = $sale->$output;
+            } else {
+                $data['data'][] = 0;
+            }
+            $date->addMonth();
+        }
+
+        return $data;
+    }
+
+    public function forecast($limitToProduct)
+    {
+        $forecasts =  Forecast::where('month', '>', $this->endDate->month)
+                                ->where('year', '>=', $this->endDate->year)
+                                ->where('product_id', $limitToProduct)
+                                ->get();
+
+        $date = clone $this->startDate;
+        while ($date < $this->endDate) {
+            $data['labels'][] = $date->format('M - Y');
+            $data['data'][] = 0;
+
+            $date->addMonth();
+        }
+
+        foreach ($forecasts as $forecast) {
+            $data['labels'][] = date('M', mktime(0, 0, 0, $forecast->month, 10)) . ' - ' . $forecast->year;
+            $data['data'][]   = round($forecast->forecast);
         }
 
         return $data;

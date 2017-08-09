@@ -52,7 +52,7 @@
                     <div class="tab-pane active" id="report">
                           <div class="row">
                             <div class="col-md-12">
-                              <p class="text-center"><strong>Monthly Sales: {{ $report['recap']['startDate'] }} - {{ $report['recap']['endDate'] }}</strong></p>
+                              <p class="text-center"><strong>Monthly Sales: {{ $report['quantity']['startDate'] }} - {{ $report['quantity']['endDate'] }}</strong></p>
                               <div class="chart">
                                   <canvas id="yearlyRecap" style="height:300px"></canvas>
                               </div>
@@ -69,16 +69,24 @@
     <script>
     $(document).ready(function () {
         var chartData = {
-            labels  : [{!! chartify($report['recap']['labels']) !!}],
+            labels  : [{!! chartify($report['forecast']['labels']) !!}],
             datasets: [
                 {
-                    label:       'Monthly Sales',
+                    label:       'Forecast',
+                    fillColor:   '#ecf0f5',
+                    borderColor: '#f39c12',
+                    pointRadius: 2,
+                    borderWidth: 1,
+                    data:        [{!! chartify($report['forecast']['data']) !!}],
+                },
+                {
+                    label:       'Quantity',
                     fillColor:   '#ecf0f5',
                     borderColor: '#00c0ef',
                     pointRadius: 2,
                     borderWidth: 1,
-                    data:        [{!! chartify($report['recap']['data']) !!}],
-                }
+                    data:        [{!! chartify($report['quantity']['data']) !!}],
+                },
             ]
         }
 

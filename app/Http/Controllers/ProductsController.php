@@ -77,7 +77,8 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $reportQuery = new \App\Queries\Report($preload = false);
 
-        $report['recap'] = $reportQuery->yearlyRecap($product->id);
+        $report['quantity'] = $reportQuery->yearlyRecap($product->id, 'quantity');
+        $report['forecast'] = $reportQuery->forecast($product->id);
         $report['sales'] = $reportQuery->lastSalesOfProduct($product->id);
         $report['stock'] = $reportQuery->unitsInStock($product->id);
 
