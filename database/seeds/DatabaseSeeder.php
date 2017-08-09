@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
       $this->call(SuppliersSeeder::class);
       $this->call(CustomersSeeder::class);
 
-      for ($i=1; $i <= \App\Models\Product::count(); $i++) {
+      $productsCount = \App\Models\Product::count();
+      for ($i = 1; $i <= $productsCount; $i++) {
           dispatch(new \App\Jobs\GenerateForecast($i));
       }
   }
