@@ -99,6 +99,9 @@ class GenerateForecast implements ShouldQueue
 
     protected function createInput()
     {
+        if (!file_exists($this->path)) {
+            mkdir($this->path);
+        }
         $handle = fopen($this->path . 'input.txt', 'w');
 
         $data = 'Time Value' . "\n";
