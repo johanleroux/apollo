@@ -139,7 +139,7 @@ class GenerateForecast implements ShouldQueue
                     'month' => $this->date->month
                 ],
                 [
-                    'forecast' => $forecasts[3]
+                    'forecast' => ($forecasts[2] + $forecasts[5]) / 2
                 ]);
 
                 $this->date->addMonth();
