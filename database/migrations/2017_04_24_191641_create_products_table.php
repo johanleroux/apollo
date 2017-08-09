@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
           $table->double('retail_price', 10, 2);
           $table->double('recommended_selling_price', 10, 2);
 
+          $table->datetime('last_forecast')->nullable();
+
           $table->foreign('supplier_id')->references('id')->on('suppliers');
           $table->softDeletes();
           $table->timestamps();

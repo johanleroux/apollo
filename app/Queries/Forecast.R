@@ -18,7 +18,7 @@ getScriptPath <- function(){
 setwd(getScriptPath())
 
 Frame <- read.table("data/input.txt", stringsAsFactors=FALSE, header=TRUE)
-Frame$Time <- as.Date(Frame$Time, format= "%Y-%m-%d")
-Frame <- ts(Frame$Pricing, start = 1, end=NROW(Frame), frequency=1)
+Frame$Time <- as.Date(Frame$Time, format= "%Y-%m")
+Frame <- ts(Frame$Value, start = 1, end=NROW(Frame), frequency=1)
 TheForecast <- naive(Frame)
 write.table(TheForecast,file="data/output.txt",quote=F)
