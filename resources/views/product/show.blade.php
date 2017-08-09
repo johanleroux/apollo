@@ -21,6 +21,7 @@
                 <ul class="nav nav-tabs pull-right">
                     <li><a href="#account" data-toggle="tab" aria-expanded="false">Account</a></li>
                     <li><a href="#summary" data-toggle="tab" aria-expanded="false">Summary</a></li>
+                    <li><a href="{{ action('SuppliersController@show', $product->supplier) }}">Supplier</a></li>
                     <li class="active"><a href="#report" data-toggle="tab" aria-expanded="false">Report</a></li>
                     <li class="pull-left header"><i class="fa fa-shopping-cart"></i> {{ $product->sku }}</li>
                 </ul>
