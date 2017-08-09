@@ -25,7 +25,7 @@ class CreateForecastsTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('suppliers');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

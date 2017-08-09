@@ -29,7 +29,7 @@ class GenerateForecast implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 5;
+    public $tries = 3;
 
     /**
      * The number of seconds the job can run before timing out.
