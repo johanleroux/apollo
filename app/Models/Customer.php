@@ -28,4 +28,9 @@ class Customer extends Model
             $builder->orderBy('name', 'asc');
         });
     }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }
