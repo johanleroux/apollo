@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use Illuminate\Support\Facades\Log;
 use App\Models\Purchase;
 use Yajra\Datatables\Services\DataTable;
 
@@ -41,6 +42,10 @@ class PurchasesDataTable extends DataTable
             $query->where('supplier_id', request()->supplier_id);
         }
 
+        if (request()->open) {
+            $query->where('processed_at', null);
+        }
+
         return $this->applyScopes($query);
     }
 
@@ -68,11 +73,12 @@ class PurchasesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'         => ['title' => 'Purchase #'],
-            'supplier'   => ['name' => 'supplier.name', 'sortable' => false, 'searchable' => true],
-            'created_at' => ['title' => 'Created Date'],
-            'total'      => ['orderable' => false, 'searchable' => false, 'class' => 'text-right'],
-            'actions'    => ['class' => 'text-center']
+            'id'           => ['title' => 'Purchase #'],
+            'supplier'     => ['name' => 'supplier.name', 'sortable' => false, 'searchable' => true],
+            'processed_at' => ['title' => 'Processed At'],
+            'created_at'   => ['title' => 'Created Date'],
+            'total'        => ['orderable' => false, 'searchable' => false, 'class' => 'text-right'],
+            'actions'      => ['orderable' => false, 'searchable' => false, 'class' => 'text-center']
         ];
     }
 

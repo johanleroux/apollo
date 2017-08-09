@@ -21,7 +21,7 @@ class Report
     {
         if ($preload) {
             $this->stockData = Product::with([
-                'purchaseItems',
+                'purchasedItems',
                 'saleItems'
             ])
             ->get();
