@@ -63,6 +63,7 @@ class SuppliersController extends ApiController
             'city'      => 'nullable|string',
             'province'  => 'nullable|string',
             'country'   => 'nullable|string',
+            'lead_time' => 'required|numeric|min:0',
         ]);
 
         return response()
@@ -90,6 +91,7 @@ class SuppliersController extends ApiController
             'city'      => 'nullable|string',
             'province'  => 'nullable|string',
             'country'   => 'nullable|string',
+            'lead_time' => 'required|numeric|min:0',
         ]);
 
         $supplier = Supplier::findOrFail($id);
