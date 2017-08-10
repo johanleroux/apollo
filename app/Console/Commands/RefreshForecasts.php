@@ -2,6 +2,9 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
+use App\Models\Product;
+use App\Jobs\GenerateForecast;
 use Illuminate\Console\Command;
 
 class RefreshForecasts extends Command
@@ -39,16 +42,23 @@ class RefreshForecasts extends Command
     {
         if ($this->option('all')) {
             $this->info('Forecasting All Products');
-            $productsCount = \App\Models\Product::count();
+            $productsCount = Product::count();
             for ($i=1; $i <= $productsCount; $i++) {
-                dispatch(new \App\Jobs\GenerateForecast($i));
+                $this->generate($i);
             }
         } elseif ($this->argument('product')) {
             $id = $this->argument('product');
             $this->info('Forecasting Product ' . $id);
-            dispatch(new \App\Jobs\GenerateForecast($id));
+            $this->generate($id);
         } else {
             $this->error('Have to select a product to forecast!');
         }
+    }
+
+    protected function generate($id)
+    {
+        $job = (new GenerateForecast($id))
+                ->delay(Carbon::now()->addSeconds(30));
+        dispatch($job);
     }
 }
