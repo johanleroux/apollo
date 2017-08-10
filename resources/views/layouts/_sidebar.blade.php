@@ -16,7 +16,7 @@
                 <li><a href="{{ action('ProductsController@index') }}"><i class="fa fa-shopping-cart"></i> <span>Products</span></a></li>
                 <li><a href="{{ action('SuppliersController@index') }}"><i class="fa fa-building"></i> <span>Suppliers</span></a></li>
             @endif
-            @if(auth()->user()->isA('manager') || auth()->user()->isA('admin'))
+            @if(auth()->user()->isA('sales') || auth()->user()->isA('manager') || auth()->user()->isA('admin'))
                 <li class="header">TRANSACTIONS</li>
                 <li><a href="{{ action('PurchasesController@index') }}"><i class="fa fa-credit-card"></i><span>Purchases</span></a></li>
                 <li><a href="{{ action('PurchasesController@index', ['open' => 1]) }}"><i class="fa fa-credit-card"></i><span>Open Purchases</span></a></li>

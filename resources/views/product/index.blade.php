@@ -9,7 +9,9 @@
     <div class="btn-group pull-right">
         <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
         <ul class="dropdown-menu pull-right" role="menu">
+            @can('create-product')
             <li><a href="{{ action('ProductsController@create') }}"><i class="fa fa-plus"></i> Create</a></li>
+            @endcan
             <li><a target="_blank" href="{{ action('CsvController@recap') }}"><i class="fa fa-external-link"></i> Recap</a></li>
             <li><a target="_blank" href="{{ action('CsvController@sales') }}"><i class="fa fa-external-link"></i> Sales</a></li>
             <li><a target="_blank" href="{{ action('CsvController@purchases') }}"><i class="fa fa-external-link"></i> Purchases</a></li>
