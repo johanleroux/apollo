@@ -12,9 +12,9 @@
             {{ html()->form()->close() }}
             <li role="presentation" class="divider"></li>
             {{-- <li><a target="_blank" href="{{ action('CsvController@forecast', $product) }}"><i class="fa fa-external-link"></i> Forecast</a></li> --}}
-            <li><a target="_blank" href="{{ action('CsvController@recap', $product) }}"><i class="fa fa-external-link"></i> Recap</a></li>
-            <li><a target="_blank" href="{{ action('CsvController@sales', $product) }}"><i class="fa fa-external-link"></i> Sales</a></li>
-            <li><a target="_blank" href="{{ action('CsvController@purchases', $product) }}"><i class="fa fa-external-link"></i> Purchases</a></li>
+            <li><a target="_blank" href="{{ action('CsvController@recap', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Recap</a></li>
+            <li><a target="_blank" href="{{ action('CsvController@sales', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Sales</a></li>
+            <li><a target="_blank" href="{{ action('CsvController@purchases', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Purchases</a></li>
         </ul>
     </div>
 @endsection

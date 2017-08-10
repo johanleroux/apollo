@@ -48,8 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('notifications/', 'NotificationsController@index');
     Route::get('notifications/{notification}', 'NotificationsController@show');
 
-    Route::get('csv/product/{product}/forecast', 'CsvController@forecast');
-    Route::get('csv/product/{product}/recap', 'CsvController@recap');
-    Route::get('csv/product/{product}/sales', 'CsvController@sales');
-    Route::get('csv/product/{product}/purchases', 'CsvController@purchases');
+    Route::get('csv/product/forecast', 'CsvController@forecast');
+    Route::get('csv/product/recap', 'CsvController@recap');
+    Route::get('csv/product/sales', 'CsvController@sales');
+    Route::get('csv/product/purchases', 'CsvController@purchases');
 });
