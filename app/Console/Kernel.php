@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \Spatie\MigrateFresh\Commands\MigrateFresh::class,
+        \App\Console\Commands\RefreshForecasts::class,
     ];
 
     /**

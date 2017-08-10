@@ -29,7 +29,7 @@ class GenerateForecast implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 3;
+    public $tries = 1;
 
     /**
      * The number of seconds the job can run before timing out.
@@ -89,7 +89,7 @@ class GenerateForecast implements ShouldQueue
 
         $this->path = app_path('Queries/data/');
 
-        if (count($this->sales) < 2) {
+        if (count($this->sales) < 3) {
             $this->delete();
         }
 
@@ -105,12 +105,19 @@ class GenerateForecast implements ShouldQueue
         $handle = fopen($this->path . 'input.txt', 'w');
 
         $data = 'Time Value' . "\n";
+        $firstSale = $this->sales->first();
+        $date = Carbon::createFromDate($firstSale->year, $firstSale->month, 1)->startOfDay();
         $i = 1;
-        foreach ($this->sales as $sale) {
-            $data .= $i . ' ' . $sale->year . '-' . $sale->month . ' ' . $sale->quantity . "\n";
+        while ($date < $this->date) {
+            $sale = $this->sales->where('year', $date->year)->where('month', $date->month)->first();
+            if ($sale) {
+                $data .= $i . ' ' . $date->year . '-' . $date->month . ' ' . $sale->quantity . "\n";
+            } else {
+                $data .= $i . ' ' . $date->year . '-' . $date->month . ' 0' . "\n";
+            }
             $i++;
+            $date->addMonth();
         }
-
         fwrite($handle, $data);
         fclose($handle);
     }
@@ -139,7 +146,7 @@ class GenerateForecast implements ShouldQueue
                     'month' => $this->date->month
                 ],
                 [
-                    'forecast' => ($forecasts[2] + $forecasts[5]) / 2
+                    'forecast' => $forecasts[1]
                 ]);
 
                 $this->date->addMonth();
