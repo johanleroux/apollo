@@ -25,15 +25,10 @@
 
     <div class="row invoice-info">
         <div class="col-sm-6 invoice-col">
-            From
+            From:
             <address>
-                <strong>{{ $supplier->name }}</strong><br>
-                {{ $supplier->address }}, {{ $supplier->address_2 }}<br>
-                {{ $supplier->city }}, {{ $supplier->province }}<br>
-                {{ $supplier->country }}<br>
-                Phone: {{ $supplier->telephone }}<br>
-                Email: {{ $supplier->email }}
-              </address>
+                {!! $purchase->supplier->detailsPrint !!}
+            </address>
         </div>
         <div class="col-sm-6 invoice-col text-right">
             <b>Purchase ID:</b> #{{ $purchase->id }}
