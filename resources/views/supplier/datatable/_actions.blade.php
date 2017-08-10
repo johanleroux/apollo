@@ -4,8 +4,10 @@
         <li>
             <a href="{{ action('SuppliersController@show', $supplier->id) }}"><i class="fa fa-eye"></i>View</a>
         </li>
+        @can('edit-supplier')
         <li>
             <a href="{{ action('SuppliersController@edit', $supplier->id) }}"><i class="fa fa-pencil"></i>Edit</a>
         </li>
+        @endcan
     </ul>
 </div>

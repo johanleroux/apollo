@@ -15,8 +15,14 @@ class UsersSeeder extends Seeder
             'view-customer',
             'view-product',
             'view-supplier',
+
             'view-purchase',
+            'create-purchase',
+            'edit-purchase',
+            'delete-purchase',
+
             'view-sale',
+            'create-sale'
         ];
 
 
@@ -32,12 +38,6 @@ class UsersSeeder extends Seeder
             'create-supplier',
             'edit-supplier',
             'delete-supplier',
-
-            'create-purchase',
-            'edit-purchase',
-            'delete-purchase',
-
-            'create-sale'
         ];
 
         $adminAbilities = [
