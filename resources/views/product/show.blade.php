@@ -10,6 +10,11 @@
             <li><a href="#" onclick="$('#product_destroy').submit();"><i class="fa fa-trash"></i> Archive</a></li>
             {{ html()->form('DELETE', action('ProductsController@destroy', $product))->id('product_destroy')->open() }}
             {{ html()->form()->close() }}
+            <li role="presentation" class="divider"></li>
+            {{-- <li><a target="_blank" href="{{ action('CsvController@forecast', $product) }}"><i class="fa fa-external-link"></i> Forecast</a></li> --}}
+            <li><a target="_blank" href="{{ action('CsvController@recap', $product) }}"><i class="fa fa-external-link"></i> Recap</a></li>
+            <li><a target="_blank" href="{{ action('CsvController@sales', $product) }}"><i class="fa fa-external-link"></i> Sales</a></li>
+            <li><a target="_blank" href="{{ action('CsvController@purchases', $product) }}"><i class="fa fa-external-link"></i> Purchases</a></li>
         </ul>
     </div>
 @endsection
@@ -21,8 +26,8 @@
                 <ul class="nav nav-tabs pull-right">
                     <li><a href="#account" data-toggle="tab" aria-expanded="false">Account</a></li>
                     <li><a href="#summary" data-toggle="tab" aria-expanded="false">Summary</a></li>
-                    <li><a href="{{ action('SuppliersController@show', $product->supplier) }}">Supplier</a></li>
                     <li class="active"><a href="#report" data-toggle="tab" aria-expanded="false">Report</a></li>
+                    <li><a href="{{ action('SuppliersController@show', $product->supplier) }}">Supplier <i class="fa fa-external-link"></i></a></li>
                     <li class="pull-left header"><i class="fa fa-shopping-cart"></i> {{ $product->sku }}</li>
                 </ul>
 
