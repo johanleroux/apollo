@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SaleItem;
 use App\Models\Product;
+use App\Models\Forecast;
 use App\Models\Supplier;
 use App\DataTables\ProductsDataTable;
 
@@ -138,5 +139,25 @@ class ProductsController extends Controller
 
         notify()->flash('Product has been archived!', 'success');
         return redirect()->action('ProductsController@index');
+    }
+
+    public function forecast(Product $product)
+    {
+        $this->validate(request(), [
+            'adjusted_forecast' => 'required|numeric|min:0',
+            'year'              => 'required|numeric|min:2017',
+            'month'             => 'required|numeric|min:1|max:12',
+        ]);
+
+        $forecast = Forecast::updateOrCreate([
+            'product_id'  => $product->id,
+            'year'  => request()->year,
+            'month' => request()->month
+        ], [
+            'adjusted_forecast' => request()->adjusted_forecast
+        ]);
+
+        notify()->flash('Forecast has been created!', 'success');
+        return action('ProductsController@show', $product);
     }
 }

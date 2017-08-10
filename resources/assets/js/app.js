@@ -27,6 +27,8 @@ document.addEventListener('turbolinks:load', () => {
     Vue.component('sale-row', require('./components/Sale/Sale-Row.vue'));
     Vue.component('sale-customer', require('./components/Sale/Sale-Customer.vue'));
 
+    Vue.component('product-forecast', require('./components/Product/Product-Forecast.vue'));
+
     vm = new Vue({
         el: '#app'
     });

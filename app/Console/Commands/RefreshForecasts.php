@@ -57,8 +57,7 @@ class RefreshForecasts extends Command
 
     protected function generate($id)
     {
-        $job = (new GenerateForecast($id))
-                ->delay(Carbon::now()->addSeconds(30));
+        $job = (new GenerateForecast($id));
         dispatch($job);
     }
 }
