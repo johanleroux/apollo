@@ -116,12 +116,14 @@ class PurchasesController extends Controller
     {
         user_can('edit-purchase');
 
-        $purchase = Purchase::select('id', 'supplier_id')->with([
+        $purchase = Purchase::select('id', 'supplier_id', 'processed_at')->with([
             'items' => function ($query) {
                 $query->select('id', 'purchase_id', 'product_id', 'price', 'quantity');
             }
         ])->findOrFail($id);
         $suppliers = Supplier::with(['products'])->get();
+
+        abort_if($purchase->processed_at, 404);
 
         return view('purchase.edit', compact('purchase', 'suppliers'));
     }

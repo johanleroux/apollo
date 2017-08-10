@@ -4,8 +4,10 @@
         <li>
             <a href="{{ action('PurchasesController@show', $purchase->id) }}"><i class="fa fa-eye"></i>View</a>
         </li>
+        @if(!$purchase->processed_at)
         <li>
             <a href="{{ action('PurchasesController@edit', $purchase->id) }}"><i class="fa fa-pencil"></i>Edit</a>
         </li>
+        @endif
     </ul>
 </div>
