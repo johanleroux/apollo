@@ -16,6 +16,8 @@
                 <li><a target="_blank" href="{{ action('CsvController@recap', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Recap</a></li>
                 <li><a target="_blank" href="{{ action('CsvController@sales', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Sales</a></li>
                 <li><a target="_blank" href="{{ action('CsvController@purchases', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Purchases</a></li>
+                <li role="presentation" class="divider"></li>
+                <li><a href="#" data-toggle="modal" data-target="#manualForecast"><i class="fa fa-pencil"></i> Manual Forecast</a></li>
             </ul>
         </div>
     @endif
@@ -71,6 +73,8 @@
             </div>
         </div>
     </div>
+
+    <product-forecast :product="{{$product}}"></product-forecast>
 @endsection
 
 @push('js-after')
@@ -81,15 +85,20 @@
             datasets: [
                 {
                     label:       'Forecast',
-                    fillColor:   '#ecf0f5',
                     borderColor: '#f39c12',
                     pointRadius: 2,
                     borderWidth: 1,
                     data:        [{!! chartify($report['forecast']['data']) !!}],
                 },
                 {
+                    label:       'Adjusted Forecast',
+                    borderColor: '#f56954',
+                    pointRadius: 2,
+                    borderWidth: 1,
+                    data:        [{!! chartify($report['forecast']['adjusted']) !!}],
+                },
+                {
                     label:       'Quantity',
-                    fillColor:   '#ecf0f5',
                     borderColor: '#00c0ef',
                     pointRadius: 2,
                     borderWidth: 1,
@@ -101,7 +110,7 @@
         var chartOptions = {
             maintainAspectRatio: false,
             legend: {
-                display: false
+                display: true
             }
         }
 

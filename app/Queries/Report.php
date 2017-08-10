@@ -143,6 +143,7 @@ class Report
         while ($date < $this->endDate) {
             $data['labels'][] = $date->format('M - Y');
             $data['data'][] = 0;
+            $data['adjusted'][] = 0;
 
             $date->addMonth();
         }
@@ -150,6 +151,7 @@ class Report
         foreach ($forecasts as $forecast) {
             $data['labels'][] = date('M', mktime(0, 0, 0, $forecast->month, 10)) . ' - ' . $forecast->year;
             $data['data'][]   = round($forecast->forecast);
+            $data['adjusted'][]   = round($forecast->adjusted_forecast);
         }
 
         return $data;

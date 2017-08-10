@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('customers', 'CustomersController');
     Route::resource('products', 'ProductsController');
+    Route::post('products/{product}/forecast', 'ProductsController@forecast');
     Route::resource('suppliers', 'SuppliersController');
 
     Route::resource('purchases', 'PurchasesController');

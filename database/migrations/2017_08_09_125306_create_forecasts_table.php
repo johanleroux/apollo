@@ -17,8 +17,8 @@ class CreateForecastsTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
 
-            $table->double('forecast', 10, 2);
-            $table->double('adjusted_forecast', 10, 2)->nullable();
+            $table->double('forecast', 10, 2)->default(0);
+            $table->double('adjusted_forecast', 10, 2)->default(0);
 
             $table->integer('year');
             $table->integer('month');
