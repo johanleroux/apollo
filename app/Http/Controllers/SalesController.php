@@ -54,7 +54,7 @@ class SalesController extends Controller
             'product.1.sku'                      => 'required',
             'product.*.sku'                      => 'nullable|exists:products,id',
             'product.*.unit_price'               => 'nullable|required_with:product.*.sku|numeric|min:1',
-            'product.*.quantity'                 => 'nullable|required_with:product.*.sku|numeric|min:1',
+            'product.*.quantity'                 => 'nullable|required_with:product.*.sku|numeric|min:1|has_stock:product.*.sku',
         ], [
             'customer_id.required'               => 'A Customer ID is Required',
             'product.1.sku.required'             => 'Atleast 1 Product is Required',

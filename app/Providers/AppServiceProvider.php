@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Hash;
 use Cmgmyr\Messenger\Models\Thread;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Validator::extend('hash', function ($attribute, $value, $parameters, $validator) {
             return Hash::check($value, $parameters[0]);
+        });
+
+        Validator::extend('has_stock', function ($attribute, $value, $parameters, $validator) {
+            $field = str_replace('quantity', 'sku', $attribute);
+
+            $product = \App\Models\Product::with(['purchasedItems', 'saleItems'])->findOrFail(request($field));
+
+            return $product->stockQuantity >= $value;
         });
 
         if (Schema::hasTable('threads')) {

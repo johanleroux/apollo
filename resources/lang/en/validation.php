@@ -86,6 +86,7 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
     'hash'                 => 'The :attribute is invalid.',
+    'has_stock'            => 'The product doesn\'t have enough stock.',
 
     /*
     |--------------------------------------------------------------------------
