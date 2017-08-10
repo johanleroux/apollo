@@ -17,25 +17,11 @@
     <div class="row invoice-info">
         <div class="col-sm-6 invoice-col">
             To:
-            <address>
-                <strong>{{ $customer->name }}</strong><br>
-                {{ $customer->address }}, {{ $customer->address_2 }}<br>
-                {{ $customer->city }}, {{ $customer->province }}<br>
-                {{ $customer->country }}<br>
-                Phone: {{ $customer->telephone }}<br>
-                Email: {{ $customer->email }}
-              </address>
+            <address>{!! $sale->customer->detailsPrint !!}</address>
         </div>
         <div class="col-sm-6 invoice-col text-right">
             <b>Sale ID:</b> #{{ $sale->id }} <br>
-            <address>
-                <b>Company Information:</b><br>
-                {{ $company->address }}, {{ $company->address_2 }}<br>
-                {{ $company->city }}, {{ $company->province }}<br>
-                {{ $company->country }}<br>
-                Phone: {{ $company->telephone }}<br>
-                Email: {{ $company->email }}
-              </address>
+            <address>{!! $company->detailsPrint !!}</address>
         </div>
     </div>
 

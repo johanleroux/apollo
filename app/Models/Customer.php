@@ -33,4 +33,20 @@ class Customer extends Model
     {
         return $this->hasMany(Sale::class);
     }
+
+    public function getDetailsPrintAttribute()
+    {
+        $details = "<strong>$this->name</strong><br>";
+
+        $details .= $this->address ? $this->address : '';
+        $details .= $this->address_2 ? ', ' . $this->address_2 . '<br>': '';
+        $details .= $this->city ? $this->city : '';
+        $details .= $this->province ? ', ' . $this->province . '<br>': '';
+        $details .= $this->country ? $this->country . '<br>' : '';
+
+        $details .= $this->telephone ? 'Phone: ' . $this->telephone . '<br>' : '';
+        $details .= $this->email ? 'Email: ' . $this->email . '<br>' : '';
+
+        return $details;
+    }
 }
