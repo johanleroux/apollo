@@ -61,6 +61,7 @@
                               <div class="chart">
                                   <canvas id="yearlyRecap" style="height:300px"></canvas>
                               </div>
+                              <small>Last Forecast: {{ $product->last_forecast ?? 'Never' }}</small>
                             </div>
                         </div>
                     </div>
