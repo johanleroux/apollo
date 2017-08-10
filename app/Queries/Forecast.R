@@ -21,7 +21,7 @@ Frame <- read.table("data/input.txt", stringsAsFactors=FALSE, header=TRUE)
 Frame$Time <- as.Date(Frame$Time, format= "%Y-%m")
 Frame <- ts(Frame$Value, start = 1, end=NROW(Frame), frequency=1)
 
-TheForecast <- arima(Frame, order = c(5,1,0), method="ML")
+TheForecast <- arima(Frame, order = c(5,1,0), method="ML") 
 
 MyForecast <- plot(forecast(TheForecast,h=10))
 
