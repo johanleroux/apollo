@@ -80,13 +80,6 @@ class ProductsController extends Controller
         $report['quantity'] = $reportQuery->yearlyRecap($product->id, 'quantity');
         $report['forecast'] = $reportQuery->forecast($product->id);
         $report['sales'] = $reportQuery->lastSalesOfProduct($product->id);
-        $report['stock'] = $reportQuery->unitsInStock($product->id);
-
-        // ---summary----
-        // top seller
-        // last 5 sales
-        // in stock items
-        // --------------
 
         return view('product.show', compact('product', 'report'));
     }

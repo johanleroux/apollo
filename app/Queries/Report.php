@@ -89,10 +89,8 @@ class Report
 
     public function unitsInStock($product_id)
     {
-        return (int) PurchaseItem::where('product_id', $product_id)
-                                 ->sum('quantity')
-             - (int) SaleItem::where('product_id', $product_id)
-                             ->sum('quantity');
+        $product = Product::with(['purchasedItems', 'saleItems'])->findOrFail($product_id);
+        return $product->stockQuantity;
     }
 
     public function estimateMargin()
