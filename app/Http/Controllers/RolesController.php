@@ -47,7 +47,8 @@ class RolesController extends Controller
         user_can('manage-roles');
 
         $this->validate(request(), [
-            'name' => 'required|string|unique:roles',
+            'name'    => 'required|string|unique:roles',
+            'ability' => 'required'
         ]);
 
         $role = Role::create([
@@ -71,7 +72,7 @@ class RolesController extends Controller
     public function edit($id)
     {
         user_can('manage-roles');
-        
+
         $role = Role::findOrFail($id);
         $roleAbilities = $role->getAbilities();
         $abilities = partition(Ability::orderBy('name', 'asc')->get()->toArray(), 4);
@@ -89,18 +90,24 @@ class RolesController extends Controller
     public function update(Role $role)
     {
         user_can('manage-roles');
-        
+
         abort_if($role->name == 'admin', 404);
         $abilities = Ability::select('name')->get();
 
-        foreach ($abilities as $ability) {
-            if (array_key_exists($ability->name, request()->ability)) {
-                Bouncer::allow($role)->to($ability->name);
-            } else {
+        if (request()->ability) {
+            foreach ($abilities as $ability) {
+                if (array_key_exists($ability->name, request()->ability)) {
+                    Bouncer::allow($role)->to($ability->name);
+                } else {
+                    Bouncer::disallow($role)->to($ability->name);
+                }
+            }
+        } else {
+            foreach ($abilities as $ability) {
                 Bouncer::disallow($role)->to($ability->name);
             }
         }
-
+        
         notify()->flash('Role has been updated!', 'success');
         return redirect()->back();
     }
@@ -114,7 +121,7 @@ class RolesController extends Controller
     public function destroy(Role $role)
     {
         user_can('manage-roles');
-        
+
         // Reset Users Roles User DEFAULT
         $role->delete();
 

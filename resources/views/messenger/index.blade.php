@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <div class="box box-primary">
+    <div class="box box-default">
         <div class="box-header with-border">
             <h3 class="box-title">Messages</h3>
         </div>
@@ -16,7 +16,7 @@
             <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                     <tbody>
-                        @foreach ($threads as $thread)
+                        @forelse ($threads as $thread)
                             <tr>
                                 <td class="mailbox-star" width="30px"><i class="fa fa-star text-yellow"></i></td>
                                 <td class="mailbox-name" width="200px">{{ $thread->creator()->name }}</td>
@@ -32,7 +32,11 @@
                                 </td>
                                 <td class="mailbox-date" width="225px">Last Reply: {{ $thread->latestMessage->created_at->diffForHumans() }}</td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="5">No messages for you. <a href="{{ action('MessagesController@create') }}">Compose a Message</a></td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

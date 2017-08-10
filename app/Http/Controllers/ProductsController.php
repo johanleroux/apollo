@@ -48,11 +48,11 @@ class ProductsController extends Controller
 
         $this->validate(request(), [
             'supplier_id'               => 'required|exists:suppliers,id',
-            'sku'                       => 'required|unique:products|string',
+            'sku'                       => 'required|unique:products|string|alpha_dash',
             'description'               => 'required|string',
-            'cost_price'                => 'required|numeric',
-            'retail_price'              => 'required|numeric',
-            'recommended_selling_price' => 'required|numeric',
+            'cost_price'                => 'required|numeric|min:0',
+            'retail_price'              => 'required|numeric|min:0',
+            'recommended_selling_price' => 'required|numeric|min:0',
         ], [
             'supplier_id.required' => 'The supplier field is required.',
             'supplier_id.exists'   => 'The supplier field is required.',
@@ -113,9 +113,9 @@ class ProductsController extends Controller
 
         $this->validate(request(), [
             'description'               => 'required|string',
-            'cost_price'                => 'required|numeric',
-            'retail_price'              => 'required|numeric',
-            'recommended_selling_price' => 'required|numeric',
+            'cost_price'                => 'required|numeric|min:0',
+            'retail_price'              => 'required|numeric|min:0',
+            'recommended_selling_price' => 'required|numeric|min:0',
         ]);
 
         $product->update(request()->all());
