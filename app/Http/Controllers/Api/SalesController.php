@@ -17,7 +17,7 @@ class SalesController extends ApiController
     {
         user_can('view-sale');
 
-        $paginator = Sale::paginate(25);
+        $paginator = Sale::orderBy('id', 'desc')->paginate(25);
         $sales = $paginator->getCollection();
 
         return response()

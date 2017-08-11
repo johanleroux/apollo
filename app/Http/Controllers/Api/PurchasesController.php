@@ -17,7 +17,7 @@ class PurchasesController extends ApiController
     {
         user_can('view-purchase');
 
-        $paginator = Purchase::paginate(25);
+        $paginator = Purchase::orderBy('id', 'desc')->paginate(25);
         $purchases = $paginator->getCollection();
 
         return response()
