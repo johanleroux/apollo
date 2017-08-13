@@ -25,8 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('forecast:refresh --all')
-                 ->everyThirtyMinutes();
+//         $schedule->command('forecast:refresh --all')
+//                  ->everyThirtyMinutes();
     }
 
     /**
