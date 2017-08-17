@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Api;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Customer;
 
 class CustomersApiTest extends TestCase
 {
-    use DatabaseMigrations;
-
     protected $customer;
 
     public function __construct()
@@ -28,10 +25,11 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_list_customers()
     {
-        factory(\App\Models\Customer::class, 4)->create();
-        factory(\App\Models\Customer::class)->create($this->customer);
+        Customer::flushEventListeners();
+        factory(Customer::class, 4)->create();
+        factory(Customer::class)->create($this->customer);
 
-        $this->get('/api/customer')
+        $this->get('/api/customer', [], $this->headers())
             ->assertJsonFragment(['total' => 5])
             ->assertJsonFragment($this->customer)
             ->assertStatus(200);
@@ -40,17 +38,19 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_view_a_customer()
     {
-        $customer = factory(\App\Models\Customer::class)->create($this->customer);
+        Customer::flushEventListeners();
+        $customer = factory(Customer::class)->create($this->customer);
 
-        $this->get('/api/customer/' . $customer->id)
-            ->assertJsonFragment($customer->toArray())
+        $this->get('/api/customer/' . $customer->id, [], $this->headers())
+            ->assertJsonFragment($this->customer)
             ->assertStatus(200);
     }
 
     /** @test */
     public function it_can_store_a_customer()
     {
-        $this->json('POST', '/api/customer', $this->customer)
+        Customer::flushEventListeners();
+        $this->json('POST', '/api/customer', $this->customer, $this->headers())
             ->assertJsonFragment($this->customer)
             ->assertStatus(200);
 
@@ -60,7 +60,8 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_validates_storing_of_a_customer()
     {
-        $this->json('POST', '/api/customer', [])
+        Customer::flushEventListeners();
+        $this->json('POST', '/api/customer', [], $this->headers())
             ->assertJsonFragment(['The email field is required.'])
             ->assertJsonFragment(['The name field is required.'])
             ->assertJsonFragment(['The telephone field is required.'])
@@ -70,11 +71,12 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_update_a_customer()
     {
-        $customer = factory(\App\Models\Customer::class)->create(['name' => 'Jane Doe']);
+        Customer::flushEventListeners();
+        $customer = factory(Customer::class)->create(['name' => 'Jane Doe']);
 
         $this->assertDatabaseHas('customers', ['name' => 'Jane Doe']);
 
-        $this->json('PATCH', '/api/customer/' . $customer->id, $this->customer)
+        $this->json('PATCH', '/api/customer/' . $customer->id, $this->customer, $this->headers())
             ->assertJsonFragment($this->customer)
             ->assertStatus(200);
 
@@ -84,9 +86,10 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_validates_updating_of_a_customer()
     {
-        $customer = factory(\App\Models\Customer::class)->create();
+        Customer::flushEventListeners();
+        $customer = factory(Customer::class)->create();
 
-        $this->json('PATCH', '/api/customer/' . $customer->id, [])
+        $this->json('PATCH', '/api/customer/' . $customer->id, [], $this->headers())
             ->assertJsonFragment(['The email field is required.'])
             ->assertJsonFragment(['The name field is required.'])
             ->assertJsonFragment(['The telephone field is required.'])
@@ -96,11 +99,12 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_delete_a_customer()
     {
-        $customer = factory(\App\Models\Customer::class)->create($this->customer);
+        Customer::flushEventListeners();
+        $customer = factory(Customer::class)->create($this->customer);
 
         $this->assertDatabaseHas('customers', $this->customer);
 
-        $this->json('DELETE', '/api/customer/' . $customer->id)
+        $this->json('DELETE', '/api/customer/' . $customer->id, $this->headers())
             ->assertStatus(204);
 
         $this->assertSoftDeleted('customers', $this->customer);
