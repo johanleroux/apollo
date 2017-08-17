@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Api;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Supplier;
 
 class SuppliersApiTest extends TestCase
 {
-    use DatabaseMigrations;
-
     protected $supplier;
 
     public function __construct()
@@ -17,6 +14,7 @@ class SuppliersApiTest extends TestCase
             'name'      => 'John Doe',
             'telephone' => '082 000 000',
             'email'     => 'john@example.com',
+            'lead_time' => '1',
             'address'   => '28041 Reinger Lodge',
             'address_2' => 'Apt. 400',
             'city'      => 'Carrollhaven',
@@ -28,10 +26,11 @@ class SuppliersApiTest extends TestCase
     /** @test */
     public function it_can_list_suppliers()
     {
-        factory(\App\Models\Supplier::class, 4)->create();
-        factory(\App\Models\Supplier::class)->create($this->supplier);
+        Supplier::flushEventListeners();
+        factory(Supplier::class, 4)->create();
+        factory(Supplier::class)->create($this->supplier);
 
-        $this->get('/api/supplier')
+        $this->get('/api/supplier', [], $this->headers())
             ->assertJsonFragment(['total' => 5])
             ->assertJsonFragment($this->supplier)
             ->assertStatus(200);
@@ -40,17 +39,19 @@ class SuppliersApiTest extends TestCase
     /** @test */
     public function it_can_view_a_supplier()
     {
-        $supplier = factory(\App\Models\Supplier::class)->create($this->supplier);
+        Supplier::flushEventListeners();
+        $supplier = factory(Supplier::class)->create($this->supplier);
 
-        $this->get('/api/supplier/' . $supplier->id)
-            ->assertJsonFragment($supplier->toArray())
+        $this->get('/api/supplier/' . $supplier->id, [], $this->headers())
+            ->assertJsonFragment($this->supplier)
             ->assertStatus(200);
     }
 
     /** @test */
     public function it_can_store_a_supplier()
     {
-        $this->json('POST', '/api/supplier', $this->supplier)
+        Supplier::flushEventListeners();
+        $this->json('POST', '/api/supplier', $this->supplier, $this->headers())
             ->assertJsonFragment($this->supplier)
             ->assertStatus(200);
 
@@ -60,7 +61,8 @@ class SuppliersApiTest extends TestCase
     /** @test */
     public function it_validates_storing_of_a_supplier()
     {
-        $this->json('POST', '/api/supplier', [])
+        Supplier::flushEventListeners();
+        $this->json('POST', '/api/supplier', [], $this->headers())
             ->assertJsonFragment(['The email field is required.'])
             ->assertJsonFragment(['The name field is required.'])
             ->assertJsonFragment(['The telephone field is required.'])
@@ -70,11 +72,12 @@ class SuppliersApiTest extends TestCase
     /** @test */
     public function it_can_update_a_supplier()
     {
-        $supplier = factory(\App\Models\Supplier::class)->create(['name' => 'Jane Doe']);
+        Supplier::flushEventListeners();
+        $supplier = factory(Supplier::class)->create(['name' => 'Jane Doe']);
 
         $this->assertDatabaseHas('suppliers', ['name' => 'Jane Doe']);
 
-        $this->json('PATCH', '/api/supplier/' . $supplier->id, $this->supplier)
+        $this->json('PATCH', '/api/supplier/' . $supplier->id, $this->supplier, $this->headers())
             ->assertJsonFragment($this->supplier)
             ->assertStatus(200);
 
@@ -84,9 +87,10 @@ class SuppliersApiTest extends TestCase
     /** @test */
     public function it_validates_updating_of_a_supplier()
     {
-        $supplier = factory(\App\Models\Supplier::class)->create();
+        Supplier::flushEventListeners();
+        $supplier = factory(Supplier::class)->create();
 
-        $this->json('PATCH', '/api/supplier/' . $supplier->id, [])
+        $this->json('PATCH', '/api/supplier/' . $supplier->id, [], $this->headers())
             ->assertJsonFragment(['The email field is required.'])
             ->assertJsonFragment(['The name field is required.'])
             ->assertJsonFragment(['The telephone field is required.'])
@@ -96,11 +100,12 @@ class SuppliersApiTest extends TestCase
     /** @test */
     public function it_can_delete_a_supplier()
     {
-        $supplier = factory(\App\Models\Supplier::class)->create($this->supplier);
+        Supplier::flushEventListeners();
+        $supplier = factory(Supplier::class)->create($this->supplier);
 
         $this->assertDatabaseHas('suppliers', $this->supplier);
 
-        $this->json('DELETE', '/api/supplier/' . $supplier->id)
+        $this->json('DELETE', '/api/supplier/' . $supplier->id, [], $this->headers())
             ->assertStatus(204);
 
         $this->assertSoftDeleted('suppliers', $this->supplier);

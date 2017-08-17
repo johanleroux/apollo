@@ -1,13 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Api;
 
-use Tests\TestCase;
 use App\Models\Customer;
 
 class CustomersApiTest extends TestCase
 {
-
     protected $customer;
 
     public function __construct()

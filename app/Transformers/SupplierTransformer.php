@@ -18,12 +18,12 @@ class SupplierTransformer extends TransformerAbstract
             'name'       => $supplier->name,
             'telephone'  => $supplier->telephone,
             'email'      => $supplier->email,
+            'lead_time'  => $supplier->lead_time,
             'address'    => $supplier->address,
             'address_2'  => $supplier->address_2,
             'city'       => $supplier->city,
             'province'   => $supplier->province,
             'country'    => $supplier->country,
-            'lead_time'  => $supplier->lead_time,
         ];
     }
 }
