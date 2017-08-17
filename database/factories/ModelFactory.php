@@ -30,6 +30,9 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
     $rsp    = $retail * $faker->randomFloat(2, 0.9, 1.1);
 
     return [
+        'supplier_id' => function () {
+            return factory(App\Models\Supplier::class)->create()->id;
+        },
         'sku'                       => strtoupper($faker->unique()->lexify()),
         'description'               => $faker->sentence(),
         'cost_price'                => $cost,
