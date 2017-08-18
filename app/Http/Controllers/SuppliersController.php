@@ -14,8 +14,6 @@ class SuppliersController extends Controller
     */
     public function index(SuppliersDataTable $dt)
     {
-        user_can('view-supplier');
-
         return $dt->render('supplier.index');
     }
 
@@ -26,7 +24,7 @@ class SuppliersController extends Controller
     */
     public function create()
     {
-        user_can('create-supplier');
+        $this->authorize('create', Supplier::class);
 
         return view('supplier.create');
     }
@@ -39,7 +37,7 @@ class SuppliersController extends Controller
     */
     public function store()
     {
-        user_can('create-supplier');
+        $this->authorize('create', Supplier::class);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -67,9 +65,9 @@ class SuppliersController extends Controller
     */
     public function show($id)
     {
-        user_can('view-supplier');
-
         $supplier = Supplier::findOrFail($id);
+
+        $this->authorize('show', $supplier);
 
         return view('supplier.show', compact('supplier'));
     }
@@ -82,9 +80,9 @@ class SuppliersController extends Controller
     */
     public function edit($id)
     {
-        user_can('edit-supplier');
-
         $supplier = Supplier::findOrFail($id);
+
+        $this->authorize('update', $supplier);
 
         return view('supplier.edit', compact('supplier'));
     }
@@ -98,7 +96,7 @@ class SuppliersController extends Controller
     */
     public function update(Supplier $supplier)
     {
-        user_can('edit-supplier');
+        $this->authorize('update', $supplier);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -126,7 +124,7 @@ class SuppliersController extends Controller
     */
     public function destroy(Supplier $supplier)
     {
-        user_can('delete-supplier');
+        $this->authorize('delete', $supplier);
 
         $supplier->delete();
 

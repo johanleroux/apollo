@@ -15,8 +15,6 @@ class SuppliersController extends ApiController
      */
     public function index()
     {
-        user_can('view-supplier');
-
         $paginator = Supplier::paginate(25);
         $suppliers = $paginator->getCollection();
 
@@ -35,9 +33,9 @@ class SuppliersController extends ApiController
      */
     public function show($id)
     {
-        user_can('view-supplier');
-
         $supplier = Supplier::findOrFail($id);
+
+        $this->authorize('view', $supplier);
 
         return response()
             ->json(fractal()
@@ -52,7 +50,7 @@ class SuppliersController extends ApiController
      */
     public function store()
     {
-        user_can('create-supplier');
+        $this->authorize('view', Supplier::class);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -78,9 +76,9 @@ class SuppliersController extends ApiController
      * @param int $id
      * @return json
      */
-    public function update($id)
+    public function update(Supplier $supplier)
     {
-        user_can('edit-supplier');
+        $this->authorize('update', $supplier);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -94,7 +92,6 @@ class SuppliersController extends ApiController
             'lead_time' => 'required|numeric|min:0',
         ]);
 
-        $supplier = Supplier::findOrFail($id);
         $supplier->update(request()->all());
 
         return response()
@@ -109,11 +106,10 @@ class SuppliersController extends ApiController
      * @param int $id
      * @return response
      */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        user_can('delete-supplier');
+        $this->authorize('delete', $supplier);
 
-        $supplier = Supplier::findOrFail($id);
         $supplier->delete();
 
         return response(null, 204);

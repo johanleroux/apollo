@@ -15,8 +15,6 @@ class ProductsController extends ApiController
      */
     public function index()
     {
-        user_can('view-product');
-
         $paginator = Product::paginate(25);
         $products = $paginator->getCollection();
 
@@ -35,9 +33,9 @@ class ProductsController extends ApiController
      */
     public function show($id)
     {
-        user_can('view-product');
-
         $product = Product::findOrFail($id);
+
+        $this->authorize('view', $product);
 
         return response()
             ->json(fractal()
@@ -52,7 +50,7 @@ class ProductsController extends ApiController
      */
     public function store()
     {
-        user_can('create-product');
+        $this->authorize('create', Product::class);
 
         $this->validate(request(), [
             'supplier_id'               => 'required|exists:suppliers,id',
@@ -80,7 +78,7 @@ class ProductsController extends ApiController
      */
     public function update($id)
     {
-        user_can('edit-product');
+        $this->authorize('update', $product);
 
         $this->validate(request(), [
             'description'               => 'required|string',
@@ -106,7 +104,7 @@ class ProductsController extends ApiController
      */
     public function destroy($id)
     {
-        user_can('delete-product');
+        $this->authorize('delete', $product);
 
         $product = Product::findOrFail($id);
         $product->delete();

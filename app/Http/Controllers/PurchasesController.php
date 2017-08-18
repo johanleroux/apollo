@@ -18,8 +18,6 @@ class PurchasesController extends Controller
     */
     public function index(PurchasesDataTable $dt)
     {
-        user_can('view-purchase');
-
         return $dt->render('purchase.index');
     }
 
@@ -30,7 +28,7 @@ class PurchasesController extends Controller
     */
     public function create()
     {
-        user_can('create-purchase');
+        $this->authorize('create', Purchase::class);
 
         $suppliers = Supplier::with(['products'])->get();
 
@@ -45,7 +43,7 @@ class PurchasesController extends Controller
     */
     public function store()
     {
-        user_can('create-purchase');
+        $this->authorize('create', Purchase::class);
 
         $this->validate(request(), [
             'supplier_id'          => 'required|exists:suppliers,id',
@@ -93,9 +91,10 @@ class PurchasesController extends Controller
     */
     public function show($id)
     {
-        user_can('view-purchase');
-
         $purchase = Purchase::with(['supplier', 'items.product'])->findOrFail($id);
+
+        $this->authorize('view', $purchase);
+
         $company = Company::firstOrFail();
 
         return view('purchase.show', [
@@ -114,13 +113,14 @@ class PurchasesController extends Controller
     */
     public function edit($id)
     {
-        user_can('edit-purchase');
-
         $purchase = Purchase::select('id', 'supplier_id', 'processed_at')->with([
             'items' => function ($query) {
                 $query->select('id', 'purchase_id', 'product_id', 'price', 'quantity');
             }
-        ])->findOrFail($id);
+            ])->findOrFail($id);
+
+        $this->authorize('update', $purchase);
+
         $suppliers = Supplier::with(['products'])->get();
 
         abort_if($purchase->processed_at, 404);
@@ -137,7 +137,7 @@ class PurchasesController extends Controller
     */
     public function update(Purchase $purchase)
     {
-        user_can('edit-purchase');
+        $this->authorize('update', $purchase);
 
         abort_if($purchase->processed_at, 400);
 
@@ -187,7 +187,7 @@ class PurchasesController extends Controller
 
     public function process(Purchase $purchase)
     {
-        user_can('edit-purchase');
+        $this->authorize('update', $purchase);
 
         abort_if($purchase->processed_at, 400);
 
@@ -214,7 +214,7 @@ class PurchasesController extends Controller
     */
     public function destroy(Purchase $purchase)
     {
-        user_can('delete-purchase');
+        $this->authorize('delete', $purchase);
 
         $purchase->delete();
 

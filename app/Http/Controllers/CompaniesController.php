@@ -14,9 +14,9 @@ class CompaniesController extends Controller
     */
     public function edit()
     {
-        user_can('manage-company');
-        
         $company = Company::firstOrFail();
+
+        $this->authorize('update', $company);
 
         return view('company.edit', compact('company'));
     }
@@ -28,10 +28,10 @@ class CompaniesController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update()
+    public function update(Company $company)
     {
-        user_can('manage-company');
-        
+        $this->authorize('update', $company);
+
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
@@ -43,7 +43,6 @@ class CompaniesController extends Controller
             'country'   => 'nullable|string',
         ]);
 
-        $company = Company::firstOrFail();
         $company->update(request()->all());
 
         notify()->flash('Company Information has been updated!', 'success');

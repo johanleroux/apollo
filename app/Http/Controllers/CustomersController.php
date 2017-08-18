@@ -14,8 +14,6 @@ class CustomersController extends Controller
     */
     public function index(CustomersDataTable $dt)
     {
-        user_can('view-customer');
-
         return $dt->render('customer.index');
     }
 
@@ -26,7 +24,7 @@ class CustomersController extends Controller
     */
     public function create()
     {
-        user_can('create-customer');
+        $this->authorize('create', Customer::class);
 
         return view('customer.create');
     }
@@ -39,7 +37,7 @@ class CustomersController extends Controller
     */
     public function store()
     {
-        user_can('create-customer');
+        $this->authorize('create', Customer::class);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -66,9 +64,9 @@ class CustomersController extends Controller
     */
     public function show($id)
     {
-        user_can('view-customer');
-
         $customer = Customer::findOrFail($id);
+
+        $this->authorize('view', $customer);
 
         return view('customer.show', compact('customer'));
     }
@@ -81,9 +79,9 @@ class CustomersController extends Controller
     */
     public function edit($id)
     {
-        user_can('edit-customer');
-
         $customer = Customer::findOrFail($id);
+
+        $this->authorize('update', $customer);
 
         return view('customer.edit', compact('customer'));
     }
@@ -97,7 +95,7 @@ class CustomersController extends Controller
     */
     public function update(Customer $customer)
     {
-        user_can('edit-customer');
+        $this->authorize('update', $customer);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -124,7 +122,7 @@ class CustomersController extends Controller
     */
     public function destroy(Customer $customer)
     {
-        user_can('delete-customer');
+        $this->authorize('delete', $customer);
 
         $customer->delete();
 

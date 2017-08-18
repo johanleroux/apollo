@@ -15,8 +15,6 @@ class SalesController extends ApiController
      */
     public function index()
     {
-        user_can('view-sale');
-
         $paginator = Sale::orderBy('id', 'desc')->paginate(25);
         $sales = $paginator->getCollection();
 
@@ -35,9 +33,9 @@ class SalesController extends ApiController
      */
     public function show($id)
     {
-        user_can('view-sale');
-
         $sale = Sale::findOrFail($id);
+
+        $this->authorize('view', $sale);
 
         return response()
             ->json(fractal()

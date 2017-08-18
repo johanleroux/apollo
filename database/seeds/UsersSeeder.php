@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
 
             'view-purchase',
             'create-purchase',
-            'edit-purchase',
+            'update-purchase',
             'delete-purchase',
 
             'view-sale',
@@ -28,37 +28,25 @@ class UsersSeeder extends Seeder
 
         $managerAbilities = [
             'create-customer',
-            'edit-customer',
+            'update-customer',
             'delete-customer',
 
             'create-product',
-            'edit-product',
+            'update-product',
             'delete-product',
 
             'create-supplier',
-            'edit-supplier',
+            'update-supplier',
             'delete-supplier',
         ];
 
-        $adminAbilities = [
-            'manage-users',
-            'manage-roles',
-            'manage-company'
-        ];
-
-        $managerAbilities = array_merge($managerAbilities, $salesAbilities);
-        $adminAbilities = array_merge($adminAbilities, $managerAbilities);
-
         foreach ($salesAbilities as $ability) {
             Bouncer::allow('sales')->to($ability);
+            Bouncer::allow('manager')->to($ability);
         }
 
         foreach ($managerAbilities as $ability) {
             Bouncer::allow('manager')->to($ability);
-        }
-
-        foreach ($adminAbilities as $ability) {
-            Bouncer::allow('admin')->to($ability);
         }
 
         $sale = App\Models\User::create([
@@ -85,9 +73,5 @@ class UsersSeeder extends Seeder
         $sale->assign('sales');
         $manager->assign('manager');
         $admin->assign('admin');
-
-        // factory(App\Models\User::class, 5)->create()->each(function ($user) {
-        //     $user->assign('sales');
-        // });
     }
 }
