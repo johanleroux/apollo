@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SaleItem;
 use App\Models\Product;
-use App\Models\Forecast;
 use App\Models\Supplier;
+use App\Models\SaleItem;
+use App\Models\Forecast;
 use App\DataTables\ProductsDataTable;
 
 class ProductsController extends Controller
@@ -17,8 +17,6 @@ class ProductsController extends Controller
     */
     public function index(ProductsDataTable $dt)
     {
-        user_can('view-product');
-
         $report = new \App\Queries\Report;
 
         return $dt->render('product.index', compact('report'));
@@ -31,7 +29,7 @@ class ProductsController extends Controller
     */
     public function create()
     {
-        user_can('create-product');
+        $this->authorize('create', Product::class);
 
         $suppliers = Supplier::orderBy('name', 'asc')->pluck('name', 'id');
         return view('product.create', compact('suppliers'));
@@ -45,7 +43,7 @@ class ProductsController extends Controller
     */
     public function store()
     {
-        user_can('create-product');
+        $this->authorize('create', Product::class);
 
         $this->validate(request(), [
             'supplier_id'               => 'required|exists:suppliers,id',
@@ -73,9 +71,10 @@ class ProductsController extends Controller
     */
     public function show($id)
     {
-        user_can('view-product');
-
         $product = Product::findOrFail($id);
+
+        $this->authorize('view', $product);
+
         $reportQuery = new \App\Queries\Report($preload = false);
 
         $report['quantity'] = $reportQuery->yearlyRecap($product->id, 'quantity');
@@ -93,9 +92,10 @@ class ProductsController extends Controller
     */
     public function edit($id)
     {
-        user_can('edit-product');
-
         $product = Product::findOrFail($id);
+
+        $this->authorize('update', $product);
+
         $suppliers = Supplier::orderBy('name', 'asc')->pluck('name', 'id');
 
         return view('product.edit', compact('product', 'suppliers'));
@@ -110,7 +110,7 @@ class ProductsController extends Controller
     */
     public function update(Product $product)
     {
-        user_can('edit-product');
+        $this->authorize('update', $product);
 
         $this->validate(request(), [
             'description'               => 'required|string',
@@ -133,7 +133,7 @@ class ProductsController extends Controller
     */
     public function destroy(Product $product)
     {
-        user_can('delete-product');
+        $this->authorize('delete', $product);
 
         $product->delete();
 

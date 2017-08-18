@@ -15,8 +15,6 @@ class CustomersController extends ApiController
      */
     public function index()
     {
-        user_can('view-customer');
-
         $paginator = Customer::paginate(25);
         $customers = $paginator->getCollection();
 
@@ -33,11 +31,9 @@ class CustomersController extends ApiController
      * @param int $id
      * @return json
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        user_can('view-customer');
-
-        $customer = Customer::findOrFail($id);
+        $this->authorize('create', $customer);
 
         return response()
             ->json(fractal()
@@ -52,7 +48,7 @@ class CustomersController extends ApiController
      */
     public function store()
     {
-        user_can('create-customer');
+        $this->authorize('create', Customer::class);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -77,9 +73,9 @@ class CustomersController extends ApiController
      * @param int $id
      * @return json
      */
-    public function update($id)
+    public function update(Customer $customer)
     {
-        user_can('edit-customer');
+        $this->authorize('update', $customer);
 
         $this->validate(request(), [
             'name'      => 'required|string',
@@ -92,7 +88,6 @@ class CustomersController extends ApiController
             'country'   => 'nullable|string',
         ]);
 
-        $customer = Customer::findOrFail($id);
         $customer->update(request()->all());
 
         return response()
@@ -107,11 +102,10 @@ class CustomersController extends ApiController
      * @param int $id
      * @return response
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        user_can('delete-customer');
+        $this->authorize('delete', $customer);
 
-        $customer = Customer::findOrFail($id);
         $customer->delete();
 
         return response(null, 204);

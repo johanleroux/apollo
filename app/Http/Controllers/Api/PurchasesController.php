@@ -15,8 +15,6 @@ class PurchasesController extends ApiController
      */
     public function index()
     {
-        user_can('view-purchase');
-
         $paginator = Purchase::orderBy('id', 'desc')->paginate(25);
         $purchases = $paginator->getCollection();
 
@@ -35,9 +33,9 @@ class PurchasesController extends ApiController
      */
     public function show($id)
     {
-        user_can('view-purchase');
-
         $purchase = Purchase::findOrFail($id);
+
+        $this->authorize('view', $purchase);
 
         return response()
             ->json(fractal()
