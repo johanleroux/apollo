@@ -15,7 +15,6 @@ class SupplierTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Supplier::flushEventListeners();
         $this->supplier = factory(Supplier::class)->create();
     }
 

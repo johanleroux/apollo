@@ -11,6 +11,11 @@ class Product extends Model
 {
     use NotifyModel, SoftDeletes;
 
+    /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
     protected $guarded = [];
 
     /**
@@ -20,71 +25,106 @@ class Product extends Model
      */
     protected $dates = ['deleted_at'];
 
+    /**
+     * Override boot method
+     */
     protected static function boot()
     {
         parent::boot();
 
+        // Sort by SKU ascending
         static::addGlobalScope('order', function (Builder $builder) {
             $builder->orderBy('sku', 'asc');
         });
     }
 
+    /**
+     * A product has a supplier.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function supplier()
     {
         return $this->belongsTo(Supplier::class)->withTrashed();
     }
 
-    public function items()
+    /**
+     * A product has many purchase items.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function purchase_items()
     {
         return $this->hasMany(PurchaseItem::class)
             ->select('product_id')
             ->selectRaw('SUM(quantity) as quantity')
             ->selectRaw('SUM(price) as value')
-            ->groupBy('product_id');
+            ->groupBy('purchase_id');
     }
 
-    public function purchasedItems()
-    {
-        $purchases = Purchase::where('processed_at', '!=', null)->pluck('id');
-        return $this->items()
-                ->whereIn('purchase_id', $purchases);
-    }
-
-    public function openItems()
+    /**
+     * A product has many open purchase items.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function open_purchase_items()
     {
         $purchases = Purchase::where('processed_at', null)->pluck('id');
-        return $this->items()
+        return $this->purchase_items()
                 ->whereIn('purchase_id', $purchases);
     }
 
-    public function saleItems()
+    /**
+     * A product has many closed purchase items.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function closed_purchase_items()
+    {
+        $purchases = Purchase::where('processed_at', '!=', null)->pluck('id');
+        return $this->purchase_items()
+                ->whereIn('purchase_id', $purchases);
+    }
+
+    /**
+     * A product has many sale items.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sale_items()
     {
         return $this->hasMany(SaleItem::class)
             ->select('product_id')
             ->selectRaw('SUM(quantity) as quantity')
             ->selectRaw('SUM(price) as value')
-            ->groupBy('product_id');
+            ->groupBy('sale_id');
     }
 
+    /**
+     * Product has a current stock quantity
+     *
+     * @return int
+     */
     public function getStockQuantityAttribute()
     {
-        $purchases = 0;
-        $sales = 0;
-        if (count($this->purchasedItems) > 0) {
-            $purchases = (int) $this->purchasedItems[0]->quantity;
-        }
-
-        if (count($this->saleItems) > 0) {
-            $sales = (int) $this->saleItems[0]->quantity;
-        }
-        return $purchases - $sales;
+        return $this->closed_purchase_items->sum('quantity') - $this->sale_items->sum('quantity');
     }
 
+    /**
+     * Product has a current stock value
+     *
+     * @return double
+     */
     public function getStockValueAttribute()
     {
         return $this->stockQuantity * $this->cost_price;
     }
 
+    /**
+     * Product has a current stock value
+     *
+     * @return double
+     */
     public function getStockMarginAttribute()
     {
         return $this->stockQuantity * ($this->retail_price - $this->cost_price);

@@ -9,6 +9,8 @@ class Purchase extends Model
 {
     use NotifyModel;
 
+    protected $guarded = [];
+
     protected $dates = [
         'processed_at'
     ];

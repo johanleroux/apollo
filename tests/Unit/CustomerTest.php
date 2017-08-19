@@ -15,7 +15,6 @@ class CustomerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Customer::flushEventListeners();
         $this->customer = factory(Customer::class)->create();
     }
 
