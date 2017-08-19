@@ -25,12 +25,10 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_list_customers()
     {
-        Customer::flushEventListeners();
-        factory(Customer::class, 4)->create();
-        factory(Customer::class)->create($this->customer);
+        $customer = create(Customer::class, $this->customer);
 
         $this->get('/api/customer', [], $this->headers())
-            ->assertJsonFragment(['total' => 5])
+            ->assertJsonFragment(['total' => 1])
             ->assertJsonFragment($this->customer)
             ->assertStatus(200);
     }
@@ -38,8 +36,7 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_view_a_customer()
     {
-        Customer::flushEventListeners();
-        $customer = factory(Customer::class)->create($this->customer);
+        $customer = create(Customer::class, $this->customer);
 
         $this->get('/api/customer/' . $customer->id, [], $this->headers())
             ->assertJsonFragment($this->customer)
@@ -49,7 +46,6 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_store_a_customer()
     {
-        Customer::flushEventListeners();
         $this->json('POST', '/api/customer', $this->customer, $this->headers())
             ->assertJsonFragment($this->customer)
             ->assertStatus(200);
@@ -60,7 +56,6 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_validates_storing_of_a_customer()
     {
-        Customer::flushEventListeners();
         $this->json('POST', '/api/customer', [], $this->headers())
             ->assertJsonFragment(['The email field is required.'])
             ->assertJsonFragment(['The name field is required.'])
@@ -71,8 +66,7 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_update_a_customer()
     {
-        Customer::flushEventListeners();
-        $customer = factory(Customer::class)->create(['name' => 'Jane Doe']);
+        $customer = create(Customer::class, ['name' => 'Jane Doe']);
 
         $this->assertDatabaseHas('customers', ['name' => 'Jane Doe']);
 
@@ -86,8 +80,7 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_validates_updating_of_a_customer()
     {
-        Customer::flushEventListeners();
-        $customer = factory(Customer::class)->create();
+        $customer = create(Customer::class);
 
         $this->json('PATCH', '/api/customer/' . $customer->id, [], $this->headers())
             ->assertJsonFragment(['The email field is required.'])
@@ -99,8 +92,7 @@ class CustomersApiTest extends TestCase
     /** @test */
     public function it_can_delete_a_customer()
     {
-        Customer::flushEventListeners();
-        $customer = factory(Customer::class)->create($this->customer);
+        $customer = create(Customer::class, $this->customer);
 
         $this->assertDatabaseHas('customers', $this->customer);
 
