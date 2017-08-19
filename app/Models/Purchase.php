@@ -9,31 +9,61 @@ class Purchase extends Model
 {
     use NotifyModel;
 
+    /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
     protected $guarded = [];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
     protected $dates = [
         'processed_at'
     ];
 
-    public function getTotalAttribute()
-    {
-        return $this->items->sum(function ($item) {
-            return $item->total;
-        });
-    }
-
-    public function items()
-    {
-        return $this->hasMany(PurchaseItem::class);
-    }
-
+    /**
+     * A purchase has a supplier.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function supplier()
     {
         return $this->belongsTo(Supplier::class)->withTrashed();
     }
 
+    /**
+     * A purchase has many purchase items.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function purchase_items()
+    {
+        return $this->hasMany(PurchaseItem::class);
+    }
+
+    /**
+     * Add a product to the purchase
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function addProduct($payload)
     {
-        return $this->items()->forceCreate($payload);
+        return $this->purchase_items()->create($payload);
+    }
+
+    /**
+     * Purchase calculates total
+     *
+     * @return double
+     */
+    public function getTotalAttribute()
+    {
+        return $this->purchase_items->sum(function ($item) {
+            return $item->total;
+        });
     }
 }

@@ -15,7 +15,7 @@ class SupplierTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->supplier = factory(Supplier::class)->create();
+        $this->supplier = create(Supplier::class);
     }
 
     /** @test */

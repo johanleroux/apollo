@@ -69,6 +69,9 @@ $factory->define(App\Models\Supplier::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Purchase::class, function (Faker\Generator $faker) {
     return [
+        'supplier_id' => function () {
+            return factory(App\Models\Supplier::class)->create()->id;
+        },
         'processed_at' => \Carbon\Carbon::now(),
         'ext_invoice'  => $faker->word
     ];
@@ -76,16 +79,34 @@ $factory->define(App\Models\Purchase::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\PurchaseItem::class, function (Faker\Generator $faker) {
     return [
+        'purchase_id' => function () {
+            return factory(App\Models\Purchase::class)->create()->id;
+        },
+        'product_id' => function () {
+            return factory(App\Models\Product::class)->create()->id;
+        },
         'quantity' => $faker->numberBetween(1, 1000),
+        'price'    => $faker->numberBetween(1, 1000),
     ];
 });
 
 $factory->define(App\Models\Sale::class, function (Faker\Generator $faker) {
-    return [];
+    return [
+        'customer_id' => function () {
+            return factory(App\Models\Customer::class)->create()->id;
+        },
+    ];
 });
 
 $factory->define(App\Models\SaleItem::class, function (Faker\Generator $faker) {
     return [
+        'sale_id' => function () {
+            return factory(App\Models\Sale::class)->create()->id;
+        },
+        'product_id' => function () {
+            return factory(App\Models\Product::class)->create()->id;
+        },
         'quantity' => $faker->numberBetween(1, 1000),
+        'price'    => $faker->numberBetween(1, 1000),
     ];
 });

@@ -32,7 +32,7 @@ class ProductTest extends TestCase
         ->supplier->purchases()
         ->save(make(Purchase::class));
 
-        $purchase->items()->save(make(PurchaseItem::class, [
+        $purchase->purchase_items()->save(make(PurchaseItem::class, [
             'product_id' => $this->product->id,
             'price'      => $this->product->cost_price,
             'quantity'   => $quantity
@@ -56,7 +56,7 @@ class ProductTest extends TestCase
 
         $sale = $customer->sales()->save(make(Sale::class));
 
-        $sale->items()->save(make(SaleItem::class, [
+        $sale->sale_items()->save(make(SaleItem::class, [
             'product_id' => $this->product->id,
             'price'      => $this->product->cost_price,
             'quantity'   => $quantity

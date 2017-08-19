@@ -9,25 +9,52 @@ class Sale extends Model
 {
     use NotifyModel;
 
-    public function getTotalAttribute()
-    {
-        return $this->items->sum(function ($item) {
-            return $item->total;
-        });
-    }
+    /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
-    public function items()
-    {
-        return $this->hasMany(SaleItem::class);
-    }
-
+    /**
+     * A sale has a customer.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function customer()
     {
         return $this->belongsTo(Customer::class)->withTrashed();
     }
 
+    /**
+     * A sale has many sale items.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sale_items()
+    {
+        return $this->hasMany(SaleItem::class);
+    }
+
+    /**
+     * Add a product to the sale
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function addProduct($payload)
     {
-        return $this->items()->forceCreate($payload);
+        return $this->sale_items()->create($payload);
+    }
+
+    /**
+     * Sale calculates total
+     *
+     * @return double
+     */
+    public function getTotalAttribute()
+    {
+        return $this->sale_items->sum(function ($item) {
+            return $item->total;
+        });
     }
 }
