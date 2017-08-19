@@ -25,4 +25,12 @@ class CustomerTest extends TestCase
             'Illuminate\Database\Eloquent\Collection', $this->customer->sales
         );
     }
+
+    /** @test */
+    function it_has_sale_items()
+    {
+        $this->assertInstanceOf(
+            'Illuminate\Database\Eloquent\Collection', $this->customer->sale_items
+        );
+    }
 }

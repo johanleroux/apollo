@@ -11,6 +11,11 @@ class Supplier extends Model
 {
     use NotifyModel, SoftDeletes;
 
+    /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
     protected $guarded = [];
 
     /**
@@ -24,19 +29,40 @@ class Supplier extends Model
     {
         parent::boot();
 
+        // Sort by Name ascending
         static::addGlobalScope('order', function (Builder $builder) {
             $builder->orderBy('name', 'asc');
         });
     }
 
+    /**
+     * A supplier has many products.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function products()
     {
         return $this->hasMany(Product::class);
     }
 
+    /**
+     * A supplier has many purchases.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function purchases()
     {
         return $this->hasMany(Purchase::class);
+    }
+
+    /**
+     * A supplier has many purchase items.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function purchase_items()
+    {
+        return $this->hasManyThrough(PurchaseItem::class, Purchase::class);
     }
 
     public function getDetailsPrintAttribute()

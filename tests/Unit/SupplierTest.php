@@ -27,6 +27,14 @@ class SupplierTest extends TestCase
     }
 
     /** @test */
+    function it_has_purchase_items()
+    {
+        $this->assertInstanceOf(
+            'Illuminate\Database\Eloquent\Collection', $this->supplier->purchase_items
+        );
+    }
+
+    /** @test */
     function it_has_products()
     {
         $this->assertInstanceOf(
