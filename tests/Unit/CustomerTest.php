@@ -15,8 +15,7 @@ class CustomerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Customer::flushEventListeners();
-        $this->customer = factory(Customer::class)->create();
+        $this->customer = create(Customer::class);
     }
 
     /** @test */
@@ -24,6 +23,14 @@ class CustomerTest extends TestCase
     {
         $this->assertInstanceOf(
             'Illuminate\Database\Eloquent\Collection', $this->customer->sales
+        );
+    }
+
+    /** @test */
+    function it_has_sale_items()
+    {
+        $this->assertInstanceOf(
+            'Illuminate\Database\Eloquent\Collection', $this->customer->sale_items
         );
     }
 }

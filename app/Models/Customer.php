@@ -11,6 +11,11 @@ class Customer extends Model
 {
     use NotifyModel, SoftDeletes;
 
+    /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
     protected $guarded = [];
 
     /**
@@ -20,18 +25,37 @@ class Customer extends Model
      */
     protected $dates = ['deleted_at'];
 
+    /**
+     * Override boot method
+     */
     protected static function boot()
     {
         parent::boot();
 
+        // Sort by Name ascending
         static::addGlobalScope('order', function (Builder $builder) {
             $builder->orderBy('name', 'asc');
         });
     }
 
+    /**
+     * A customer has many sales.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    /**
+    * A customer has many sale items.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\hasManyThrough
+    */
+    public function sale_items()
+    {
+        return $this->hasManyThrough(SaleItem::class, Sale::class);
     }
 
     public function getDetailsPrintAttribute()

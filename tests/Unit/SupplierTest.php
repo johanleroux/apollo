@@ -15,8 +15,7 @@ class SupplierTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Supplier::flushEventListeners();
-        $this->supplier = factory(Supplier::class)->create();
+        $this->supplier = create(Supplier::class);
     }
 
     /** @test */
@@ -24,6 +23,14 @@ class SupplierTest extends TestCase
     {
         $this->assertInstanceOf(
             'Illuminate\Database\Eloquent\Collection', $this->supplier->purchases
+        );
+    }
+
+    /** @test */
+    function it_has_purchase_items()
+    {
+        $this->assertInstanceOf(
+            'Illuminate\Database\Eloquent\Collection', $this->supplier->purchase_items
         );
     }
 

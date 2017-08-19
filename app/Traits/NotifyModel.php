@@ -25,10 +25,11 @@ trait NotifyModel
 
     public function processNotification($action = 'saved')
     {
-        // Fetch all users except current to notify
-        $users = User::where('id', '!=', auth()->user()->id)->get();
+        if(auth()->check())
+        {
+            $users = User::where('id', '!=', auth()->user()->id)->get();
 
-        // Notify users
-        Notification::send($users, (new ModelProcessed($this, $action)));
+            Notification::send($users, (new ModelProcessed($this, $action)));
+        }
     }
 }

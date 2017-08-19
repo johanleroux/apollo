@@ -34,39 +34,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function admin()
     {
-        $user = factory(\App\Models\User::class)->create();
-
-        $adminAbilities = [
-            'view-customer',
-            'view-product',
-            'view-supplier',
-
-            'view-purchase',
-            'create-purchase',
-            'edit-purchase',
-            'delete-purchase',
-
-            'view-sale',
-            'create-sale',
-            'create-customer',
-            'edit-customer',
-            'delete-customer',
-
-            'create-product',
-            'edit-product',
-            'delete-product',
-
-            'create-supplier',
-            'edit-supplier',
-            'delete-supplier',
-            'manage-users',
-            'manage-roles',
-            'manage-company'
-        ];
-
-        foreach ($adminAbilities as $ability) {
-            Bouncer::allow('admin')->to($ability);
-        }
+        $user = create(\App\Models\User::class);
 
         $user->assign('admin');
 
