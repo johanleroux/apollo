@@ -42,7 +42,7 @@ class CustomersController extends Controller
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
-            'email'     => 'required|string',
+            'email'     => 'required|email',
             'address'   => 'nullable|string',
             'address_2' => 'nullable|string',
             'city'      => 'nullable|string',
@@ -100,7 +100,7 @@ class CustomersController extends Controller
         $this->validate(request(), [
             'name'      => 'required|string',
             'telephone' => 'required|string',
-            'email'     => 'required|string',
+            'email'     => 'required|email',
             'address'   => 'nullable|string',
             'address_2' => 'nullable|string',
             'city'      => 'nullable|string',

@@ -59,6 +59,7 @@ $factory->define(App\Models\Supplier::class, function (Faker\Generator $faker) {
         'name'      => $faker->company,
         'telephone' => $faker->phoneNumber,
         'email'     => $faker->email,
+        'lead_time' => $faker->numberBetween(0, 10),
         'address'   => $faker->streetAddress,
         'address_2' => $faker->secondaryAddress,
         'city'      => $faker->city,

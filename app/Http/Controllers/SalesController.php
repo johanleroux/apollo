@@ -76,9 +76,10 @@ class SalesController extends Controller
             ]);
         });
 
-        $sale->items->each(function ($item) {
-            dispatch(new \App\Jobs\GenerateForecast($item->product_id));
-        });
+        // TODO
+        // $sale->sale_items->each(function ($item) {
+        //     dispatch(new \App\Jobs\GenerateForecast($item->product_id));
+        // });
 
         notify()->flash('Sale has been created!', 'success');
         return action('SalesController@show', $sale);
@@ -92,17 +93,17 @@ class SalesController extends Controller
     */
     public function show($id)
     {
-        $sale = Sale::with(['customer', 'items.product'])->findOrFail($id);
+        $sale = Sale::with(['customer', 'sale_items.product'])->findOrFail($id);
 
         $this->authorize('show', $sale);
 
         $company = Company::firstOrFail();
 
         return view('sale.show', [
-            'sale'     => $sale,
-            'items'    => $sale->items,
-            'customer' => $sale->customer,
-            'company'  => $company
+            'sale'       => $sale,
+            'sale_items' => $sale->sale_items,
+            'customer'   => $sale->customer,
+            'company'    => $company
         ]);
     }
 }
