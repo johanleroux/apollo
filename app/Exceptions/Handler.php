@@ -37,6 +37,12 @@ class Handler extends ExceptionHandler
     */
     public function report(Exception $exception)
     {
+        // if ($exception instanceof \Illuminate\Validation\ValidationException) {
+        //     \Illuminate\Support\Facades\Log::info(
+        //         $exception->validator->errors()
+        //     );
+        // }
+
         parent::report($exception);
     }
 

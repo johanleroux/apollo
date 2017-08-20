@@ -28,8 +28,10 @@ class CompaniesController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Company $company)
+    public function update()
     {
+        $company = Company::firstOrFail();
+
         $this->authorize('update', $company);
 
         $this->validate(request(), [

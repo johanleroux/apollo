@@ -54,7 +54,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($items as $item)
+                    @foreach($purchase_items as $item)
                         <tr>
                             <td>{{ $item->product->sku }}</td>
                             <td>{{ $item->product->description }}</td>

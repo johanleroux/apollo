@@ -19,14 +19,10 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
  * Authenticated Routes
  */
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', function () {
-        $report = new \App\Queries\Report;
-
-        return view('dashboard', compact('report'));
-    });
+    Route::get('dashboard', 'DashboardController@show');
 
     Route::get('settings', 'UsersController@settings');
-    Route::put('settings', 'UsersController@update');
+    Route::patch('settings', 'UsersController@update');
 
     Route::resource('customers', 'CustomersController');
     Route::resource('products', 'ProductsController');
@@ -38,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('sales', 'SalesController', ['only' => ['index', 'show', 'create', 'store']]);
 
     Route::get('company', 'CompaniesController@edit');
-    Route::put('company', 'CompaniesController@update');
+    Route::patch('company', 'CompaniesController@update');
 
     Route::resource('users', 'UsersController');
     Route::delete('users/{user}/restore', 'UsersController@restore')->name('users.restore');

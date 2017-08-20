@@ -91,17 +91,17 @@ class PurchasesController extends Controller
     */
     public function show($id)
     {
-        $purchase = Purchase::with(['supplier', 'items.product'])->findOrFail($id);
+        $purchase = Purchase::with(['supplier', 'purchase_items.product'])->findOrFail($id);
 
         $this->authorize('view', $purchase);
 
         $company = Company::firstOrFail();
 
         return view('purchase.show', [
-            'purchase' => $purchase,
-            'items'    => $purchase->items,
-            'supplier' => $purchase->supplier,
-            'company'  => $company
+            'purchase'       => $purchase,
+            'purchase_items' => $purchase->purchase_items,
+            'supplier'       => $purchase->supplier,
+            'company'        => $company
         ]);
     }
 
@@ -166,7 +166,7 @@ class PurchasesController extends Controller
 
         $purchase->save();
 
-        $purchase->items->each(function ($item) {
+        $purchase->purchase_items->each(function ($item) {
             $item->delete();
         });
 
@@ -185,6 +185,12 @@ class PurchasesController extends Controller
         return action('PurchasesController@show', $purchase);
     }
 
+    /**
+     * Process purchase to close it off
+     *
+     * @param  Purchase $purchase
+     * @return \Illuminate\Http\Response
+     */
     public function process(Purchase $purchase)
     {
         $this->authorize('update', $purchase);

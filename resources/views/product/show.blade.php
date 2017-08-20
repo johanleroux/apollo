@@ -45,7 +45,7 @@
                     </div>
                     <div class="tab-pane" id="summary">
                         <h3>Stock Levels</h3>
-                        <p>There is current <b>{{ $product->stockQuantity }} {{ str_plural('unit', $product->stockQuantity) }}</b> of product in stock</p>
+                        <p>There is current <b>{{ $product->stock_quantity }} {{ str_plural('unit', $product->stock_quantity) }}</b> of product in stock</p>
                         <hr>
                         @if($report['sales']->count() > 0)
                             <h3>Last {{ $report['sales']->count() }} Sales</h3>

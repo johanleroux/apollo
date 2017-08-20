@@ -18,23 +18,25 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">You have {{ auth()->user()->newThreadsCount() }} new {{ str_plural('message', auth()->user()->newThreadsCount()) }}</li>
-                        <li>
-                            <ul class="menu">
-                                @foreach($share_threads as $thread)
-                                    <li>
-                                        <a href="{{ action('MessagesController@show', $thread->id) }}">
-                                            <div class="pull-left"><img src="{{ asset('img/avatar.png') }}" class="img-circle" alt="User Image"></div>
-                                            @if($thread->isUnread(Auth::id()))
-                                                <h4><b>{{ $thread->subject }}</b><small><i class="fa fa-clock-o"></i> {{ $thread->latestMessage->created_at->diffForHumans() }}</small></h4>
-                                            @else
-                                                <h4>{{ $thread->subject }}<small><i class="fa fa-clock-o"></i> {{ $thread->latestMessage->created_at->diffForHumans() }}</small></h4>
-                                            @endif
-                                            <p>by {{ $thread->creator()->name }}</p>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
+                        @if(isset($share_threads))
+                            <li>
+                                <ul class="menu">
+                                    @foreach($share_threads as $thread)
+                                        <li>
+                                            <a href="{{ action('MessagesController@show', $thread->id) }}">
+                                                <div class="pull-left"><img src="{{ asset('img/avatar.png') }}" class="img-circle" alt="User Image"></div>
+                                                @if($thread->isUnread(Auth::id()))
+                                                    <h4><b>{{ $thread->subject }}</b><small><i class="fa fa-clock-o"></i> {{ $thread->latestMessage->created_at->diffForHumans() }}</small></h4>
+                                                @else
+                                                    <h4>{{ $thread->subject }}<small><i class="fa fa-clock-o"></i> {{ $thread->latestMessage->created_at->diffForHumans() }}</small></h4>
+                                                @endif
+                                                <p>by {{ $thread->creator()->name }}</p>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endif
                         <li class="footer"><a href="{{ action('MessagesController@index') }}">See All Messages</a></li>
                     </ul>
                 </li>

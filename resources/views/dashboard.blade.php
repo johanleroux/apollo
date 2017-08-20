@@ -11,7 +11,7 @@
         <span class="info-box-icon bg-aqua"><i class="ion ion-ios-cart-outline"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Overall Stock</span>
-          <span class="info-box-number">{{ $report->stockUnits() }} <small>units</small></span>
+          <span class="info-box-number">{{ $report['stockQuantity'] }} <small>units</small></span>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
         <span class="info-box-icon bg-yellow"><i class="fa fa-money"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Stock Value</span>
-          <span class="info-box-number">{{ price_format($report->stockValue()) }}</span>
+          <span class="info-box-number">{{ price_format($report['stockValue']) }}</span>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Est. Margin</span>
-          <span class="info-box-number">{{ price_format($report->estimateMargin()) }}</span>
+          <span class="info-box-number">{{ price_format($report['estimateMargin']) }}</span>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <p class="text-center"><strong>Monthly Sales: {{ $report->yearlyRecap()['startDate'] }} - {{ $report->yearlyRecap()['endDate'] }}</strong></p>
+              <p class="text-center"><strong>Monthly Sales: {{ $report['recap']['startDate'] }} - {{ $report['recap']['endDate'] }}</strong></p>
               <div class="chart">
                   <canvas id="yearlyRecap" style="height:300px"></canvas>
               </div>
@@ -59,7 +59,7 @@
     <script>
     $(function () {
         var chartData = {
-            labels  : [{!! chartify($report->yearlyRecap()['labels']) !!}],
+            labels  : [{!! chartify($report['recap']['labels']) !!}],
             datasets: [
                 {
                     label:       'Monthly Sales',
@@ -67,7 +67,7 @@
                     borderColor: '#00c0ef',
                     pointRadius: 2,
                     borderWidth: 1,
-                    data:        [{!! chartify($report->yearlyRecap()['data']) !!}],
+                    data:        [{!! chartify($report['recap']['data']) !!}],
                 }
             ]
         }

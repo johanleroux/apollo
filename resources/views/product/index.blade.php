@@ -27,8 +27,8 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Top By Quantity</span>
                     <span class="info-box-number">
-                        <a class="text-black" href="{{ action('ProductsController@show', $report->topProductByQuantity()->product) }}">{{ $report->topProductByQuantity()->product->sku }}</a><br>
-                        <small>{{ $report->topProductByQuantity()->quantity }} units</small>
+                        <a class="text-black" href="{{ action('ProductsController@show', $stats['quantity']['product']) }}">{{ $stats['quantity']['product']->sku }}</a><br>
+                        <small>{{ $stats['quantity']['quantity'] }} units</small>
                     </span>
                 </div>
             </div>
@@ -39,8 +39,8 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Top By Value</span>
                     <span class="info-box-number">
-                        <a class="text-black" href="{{ action('ProductsController@show', $report->topProductByValue()->product) }}">{{ $report->topProductByValue()->product->sku }}</a><br>
-                        <small>{{ price_format($report->topProductByValue()->value) }}</small>
+                        <a class="text-black" href="{{ action('ProductsController@show', $stats['value']['product']) }}">{{ $stats['value']['product']->sku }}</a><br>
+                        <small>{{ price_format($stats['value']['value']) }}</small>
                     </span>
                 </div>
             </div>
