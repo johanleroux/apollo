@@ -4,107 +4,69 @@ namespace App\Queries;
 
 use DB;
 use Carbon\Carbon;
-use App\Models\Sale;
 use App\Models\Product;
 use App\Models\Forecast;
-use App\Models\Purchase;
 use App\Models\SaleItem;
-use App\Models\PurchaseItem;
 
 class Report
 {
-    protected $stockData;
     protected $endDate;
     protected $startDate;
+    protected $products = null;
 
-    public function __construct($preload = true)
+    /**
+     * Initialize Report Class
+     */
+    public function __construct()
     {
-        if ($preload) {
-            $this->stockData = Product::with([
-                'purchasedItems',
-                'saleItems'
-            ])
-            ->get();
-        }
-
         $this->endDate   = new Carbon('last day of last month');
         $this->endDate   = $this->endDate->endOfDay();
         $this->startDate = new Carbon('last day of last month');
         $this->startDate = $this->startDate->subMonths(11)->startOfMonth()->startOfDay();
     }
 
-    public function stockUnits()
-    {
-        return $this->stockData->sum(function ($product) {
-            return $product->stockQuantity;
-        });
-    }
-
-    public function stockValue()
-    {
-        return $this->stockData->sum(function ($product) {
-            return $product->stockValue;
-        });
-    }
-
-    public function topProductByValue()
+    /**
+     * Sort by value sold in date range
+     * @param  integer $limit
+     * @return \App\Models\SaleItem
+     */
+    public function soldByValue($limit = 5)
     {
         return SaleItem::select('product_id', DB::raw('SUM(price * quantity) value'))
                 ->whereBetween('created_at', [$this->startDate, $this->endDate])
                 ->groupBy('product_id')
                 ->orderBy('value', 'desc')
                 ->with('product')
-                ->first();
+                ->limit($limit)
+                ->get();
     }
 
-    public function topProductByQuantity()
+    /**
+     * Sort by quantity sold in date range
+     * @param  integer $limit
+     * @return \App\Models\SaleItem
+     */
+    public function soldByQuantity($limit = 5)
     {
         return SaleItem::select('product_id', DB::raw('SUM(quantity) quantity'))
                 ->whereBetween('created_at', [$this->startDate, $this->endDate])
                 ->groupBy('product_id')
                 ->orderBy('quantity', 'desc')
                 ->with('product')
-                ->first();
+                ->limit($limit)
+                ->get();
     }
 
-    public function topSellerOfProduct()
-    {
-        return SaleItem::select('product_id', DB::raw('SUM(price * quantity) value'))
-                ->whereBetween('created_at', [$this->startDate, $this->endDate])
-                ->groupBy('product_id')
-                ->orderBy('value', 'desc')
-                ->with('product')
-                ->first();
-    }
-
-    public function lastSalesOfProduct($product_id, $limit = 5)
-    {
-        return SaleItem::where('product_id', $product_id)
-                        ->with('sale.customer')
-                        ->orderBy('created_at', 'desc')
-                        ->distinct('sale_id')
-                        ->limit($limit)
-                        ->get();
-    }
-
-    public function unitsInStock($product_id)
-    {
-        $product = Product::with(['purchasedItems', 'saleItems'])->findOrFail($product_id);
-        return $product->stockQuantity;
-    }
-
-    public function estimateMargin()
-    {
-        return $this->stockData->sum(function ($product) {
-            return $product->stockMargin;
-        });
-    }
-
-    public function yearlyRecap($limitToProduct = null, $output = 'value')
+    /**
+     * Recap sales from date range
+     * @param  int $limitToProduct
+     * @param  string $type
+     * @return array
+     */
+    public function recap($limitToProduct = null, $type = 'value')
     {
         $data['startDate'] = $this->startDate->format('j M, Y');
         $data['endDate']   = $this->endDate->format('j M, Y');
-
 
         $monthlySales =  SaleItem::select(DB::raw('SUM(price * quantity) value'), DB::raw('SUM(quantity) quantity'), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupBy('year', 'month')
@@ -122,7 +84,7 @@ class Report
             $data['labels'][] = $date->format('M - Y');
 
             if ($sale = $monthlySales->where('month', $date->month)->where('year', $date->year)->first()) {
-                $data['data'][] = $sale->$output;
+                $data['data'][] = $sale->$type;
             } else {
                 $data['data'][] = 0;
             }
@@ -132,7 +94,13 @@ class Report
         return $data;
     }
 
-    public function forecast($limitToProduct)
+    /**
+     * Get forecast of sales from date range
+     * @param  int $limitToProduct
+     * @param  string $type
+     * @return array
+     */
+    public function forecast($limitToProduct = null)
     {
         $forecasts =  Forecast::where('month', '>', $this->endDate->month)
                                 ->where('year', '>=', $this->endDate->year)
@@ -155,5 +123,49 @@ class Report
         }
 
         return $data;
+    }
+
+    /**
+     * Load Products into Memory
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    protected function loadProducts()
+    {
+        if(!$this->products)
+            $this->products = Product::with(['closed_purchase_items', 'sale_items'])->get();
+        return $this->products;
+    }
+
+    /**
+     * Calculate stock quantity
+     * @return int
+     */
+    public function stockQuantity()
+    {
+        return $this->loadProducts()->sum(function ($product) {
+            return $product->stockQuantity;
+        });
+    }
+
+    /**
+     * Calculate stock value
+     * @return double
+     */
+    public function stockValue()
+    {
+        return $this->loadProducts()->sum(function ($product) {
+            return $product->stockValue;
+        });
+    }
+
+    /**
+     * Calculate stock margin
+     * @return double 
+     */
+    public function estimateMargin()
+    {
+        return $this->loadProducts()->sum(function ($product) {
+            return $product->stockMargin;
+        });
     }
 }

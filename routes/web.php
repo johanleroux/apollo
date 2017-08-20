@@ -19,11 +19,7 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
  * Authenticated Routes
  */
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', function () {
-        $report = new \App\Queries\Report;
-
-        return view('dashboard', compact('report'));
-    });
+    Route::get('dashboard', 'DashboardController@show');
 
     Route::get('settings', 'UsersController@settings');
     Route::patch('settings', 'UsersController@update');

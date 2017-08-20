@@ -19,7 +19,20 @@ class ProductsController extends Controller
     {
         $report = new \App\Queries\Report;
 
-        return $dt->render('product.index', compact('report'));
+        $quantity = $report->soldByQuantity($limit = 1)->first();
+        $value    = $report->soldByValue($limit = 1)->first();
+
+        $stats['quantity'] = [
+            'product'  => $quantity->product,
+            'quantity' => (int) $quantity->quantity,
+        ];
+
+        $stats['value'] = [
+            'product'  => $value->product,
+            'value'    => $value->value,
+        ];
+
+        return $dt->render('product.index', compact('stats'));
     }
 
     /**
@@ -69,17 +82,15 @@ class ProductsController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
-
         $this->authorize('view', $product);
 
-        $reportQuery = new \App\Queries\Report($preload = false);
+        $query = new \App\Queries\Report;
 
-        $report['quantity'] = $reportQuery->yearlyRecap($product->id, 'quantity');
-        $report['forecast'] = $reportQuery->forecast($product->id);
-        $report['sales'] = $reportQuery->lastSalesOfProduct($product->id);
+        $report['quantity'] = $query->recap($product->id, 'quantity');
+        $report['forecast'] = $query->forecast($product->id);
+        $report['sales']    = $product->latest_sales();
 
         return view('product.show', compact('product', 'report'));
     }

@@ -57,6 +57,7 @@ class Product extends Model
     {
         return $this->hasMany(PurchaseItem::class)
             ->select('product_id')
+            ->select('purchase_id')
             ->selectRaw('SUM(quantity) as quantity')
             ->selectRaw('SUM(price) as value')
             ->groupBy('purchase_id');
@@ -95,9 +96,24 @@ class Product extends Model
     {
         return $this->hasMany(SaleItem::class)
             ->select('product_id')
+            ->select('sale_id')
             ->selectRaw('SUM(quantity) as quantity')
             ->selectRaw('SUM(price) as value')
             ->groupBy('sale_id');
+    }
+
+    /**
+     * Return last sales of product
+     * @param  integer $limit
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function latest_sales($limit = 5)
+    {
+        return $this->sale_items()
+            ->with('sale')
+            ->orderBy('sale_id', 'desc')
+            ->limit($limit)
+            ->get();
     }
 
     /**
