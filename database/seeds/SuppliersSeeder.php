@@ -34,7 +34,7 @@ class SuppliersSeeder extends Seeder
                     for ($i=0; $i < 5; $i++) {
                         $product = $s->products->random();
 
-                        $p->items()->save(factory(PurchaseItem::class)->make([
+                        $p->purchase_items()->save(factory(PurchaseItem::class)->make([
                             'product_id' => $product->id,
                             'price'      => $product->cost_price,
                         ]));

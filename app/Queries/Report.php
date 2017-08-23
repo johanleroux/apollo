@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\Models\Product;
 use App\Models\Forecast;
 use App\Models\SaleItem;
+use App\Models\Purchase;
+use App\Models\PurchaseItem;
 
 class Report
 {
@@ -68,7 +70,10 @@ class Report
         $data['startDate'] = $this->startDate->format('j M, Y');
         $data['endDate']   = $this->endDate->format('j M, Y');
 
-        $monthlySales =  SaleItem::select(DB::raw('SUM(price * quantity) value'), DB::raw('SUM(quantity) quantity'), DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
+        $monthlySales =  SaleItem::select(
+                DB::raw('SUM(price * quantity) value'),
+                DB::raw('SUM(quantity) quantity'),
+                DB::raw('YEAR(created_at) year, MONTH(created_at) month'))
                 ->groupBy('year', 'month')
                 ->whereBetween('created_at', [$this->startDate, $this->endDate]);
 
@@ -160,7 +165,7 @@ class Report
 
     /**
      * Calculate stock margin
-     * @return double 
+     * @return double
      */
     public function estimateMargin()
     {

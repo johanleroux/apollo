@@ -40,7 +40,7 @@ class CustomersSeeder extends Seeder
                 for ($x = 0; $x < 3; $x++) {
                     $product = $products->random();
 
-                    $s->items()->save(factory(SaleItem::class)->make([
+                    $s->sale_items()->save(factory(SaleItem::class)->make([
                         'product_id' => $product->id,
                         'price'      => $product->recommended_selling_price,
                         'created_at' => $s->created_at,

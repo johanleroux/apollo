@@ -53,13 +53,13 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function purchase_items()
+    public function purchase_items($limit = null)
     {
         return $this->hasMany(PurchaseItem::class)
-            ->select('product_id')
-            ->select('purchase_id')
+            ->select(['id', 'product_id', 'purchase_id'])
             ->selectRaw('SUM(quantity) as quantity')
             ->selectRaw('SUM(price) as value')
+            ->groupBy('id')
             ->groupBy('purchase_id');
     }
 
@@ -95,10 +95,10 @@ class Product extends Model
     public function sale_items()
     {
         return $this->hasMany(SaleItem::class)
-            ->select('product_id')
-            ->select('sale_id')
+            ->select(['id', 'product_id', 'sale_id'])
             ->selectRaw('SUM(quantity) as quantity')
             ->selectRaw('SUM(price) as value')
+            ->groupBy('id')
             ->groupBy('sale_id');
     }
 
