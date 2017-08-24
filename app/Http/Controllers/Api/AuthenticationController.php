@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Bouncer;
 use JWTAuth;
 use App\Models\User;
 use Tymon\JWTAuthExceptions\JWTException;
@@ -22,6 +23,9 @@ class AuthenticationController extends ApiController
 
         $user = User::where('email', request()->email)->first();
 
+        if($user->isAn('admin')) {
+            $abilities = \Silber\Bouncer\Database\Ability::pluck('name');
+        }
         foreach ($user->getAbilities() as $ability) {
             $abilities[] = $ability->name;
         }
