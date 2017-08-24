@@ -15,6 +15,7 @@
             <li><a target="_blank" href="{{ action('CsvController@recap') }}"><i class="fa fa-external-link"></i> Recap</a></li>
             <li><a target="_blank" href="{{ action('CsvController@sales') }}"><i class="fa fa-external-link"></i> Sales</a></li>
             <li><a target="_blank" href="{{ action('CsvController@purchases') }}"><i class="fa fa-external-link"></i> Purchases</a></li>
+            <li><a target="_blank" href="{{ action('CsvController@open_purchases') }}"><i class="fa fa-external-link"></i> Open Purchases</a></li>
         </ul>
     </div>
 @endsection

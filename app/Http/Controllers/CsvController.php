@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\SaleItem;
+use App\Models\Purchase;
 use App\Models\PurchaseItem;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -136,5 +137,31 @@ class CsvController extends Controller
             }
             )->download('csv');
         }
+    }
+
+    public function open_purchases()
+    {
+        $open = Purchase::where('processed_at', null)->pluck('id');
+        $purchases = PurchaseItem::whereIn('purchase_id', $open)
+                                    ->with(['purchase.supplier'])
+                                    ->get();
+
+        if(!$purchases)
+        {
+            notify()->flash('No Open Purchases Available!', 'warning');
+            return redirect()->back();
+        }
+
+        Excel::create('Products_open_purchases', function ($excel) use ($purchases) {
+            $excel->setTitle('Products_open_purchases')
+                ->setCreator('Apollo')
+                ->setCompany('Apollo');
+
+            $excel->sheet('Recap', function ($sheet) use ($purchases) {
+                $sheet->setOrientation('landscape');
+                $sheet->loadView('csv.purchases', compact('purchases'));
+            });
+        }
+        )->download('csv');
     }
 }

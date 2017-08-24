@@ -49,4 +49,5 @@ Route::middleware('auth')->group(function () {
     Route::get('csv/product/recap', 'CsvController@recap');
     Route::get('csv/product/sales', 'CsvController@sales');
     Route::get('csv/product/purchases', 'CsvController@purchases');
+    Route::get('csv/product/purchases/open', 'CsvController@open_purchases');
 });
