@@ -10,19 +10,34 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CsvController extends Controller
 {
-    public function forecast(Product $product)
+    public function forecast()
     {
-        abort(404);
+        $product = Product::findOrFail(request()->product_id);
+        $reportQuery = new \App\Queries\Report();
+
+        $forecast = $reportQuery->forecast($product->id);
+
+        Excel::create($product->sku . '_forecast', function ($excel) use ($product, $forecast) {
+            // Set the title
+            $excel->setTitle($product->sku . '_forecast')
+            ->setCreator('Apollo')
+            ->setCompany('Apollo');
+
+            $excel->sheet('Recap', function ($sheet) use ($forecast) {
+                $sheet->setOrientation('landscape');
+                $sheet->loadView('csv.forecast', compact('forecast'));
+            });
+        })->download('csv');
     }
 
     public function recap()
     {
         if (request()->product_id) {
             $product = Product::findOrFail(request()->product_id);
-            $reportQuery = new \App\Queries\Report($preload = false);
+            $reportQuery = new \App\Queries\Report();
 
-            $report['quantity'] = $reportQuery->yearlyRecap($product->id, 'quantity');
-            $report['value'] = $reportQuery->yearlyRecap($product->id, 'value');
+            $report['quantity'] = $reportQuery->recap($product->id, 'quantity');
+            $report['value'] = $reportQuery->recap($product->id, 'value');
 
             Excel::create($product->sku . '_recap', function ($excel) use ($product, $report) {
                 // Set the title
@@ -38,8 +53,8 @@ class CsvController extends Controller
         } else {
             $reportQuery = new \App\Queries\Report($preload = true);
 
-            $report['quantity'] = $reportQuery->yearlyRecap(null, 'quantity');
-            $report['value'] = $reportQuery->yearlyRecap(null, 'value');
+            $report['quantity'] = $reportQuery->recap(null, 'quantity');
+            $report['value'] = $reportQuery->recap(null, 'value');
 
             Excel::create('Products_recap', function ($excel) use ($report) {
                 // Set the title
@@ -89,7 +104,7 @@ class CsvController extends Controller
         }
     }
 
-    public function purchases(Product $product)
+    public function purchases()
     {
         if (request()->product_id) {
             $product = Product::findOrFail(request()->product_id);
