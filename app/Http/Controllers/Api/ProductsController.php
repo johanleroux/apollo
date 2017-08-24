@@ -31,15 +31,14 @@ class ProductsController extends ApiController
      * @param int $id
      * @return json
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
-
         $this->authorize('view', $product);
 
         return response()
             ->json(fractal()
             ->item($product, new ProductTransformer())
+            ->parseIncludes(['report'])
             ->toArray());
     }
 
