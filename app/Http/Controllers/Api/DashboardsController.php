@@ -13,10 +13,10 @@ class DashboardsController extends ApiController
     {
         $report = new \App\Queries\Report;
 
-        $data['stockUnits']     = $report->stockUnits();
+        $data['stockUnits']     = $report->stockQuantity();
         $data['stockValue']     = $report->stockValue();
         $data['estimateMargin'] = $report->estimateMargin();
-        $data['yearlyRecap']    = $report->yearlyRecap();
+        $data['yearlyRecap']    = $report->recap();
 
         return response()->json([
             'data' => $data
