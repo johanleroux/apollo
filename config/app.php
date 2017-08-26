@@ -173,6 +173,7 @@ return [
   Laravel\Tinker\TinkerServiceProvider::class,
   Maatwebsite\Excel\ExcelServiceProvider::class,
   Silber\Bouncer\BouncerServiceProvider::class,
+  Spatie\DbSnapshots\DbSnapshotsServiceProvider::class,
   Spatie\Fractal\FractalServiceProvider::class,
   Spatie\Html\HtmlServiceProvider::class,
   Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
