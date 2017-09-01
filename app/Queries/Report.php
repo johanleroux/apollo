@@ -89,7 +89,7 @@ class Report
             $data['labels'][] = $date->format('M - Y');
 
             if ($sale = $monthlySales->where('month', $date->month)->where('year', $date->year)->first()) {
-                $data['data'][] = $sale->$type;
+                $data['data'][] = (double) $sale->$type;
             } else {
                 $data['data'][] = 0;
             }
