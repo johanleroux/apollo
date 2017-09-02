@@ -8,6 +8,11 @@ use Illuminate\Database\Seeder;
 
 class SuppliersSeeder extends Seeder
 {
+    protected $nSuppliers     = 50;
+    protected $nProducts      = 5;
+    protected $nPurchases     = 25;
+    protected $nPurchaseItems = 5;
+
     /**
     * Run the database seeds.
     *
@@ -20,26 +25,71 @@ class SuppliersSeeder extends Seeder
         Purchase::flushEventListeners();
 
         // Generate Suppliers
-        factory(Supplier::class, 50)
+        factory(Supplier::class, $this->nSuppliers)
         ->create()
         ->each(function ($s) {
             // Generate Products For Suppliers
-            $s->products()->saveMany(factory(Product::class, 5)->make());
+            $this->generateProducts($s, $this->nProducts);
 
-            $pc = $s->products()->count();
+            // Generate Purchases For Suppliers
+            $this->generatePurchases($s, $this->nPurchases);
 
-            // Generate Purchases
-            $s->purchases()->saveMany(factory(Purchase::class, 5)->make())
-                ->each(function ($p) use ($pc, $s) {
-                    for ($i=0; $i < 5; $i++) {
-                        $product = $s->products->random();
-
-                        $p->purchase_items()->save(factory(PurchaseItem::class)->make([
-                            'product_id' => $product->id,
-                            'price'      => $product->cost_price,
-                        ]));
-                    }
-                });
+            // Generate Purchases Items For Suppliers
+            $this->generatePurchaseItems($s, $this->nPurchaseItems);
         });
+    }
+
+    protected function generateProducts($supplier, $amount = 50)
+    {
+        return $supplier
+                ->products()
+                ->saveMany(
+                    factory(Product::class, $amount)->make([
+                        'supplier_id' => $supplier
+                    ])
+                );
+    }
+
+    protected function generatePurchases($supplier, $amount = 50)
+    {
+        for ($x = 0; $x < $amount; $x++) {
+            $date = new Carbon\Carbon;
+            $date = $date->subMonths(36);
+            $date->addWeeks(rand(1, 52*3))->format('Y-m-d H:i:s');
+
+            $supplier
+                ->purchases()
+                ->save(
+                    factory(Purchase::class)->make([
+                        'supplier_id'  => $supplier,
+                        'processed_at' => $date,
+                        'created_at'   => $date,
+                        'updated_at'   => $date
+                    ])
+                );
+        }
+    }
+
+    protected function generatePurchaseItems($supplier, $amount = 50)
+    {
+        $supplier
+            ->purchases
+            ->each(function ($purchase) use ($supplier, $amount) {
+                $product = $supplier->products->random();
+                    for($y = 0; $y < $this->nPurchaseItems; $y++) {
+                        // Create Purchase Item
+                        $purchase
+                            ->purchase_items()
+                            ->save(
+                                factory(PurchaseItem::class)->make([
+                                    'purchase_id' => $purchase->id,
+                                    'product_id'  => $product->id,
+                                    'price'       => $product->cost_price,
+                                    'created_at'  => $purchase->created_at,
+                                    'updated_at'  => $purchase->created_at
+                                ])
+                            );
+                    }
+            });
     }
 }
