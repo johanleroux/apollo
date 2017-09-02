@@ -95,7 +95,7 @@ class SalesController extends Controller
     {
         $sale = Sale::with(['customer', 'sale_items.product'])->findOrFail($id);
 
-        $this->authorize('show', $sale);
+        $this->authorize('view', $sale);
 
         $company = Company::firstOrFail();
 

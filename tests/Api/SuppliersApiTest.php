@@ -8,8 +8,10 @@ class SuppliersApiTest extends TestCase
 {
     protected $supplier;
 
-    public function __construct()
+    public function setUp()
     {
+        parent::setUp();
+
         $this->supplier = [
             'name'      => 'John Doe',
             'telephone' => '082 000 000',
