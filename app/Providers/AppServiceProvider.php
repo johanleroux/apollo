@@ -26,7 +26,15 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('has_stock', function ($attribute, $value, $parameters, $validator) {
             $field = str_replace('quantity', 'sku', $attribute);
 
-            $product = \App\Models\Product::with(['purchase_items', 'sale_items'])->findOrFail(request($field));
+            $product = \App\Models\Product::with([
+                    'purchase_items',
+                    'sale_items'
+                ])
+                ->find(request()->input($field));
+
+            if (!$product) {
+                return false;
+            }
 
             return $product->stock_quantity >= $value;
         });

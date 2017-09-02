@@ -172,13 +172,11 @@ return [
   DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
   Laravel\Tinker\TinkerServiceProvider::class,
   Maatwebsite\Excel\ExcelServiceProvider::class,
-  Silber\Bouncer\BouncerServiceProvider::class,
-  Spatie\DbSnapshots\DbSnapshotsServiceProvider::class,
   Spatie\Fractal\FractalServiceProvider::class,
   Spatie\Html\HtmlServiceProvider::class,
   Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-  Yajra\Datatables\ButtonsServiceProvider::class,
-  Yajra\Datatables\DatatablesServiceProvider::class,
+  Yajra\DataTables\ButtonsServiceProvider::class,
+  Yajra\DataTables\DatatablesServiceProvider::class,
 
   /*
   * Application Service Providers...
@@ -238,7 +236,6 @@ return [
   'Validator'    => Illuminate\Support\Facades\Validator::class,
   'View'         => Illuminate\Support\Facades\View::class,
 
-  'Bouncer'      => Silber\Bouncer\BouncerFacade::class,
   'Breadcrumbs'  => DaveJamesMiller\Breadcrumbs\Facade::class,
   'Debugbar'     => Barryvdh\Debugbar\Facade::class,
   'Excel'        => Maatwebsite\Excel\Facades\Excel::class,

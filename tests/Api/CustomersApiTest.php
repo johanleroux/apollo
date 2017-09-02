@@ -8,8 +8,10 @@ class CustomersApiTest extends TestCase
 {
     protected $customer;
 
-    public function __construct()
+    public function setUp()
     {
+        parent::setUp();
+        
         $this->customer = [
             'name'      => 'John Doe',
             'telephone' => '082 000 000',

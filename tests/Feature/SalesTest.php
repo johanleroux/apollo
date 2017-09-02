@@ -67,7 +67,8 @@ class SalesTest extends TestCase
         $product = create(Product::class);
         $purchase = create(Purchase::class);
         $purchase->purchase_items()->save(make(PurchaseItem::class, [
-            'product_id' => $product->id
+            'product_id' => $product->id,
+            'quantity'   => 500,
         ]));
         $customer = create(Customer::class);
 

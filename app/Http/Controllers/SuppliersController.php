@@ -67,7 +67,7 @@ class SuppliersController extends Controller
     {
         $supplier = Supplier::findOrFail($id);
 
-        $this->authorize('show', $supplier);
+        $this->authorize('view', $supplier);
 
         return view('supplier.show', compact('supplier'));
     }

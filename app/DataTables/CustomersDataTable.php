@@ -3,19 +3,21 @@
 namespace App\DataTables;
 
 use App\Models\Customer;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\DataTables;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class CustomersDataTable extends DataTable
 {
     /**
      * Build DataTable class.
      *
-     * @return \Yajra\Datatables\Engines\BaseEngine
+     * @return \Yajra\DataTables\Engines\BaseEngine
      */
-    public function dataTable()
+    public function dataTable(DataTables $dataTables, $query)
     {
-        return $this->datatables
-            ->eloquent($this->query())
+        return $dataTables
+            ->eloquent($query)
             ->addColumn('actions', function (Customer $customer) {
                 return view('customer.datatable._actions', compact('customer'));
             })
@@ -37,7 +39,7 @@ class CustomersDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {
