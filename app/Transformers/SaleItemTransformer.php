@@ -27,8 +27,8 @@ class SaleItemTransformer extends TransformerAbstract
             'sku'         => $item->product->sku,
             'description' => $item->product->description,
             'quantity'    => $item->quantity,
-            'price'       => (double) number_format($item->price, 2, '.', ''),
-            'total'       => (double) number_format($item->total, 2, '.', ''),
+            'price'       => round($item->price, 2),
+            'total'       => round($item->total, 2),
         ];
     }
 

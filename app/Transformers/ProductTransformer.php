@@ -26,9 +26,9 @@ class ProductTransformer extends TransformerAbstract
             'id'                        => $product->id,
             'sku'                       => $product->sku,
             'description'               => $product->description,
-            'cost_price'                => number_format($product->cost_price, 2, '.', ''),
-            'retail_price'              => number_format($product->retail_price, 2, '.', ''),
-            'recommended_selling_price' => number_format($product->recommended_selling_price, 2, '.', '')
+            'cost_price'                => round($product->cost_price, 2),
+            'retail_price'              => round($product->retail_price, 2),
+            'recommended_selling_price' => round($product->recommended_selling_price, 2)
         ];
     }
 
