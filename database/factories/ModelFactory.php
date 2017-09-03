@@ -111,3 +111,15 @@ $factory->define(App\Models\SaleItem::class, function (Faker\Generator $faker) {
         'price'    => $faker->numberBetween(1, 1000),
     ];
 });
+
+$factory->define(App\Models\Forecast::class, function (Faker\Generator $faker) {
+    return [
+        'product_id' => function () {
+            return factory(App\Models\Product::class)->create()->id;
+        },
+        'forecast'          => $faker->numberBetween(1, 1000),
+        'adjusted_forecast' => $faker->numberBetween(1, 1000),
+        'year'              => $faker->numberBetween(2017, 2018),
+        'month'             => $faker->numberBetween(1, 12),
+    ];
+});
