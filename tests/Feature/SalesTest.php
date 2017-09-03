@@ -49,7 +49,7 @@ class SalesTest extends TestCase
         $this->signInAdmin();
 
         $sale = create(Sale::class);
-        $sale->sale_items()->saveMany(make(SaleItem::class, [], 5));
+        $sale->saleItems()->saveMany(make(SaleItem::class, [], 5));
         $company = create(Company::class);
 
         $this->get('/sales/1')
@@ -66,7 +66,7 @@ class SalesTest extends TestCase
 
         $product = create(Product::class);
         $purchase = create(Purchase::class);
-        $purchase->purchase_items()->save(make(PurchaseItem::class, [
+        $purchase->purchaseItems()->save(make(PurchaseItem::class, [
             'product_id' => $product->id,
             'quantity'   => 500,
         ]));

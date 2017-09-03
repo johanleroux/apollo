@@ -29,17 +29,17 @@ class SaleTest extends TestCase
     }
 
     /** @test */
-    function it_has_many_sale_items()
+    function it_has_many_saleItems()
     {
         $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Collection', $this->sale->sale_items
+            'Illuminate\Database\Eloquent\Collection', $this->sale->saleItems
         );
     }
 
     /** @test */
     function it_can_add_a_product()
     {
-        $this->assertCount(0, $this->sale->sale_items);
+        $this->assertCount(0, $this->sale->saleItems);
         $product = create(Product::class);
 
         $this->sale->addProduct([
@@ -48,7 +48,7 @@ class SaleTest extends TestCase
             'quantity'    => 1,
         ]);
 
-        $this->assertCount(1, $this->sale->fresh()->sale_items);
+        $this->assertCount(1, $this->sale->fresh()->saleItems);
     }
 
     /** @test */

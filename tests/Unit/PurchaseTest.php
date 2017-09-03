@@ -32,14 +32,14 @@ class PurchaseTest extends TestCase
     function it_has_many_purchase_items()
     {
         $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Collection', $this->purchase->purchase_items
+            'Illuminate\Database\Eloquent\Collection', $this->purchase->purchaseItems
         );
     }
 
     /** @test */
     function it_can_add_a_product()
     {
-        $this->assertCount(0, $this->purchase->purchase_items);
+        $this->assertCount(0, $this->purchase->purchaseItems);
         $product = create(Product::class);
 
         $this->purchase->addProduct([
@@ -48,7 +48,7 @@ class PurchaseTest extends TestCase
             'quantity'    => 1,
         ]);
 
-        $this->assertCount(1, $this->purchase->fresh()->purchase_items);
+        $this->assertCount(1, $this->purchase->fresh()->purchaseItems);
     }
 
     /** @test */

@@ -31,7 +31,7 @@ class Sale extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function sale_items()
+    public function saleItems()
     {
         return $this->hasMany(SaleItem::class);
     }
@@ -43,7 +43,7 @@ class Sale extends Model
      */
     public function addProduct($payload)
     {
-        return $this->sale_items()->create($payload);
+        return $this->saleItems()->create($payload);
     }
 
     /**
@@ -53,7 +53,7 @@ class Sale extends Model
      */
     public function getTotalAttribute()
     {
-        return $this->sale_items->sum(function ($item) {
+        return $this->saleItems->sum(function ($item) {
             return $item->total;
         });
     }

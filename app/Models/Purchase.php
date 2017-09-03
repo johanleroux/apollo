@@ -40,7 +40,7 @@ class Purchase extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function purchase_items()
+    public function purchaseItems()
     {
         return $this->hasMany(PurchaseItem::class);
     }
@@ -52,7 +52,7 @@ class Purchase extends Model
      */
     public function addProduct($payload)
     {
-        return $this->purchase_items()->create($payload);
+        return $this->purchaseItems()->create($payload);
     }
 
     /**
@@ -62,7 +62,7 @@ class Purchase extends Model
      */
     public function getTotalAttribute()
     {
-        return $this->purchase_items->sum(function ($item) {
+        return $this->purchaseItems->sum(function ($item) {
             return $item->total;
         });
     }

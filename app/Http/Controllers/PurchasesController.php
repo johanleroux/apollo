@@ -91,7 +91,7 @@ class PurchasesController extends Controller
     */
     public function show($id)
     {
-        $purchase = Purchase::with(['supplier', 'purchase_items.product'])->findOrFail($id);
+        $purchase = Purchase::with(['supplier', 'purchaseItems.product'])->findOrFail($id);
 
         $this->authorize('view', $purchase);
 
@@ -99,7 +99,7 @@ class PurchasesController extends Controller
 
         return view('purchase.show', [
             'purchase'       => $purchase,
-            'purchase_items' => $purchase->purchase_items,
+            'purchaseItems' => $purchase->purchaseItems,
             'supplier'       => $purchase->supplier,
             'company'        => $company
         ]);
@@ -166,7 +166,7 @@ class PurchasesController extends Controller
 
         $purchase->save();
 
-        $purchase->purchase_items->each(function ($item) {
+        $purchase->purchaseItems->each(function ($item) {
             $item->delete();
         });
 
