@@ -35,14 +35,15 @@ class CompaniesController extends Controller
         $this->authorize('update', $company);
 
         $this->validate(request(), [
-            'name'      => 'required|string',
-            'telephone' => 'required|string',
-            'email'     => 'required|string',
-            'address'   => 'nullable|string',
-            'address_2' => 'nullable|string',
-            'city'      => 'nullable|string',
-            'province'  => 'nullable|string',
-            'country'   => 'nullable|string',
+            'name'       => 'required|string',
+            'vat_number' => 'nullable|string',
+            'telephone'  => 'required|string',
+            'email'      => 'required|string',
+            'address'    => 'nullable|string',
+            'address_2'  => 'nullable|string',
+            'city'       => 'nullable|string',
+            'province'   => 'nullable|string',
+            'country'    => 'nullable|string',
         ]);
 
         $company->update(request()->all());
