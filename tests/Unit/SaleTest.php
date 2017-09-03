@@ -52,6 +52,38 @@ class SaleTest extends TestCase
     }
 
     /** @test */
+    function it_can_calculate_vat()
+    {
+        $products = create(Product::class, [], 5);
+
+        $products->each(function($product) {
+            $this->sale->addProduct([
+                'product_id'  => $product->id,
+                'price'       => 1000,
+                'quantity'    => 1,
+            ]);
+        });
+
+        $this->assertEquals(700, $this->sale->vat);
+    }
+
+    /** @test */
+    function it_can_calculate_sub_total()
+    {
+        $products = create(Product::class, [], 5);
+
+        $products->each(function($product) {
+            $this->sale->addProduct([
+                'product_id'  => $product->id,
+                'price'       => 1000,
+                'quantity'    => 1,
+            ]);
+        });
+
+        $this->assertEquals(5000, $this->sale->sub_total);
+    }
+
+    /** @test */
     function it_can_calculate_total()
     {
         $products = create(Product::class, [], 5);
@@ -64,6 +96,6 @@ class SaleTest extends TestCase
             ]);
         });
 
-        $this->assertEquals(5000, $this->sale->total);
+        $this->assertEquals(5000*1.14, $this->sale->total);
     }
 }

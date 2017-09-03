@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="col-xs-12 table-responsive">
-            <table class="table table-striped">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>SKU</th>
@@ -48,7 +48,18 @@
                         </tr>
                     @endforeach
                     <tr>
-                        <td colspan="4"></td>
+                        <td colspan="3"></td>
+                        <td class="text-right"><b>VAT</b> (14%)</td>
+                        <td class="text-right"><b>{{ price_format($sale->vat) }}</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td class="text-right"><b>Sub Total</b></td>
+                        <td class="text-right"><b>{{ price_format($sale->subtotal) }}</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td class="text-right"><b>Total</b></td>
                         <td class="text-right"><b>{{ price_format($sale->total) }}</b></td>
                     </tr>
                 </tbody>

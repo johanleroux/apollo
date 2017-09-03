@@ -32,6 +32,10 @@
                         <sale-row v-for="row in sale_rows" :row="row"></sale-row>
                         <tr>
                             <td colspan="4"></td>
+                            <td><input type="text" class="form-control text-right" v-model="sub_total"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
                             <td><input type="text" class="form-control text-right" v-model="total"></td>
                         </tr>
                     </tbody>
@@ -55,6 +59,7 @@ export default {
             customer_id: '',
             customer: '',
             sale_rows: '',
+            sub_total: 0,
             total: 0,
             errors: new Errors()
         }
@@ -89,14 +94,20 @@ export default {
             }
             )
         },
-        calcTotal: function() {
-            let total = 0;
+        calcSubTotal: function() {
+            let sub_total = 0;
             this.sale_rows.forEach(row => {
-                if(row.product.total != undefined)
-                total += Number.parseFloat(row.product.total);
+                if(row.product.sub_total != undefined)
+                sub_total += Number.parseFloat(row.product.sub_total);
             });
 
-            this.total = total.toFixed(2);
+            this.sub_total = sub_total.toFixed(2);
+
+            this.calcTotal()
+        },
+        calcTotal: function()
+        {
+            this.total = (this.sub_total * 1.14).toFixed(2)
         }
     },
     computed: {

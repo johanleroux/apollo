@@ -26,7 +26,7 @@
             </div>
         </td>
         <td>
-            <input type="text" name="total" id="total" placeholder="Total" class="form-control text-right" v-model="row.product.total" />
+            <input type="text" name="sub_total" id="sub_total" placeholder="Total" class="form-control text-right" v-model="row.product.sub_total" />
         </td>
     </tr>
 </template>
@@ -53,9 +53,9 @@ export default {
                     this.row.product.quantity = 1;
                 }
 
-                this.row.product.total = (this.row.product.unit_price * this.row.product.quantity).toFixed(2);
+                this.row.product.sub_total = (this.row.product.unit_price * this.row.product.quantity).toFixed(2);
 
-                this.$parent.calcTotal();
+                this.$parent.calcSubTotal();
             },
             deep: true
         }

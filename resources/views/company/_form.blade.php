@@ -4,6 +4,12 @@
     <span class="glyphicon glyphicon-user form-control-feedback"></span>
     @include('errors._helpblock', ['field' => 'name'])
 </div>
+<div class="form-group has-feedback @if ($errors->has('vat_number')) has-error @endif">
+    <label for="vat_number">VAT Number:</label>
+    {{ html()->text('vat_number')->id('vat_number')->class('form-control')->placeholder('VAT Number') }}
+    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+    @include('errors._helpblock', ['field' => 'vat_number'])
+</div>
 <div class="form-group has-feedback @if ($errors->has('email')) has-error @endif">
     <label for="email">Email:</label>
     {{ html()->email('email')->id('email')->class('form-control')->placeholder('Email') }}

@@ -27391,13 +27391,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(162),
   /* template */
-  __webpack_require__(224),
+  __webpack_require__(230),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Product/Product-Forecast.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Product/Product-Forecast.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Product-Forecast.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27408,9 +27408,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0881e776", Component.options)
+    hotAPI.createRecord("data-v-789b941c", Component.options)
   } else {
-    hotAPI.reload("data-v-0881e776", Component.options)
+    hotAPI.reload("data-v-789b941c", Component.options)
   }
 })()}
 
@@ -27425,13 +27425,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(163),
   /* template */
-  __webpack_require__(228),
+  __webpack_require__(226),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Purchase/Purchase-Process.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Purchase/Purchase-Process.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Purchase-Process.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27442,9 +27442,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-559e7cc4", Component.options)
+    hotAPI.createRecord("data-v-2e8b3644", Component.options)
   } else {
-    hotAPI.reload("data-v-559e7cc4", Component.options)
+    hotAPI.reload("data-v-2e8b3644", Component.options)
   }
 })()}
 
@@ -27459,13 +27459,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(164),
   /* template */
-  __webpack_require__(225),
+  __webpack_require__(231),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Purchase/Purchase-Row.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Purchase/Purchase-Row.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Purchase-Row.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27476,9 +27476,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1c02912f", Component.options)
+    hotAPI.createRecord("data-v-798ad36e", Component.options)
   } else {
-    hotAPI.reload("data-v-1c02912f", Component.options)
+    hotAPI.reload("data-v-798ad36e", Component.options)
   }
 })()}
 
@@ -27493,13 +27493,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(165),
   /* template */
-  __webpack_require__(229),
+  __webpack_require__(227),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Purchase/Purchase-Supplier.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Purchase/Purchase-Supplier.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Purchase-Supplier.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27510,9 +27510,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-619ad2c7", Component.options)
+    hotAPI.createRecord("data-v-31fbeded", Component.options)
   } else {
-    hotAPI.reload("data-v-619ad2c7", Component.options)
+    hotAPI.reload("data-v-31fbeded", Component.options)
   }
 })()}
 
@@ -27527,13 +27527,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(166),
   /* template */
-  __webpack_require__(231),
+  __webpack_require__(229),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Purchase/Purchase.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Purchase/Purchase.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Purchase.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27544,9 +27544,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ce4c837c", Component.options)
+    hotAPI.createRecord("data-v-58c4605c", Component.options)
   } else {
-    hotAPI.reload("data-v-ce4c837c", Component.options)
+    hotAPI.reload("data-v-58c4605c", Component.options)
   }
 })()}
 
@@ -27561,13 +27561,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(167),
   /* template */
-  __webpack_require__(230),
+  __webpack_require__(228),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Sale/Sale-Customer.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Sale/Sale-Customer.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Sale-Customer.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27578,9 +27578,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b4a42bce", Component.options)
+    hotAPI.createRecord("data-v-39d0e982", Component.options)
   } else {
-    hotAPI.reload("data-v-b4a42bce", Component.options)
+    hotAPI.reload("data-v-39d0e982", Component.options)
   }
 })()}
 
@@ -27595,13 +27595,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(168),
   /* template */
-  __webpack_require__(227),
+  __webpack_require__(225),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Sale/Sale-Row.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Sale/Sale-Row.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Sale-Row.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27612,9 +27612,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-49e63eef", Component.options)
+    hotAPI.createRecord("data-v-134c03ee", Component.options)
   } else {
-    hotAPI.reload("data-v-49e63eef", Component.options)
+    hotAPI.reload("data-v-134c03ee", Component.options)
   }
 })()}
 
@@ -27629,13 +27629,13 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(169),
   /* template */
-  __webpack_require__(226),
+  __webpack_require__(224),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/ifmproject/resources/assets/js/components/Sale/Sale.vue"
+Component.options.__file = "/home/vagrant/Code/apollo/resources/assets/js/components/Sale/Sale.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Sale.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27646,9 +27646,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-293a4c02", Component.options)
+    hotAPI.createRecord("data-v-054da81c", Component.options)
   } else {
-    hotAPI.reload("data-v-293a4c02", Component.options)
+    hotAPI.reload("data-v-054da81c", Component.options)
   }
 })()}
 
@@ -42275,9 +42275,9 @@ if (typeof jQuery === 'undefined') {
                     this.row.product.quantity = 1;
                 }
 
-                this.row.product.total = (this.row.product.unit_price * this.row.product.quantity).toFixed(2);
+                this.row.product.sub_total = (this.row.product.unit_price * this.row.product.quantity).toFixed(2);
 
-                this.$parent.calcTotal();
+                this.$parent.calcSubTotal();
             },
             deep: true
         }
@@ -42337,6 +42337,10 @@ if (typeof jQuery === 'undefined') {
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -42348,6 +42352,7 @@ if (typeof jQuery === 'undefined') {
             customer_id: '',
             customer: '',
             sale_rows: '',
+            sub_total: 0,
             total: 0,
             errors: new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* Errors */]()
         }
@@ -42384,14 +42389,20 @@ if (typeof jQuery === 'undefined') {
             }
             )
         },
-        calcTotal: function() {
-            var total = 0;
+        calcSubTotal: function() {
+            var sub_total = 0;
             this.sale_rows.forEach(function (row) {
-                if(row.product.total != undefined)
-                total += Number.parseFloat(row.product.total);
+                if(row.product.sub_total != undefined)
+                sub_total += Number.parseFloat(row.product.sub_total);
             });
 
-            this.total = total.toFixed(2);
+            this.sub_total = sub_total.toFixed(2);
+
+            this.calcTotal()
+        },
+        calcTotal: function()
+        {
+            this.total = (this.sub_total * 1.14).toFixed(2)
         }
     },
     computed: {
@@ -87300,6 +87311,834 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/sales"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onSubmit($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-6"
+  }, [_c('div', {
+    staticClass: "form-group has-feedback",
+    class: {
+      'has-error': _vm.errors.has('customer_id')
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "customer"
+    }
+  }, [_vm._v("Customer:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.customer_id),
+      expression: "customer_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "customer",
+      "id": "customer"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.customer_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "disabled": "",
+      "selected": "",
+      "value": ""
+    }
+  }, [_vm._v("Select a Customer")]), _vm._v(" "), _vm._l((_vm.customers), function(option) {
+    return _c('option', {
+      domProps: {
+        "value": option.id
+      }
+    }, [_vm._v(_vm._s(option.name))])
+  })], 2), _vm._v(" "), _c('span', {
+    staticClass: "glyphicon glyphicon-user form-control-feedback"
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(_vm.errors.get('customer_id'))
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('sale-customer', {
+    attrs: {
+      "customer": _vm.customer
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('hr'), _vm._v(" "), _c('table', {
+    staticClass: "table table-condensed"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', [_vm._l((_vm.sale_rows), function(row) {
+    return _c('sale-row', {
+      attrs: {
+        "row": row
+      }
+    })
+  }), _vm._v(" "), _c('tr', [_c('td', {
+    attrs: {
+      "colspan": "4"
+    }
+  }), _vm._v(" "), _c('td', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.sub_total),
+      expression: "sub_total"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.sub_total)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.sub_total = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('tr', [_c('td', {
+    attrs: {
+      "colspan": "4"
+    }
+  }), _vm._v(" "), _c('td', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.total),
+      expression: "total"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.total)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.total = $event.target.value
+      }
+    }
+  })])])], 2)])]), _vm._v(" "), _vm._m(1)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("SKU")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', {
+    staticClass: "text-right"
+  }, [_vm._v("Unit Price")]), _vm._v(" "), _c('th', {
+    staticClass: "text-right"
+  }, [_vm._v("Quantity")]), _vm._v(" "), _c('th', {
+    staticClass: "text-right"
+  }, [_vm._v("Total")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('input', {
+    staticClass: "btn btn-primary pull-right",
+    attrs: {
+      "type": "submit",
+      "value": "Create Sale"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-054da81c", module.exports)
+  }
+}
+
+/***/ },
+/* 225 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('td', [_c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': this.$parent.errors.has('product.' + _vm.row.id + '.sku')
+    }
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.row.product.sku),
+      expression: "row.product.sku"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "sku",
+      "id": "sku"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.row.product.sku = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [(!this.$parent.products) ? _c('option', {
+    attrs: {
+      "disabled": "",
+      "selected": "",
+      "value": ""
+    }
+  }, [_vm._v("No Products Available")]) : _vm._e(), _vm._v(" "), (this.$parent.products) ? _c('option', {
+    attrs: {
+      "disabled": "",
+      "selected": "",
+      "value": ""
+    }
+  }, [_vm._v("Select a Product")]) : _vm._e(), _vm._v(" "), _vm._l((this.$parent.products), function(option) {
+    return _c('option', {
+      domProps: {
+        "value": option.id
+      }
+    }, [_vm._v(_vm._s(option.sku))])
+  })], 2), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(this.$parent.errors.get('product.' + _vm.row.id + '.sku'))
+    }
+  })])]), _vm._v(" "), _c('td', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.row.product.description),
+      expression: "row.product.description"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "description",
+      "id": "description",
+      "placeholder": "Description"
+    },
+    domProps: {
+      "value": (_vm.row.product.description)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.row.product.description = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('td', [_c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': this.$parent.errors.has('product.' + _vm.row.id + '.unit_price')
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.row.product.unit_price),
+      expression: "row.product.unit_price"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      "type": "text",
+      "name": "unit_price",
+      "id": "unit_price",
+      "placeholder": "Unit Price"
+    },
+    domProps: {
+      "value": (_vm.row.product.unit_price)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.row.product.unit_price = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(this.$parent.errors.get('product.' + _vm.row.id + '.unit_price'))
+    }
+  })])]), _vm._v(" "), _c('td', [_c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': this.$parent.errors.has('product.' + _vm.row.id + '.quantity')
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.row.product.quantity),
+      expression: "row.product.quantity"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      "type": "text",
+      "name": "quantity",
+      "id": "quantity",
+      "placeholder": "Quantity"
+    },
+    domProps: {
+      "value": (_vm.row.product.quantity)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.row.product.quantity = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(this.$parent.errors.get('product.' + _vm.row.id + '.quantity'))
+    }
+  })])]), _vm._v(" "), _c('td', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.row.product.sub_total),
+      expression: "row.product.sub_total"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      "type": "text",
+      "name": "sub_total",
+      "id": "sub_total",
+      "placeholder": "Total"
+    },
+    domProps: {
+      "value": (_vm.row.product.sub_total)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.row.product.sub_total = $event.target.value
+      }
+    }
+  })])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-134c03ee", module.exports)
+  }
+}
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "purchaseProcess",
+      "tabindex": "-1",
+      "role": "dialog",
+      "aria-labelledby": "purchaseProcessLbl"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_vm._m(0), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "purchaseProcessLbl"
+    }
+  }, [_vm._v("Purchase #" + _vm._s(_vm.purchase))])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('div', {
+    staticClass: "form-group has-feedback",
+    class: {
+      'has-error': _vm.errors.has('ext_invoice')
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "ext_invoice"
+    }
+  }, [_vm._v("External Invoice #")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.ext_invoice),
+      expression: "ext_invoice"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "ext_invoice",
+      "placeholder": "External Invoice #"
+    },
+    domProps: {
+      "value": (_vm.ext_invoice)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.ext_invoice = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(_vm.errors.get('ext_invoice'))
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.onSubmit($event)
+      }
+    }
+  }, [_vm._v("Save changes")])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2e8b3644", module.exports)
+  }
+}
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('table', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier),
+      expression: "supplier"
+    }],
+    staticClass: "table table-condensed pull-right text-right"
+  }, [_c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.telephone),
+      expression: "supplier.telephone"
+    }]
+  }, [_vm._v("Telephone")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.telephone),
+      expression: "supplier.telephone"
+    }]
+  }, [_vm._v(_vm._s(_vm.supplier.telephone))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.email),
+      expression: "supplier.email"
+    }]
+  }, [_vm._v("Email")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.email),
+      expression: "supplier.email"
+    }]
+  }, [_vm._v(_vm._s(_vm.supplier.email))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.address),
+      expression: "supplier.address"
+    }]
+  }, [_vm._v("Address")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.address),
+      expression: "supplier.address"
+    }]
+  }, [_vm._v(_vm._s(_vm.supplier.address))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.address_2),
+      expression: "supplier.address_2"
+    }]
+  }, [_vm._v("Secondary Address")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.address_2),
+      expression: "supplier.address_2"
+    }]
+  }, [_vm._v(_vm._s(_vm.supplier.address_2))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.city),
+      expression: "supplier.city"
+    }]
+  }, [_vm._v("City")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.city),
+      expression: "supplier.city"
+    }]
+  }, [_vm._v(_vm._s(_vm.supplier.city))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.province),
+      expression: "supplier.province"
+    }]
+  }, [_vm._v("Province")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.province),
+      expression: "supplier.province"
+    }]
+  }, [_vm._v(_vm._s(_vm.supplier.province))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.country),
+      expression: "supplier.country"
+    }]
+  }, [_vm._v("State")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.supplier.country),
+      expression: "supplier.country"
+    }]
+  }, [_vm._v(_vm._s(_vm.supplier.country))])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-31fbeded", module.exports)
+  }
+}
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('table', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer),
+      expression: "customer"
+    }],
+    staticClass: "table table-condensed pull-right text-right"
+  }, [_c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.telephone),
+      expression: "customer.telephone"
+    }]
+  }, [_vm._v("Telephone")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.telephone),
+      expression: "customer.telephone"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.telephone))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.email),
+      expression: "customer.email"
+    }]
+  }, [_vm._v("Email")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.email),
+      expression: "customer.email"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.email))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address),
+      expression: "customer.address"
+    }]
+  }, [_vm._v("Address")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address),
+      expression: "customer.address"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.address))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address_2),
+      expression: "customer.address_2"
+    }]
+  }, [_vm._v("Secondary Address")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.address_2),
+      expression: "customer.address_2"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.address_2))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.city),
+      expression: "customer.city"
+    }]
+  }, [_vm._v("City")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.city),
+      expression: "customer.city"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.city))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.province),
+      expression: "customer.province"
+    }]
+  }, [_vm._v("Province")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.province),
+      expression: "customer.province"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.province))])]), _vm._v(" "), _c('tr', [_c('th', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.country),
+      expression: "customer.country"
+    }]
+  }, [_vm._v("State")]), _vm._v(" "), _c('td', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.customer.country),
+      expression: "customer.country"
+    }]
+  }, [_vm._v(_vm._s(_vm.customer.country))])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-39d0e982", module.exports)
+  }
+}
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    attrs: {
+      "method": "POST"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onSubmit($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-6"
+  }, [_c('div', {
+    staticClass: "form-group has-feedback",
+    class: {
+      'has-error': _vm.errors.has('supplier_id')
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "supplier"
+    }
+  }, [_vm._v("Supplier:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.supplier_id),
+      expression: "supplier_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "supplier",
+      "id": "supplier"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.supplier_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "disabled": "",
+      "selected": "",
+      "value": ""
+    }
+  }, [_vm._v("Select a Supplier")]), _vm._v(" "), _vm._l((_vm.suppliers), function(option) {
+    return _c('option', {
+      domProps: {
+        "value": option.id
+      }
+    }, [_vm._v(_vm._s(option.name))])
+  })], 2), _vm._v(" "), _c('span', {
+    staticClass: "glyphicon glyphicon-user form-control-feedback"
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(_vm.errors.get('supplier_id'))
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('purchase-supplier', {
+    attrs: {
+      "supplier": _vm.supplier
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('hr'), _vm._v(" "), _c('table', {
+    staticClass: "table table-condensed"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', [_vm._l((_vm.purchase_rows), function(row) {
+    return _c('purchase-row', {
+      attrs: {
+        "row": row
+      }
+    })
+  }), _vm._v(" "), _c('tr', [_c('td', {
+    attrs: {
+      "colspan": "5"
+    }
+  }), _vm._v(" "), _c('td', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.total),
+      expression: "total"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.total)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.total = $event.target.value
+      }
+    }
+  })])])], 2)])]), _vm._v(" "), _vm._m(1)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th'), _vm._v(" "), _c('th', [_vm._v("SKU")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', {
+    staticClass: "text-right"
+  }, [_vm._v("Unit Price")]), _vm._v(" "), _c('th', {
+    staticClass: "text-right"
+  }, [_vm._v("Quantity")]), _vm._v(" "), _c('th', {
+    staticClass: "text-right"
+  }, [_vm._v("Total")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('input', {
+    staticClass: "btn btn-primary pull-right",
+    attrs: {
+      "type": "submit",
+      "value": "Save Purchase"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-58c4605c", module.exports)
+  }
+}
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal fade",
     attrs: {
@@ -87470,12 +88309,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0881e776", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-789b941c", module.exports)
   }
 }
 
 /***/ },
-/* 225 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -87656,811 +88495,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1c02912f", module.exports)
-  }
-}
-
-/***/ },
-/* 226 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/sales"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onSubmit($event)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-6"
-  }, [_c('div', {
-    staticClass: "form-group has-feedback",
-    class: {
-      'has-error': _vm.errors.has('customer_id')
-    }
-  }, [_c('label', {
-    attrs: {
-      "for": "customer"
-    }
-  }, [_vm._v("Customer:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.customer_id),
-      expression: "customer_id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "name": "customer",
-      "id": "customer"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.customer_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "disabled": "",
-      "selected": "",
-      "value": ""
-    }
-  }, [_vm._v("Select a Customer")]), _vm._v(" "), _vm._l((_vm.customers), function(option) {
-    return _c('option', {
-      domProps: {
-        "value": option.id
-      }
-    }, [_vm._v(_vm._s(option.name))])
-  })], 2), _vm._v(" "), _c('span', {
-    staticClass: "glyphicon glyphicon-user form-control-feedback"
-  }), _vm._v(" "), _c('span', {
-    staticClass: "help-block",
-    domProps: {
-      "textContent": _vm._s(_vm.errors.get('customer_id'))
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('sale-customer', {
-    attrs: {
-      "customer": _vm.customer
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col-md-12"
-  }, [_c('hr'), _vm._v(" "), _c('table', {
-    staticClass: "table table-condensed"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', [_vm._l((_vm.sale_rows), function(row) {
-    return _c('sale-row', {
-      attrs: {
-        "row": row
-      }
-    })
-  }), _vm._v(" "), _c('tr', [_c('td', {
-    attrs: {
-      "colspan": "4"
-    }
-  }), _vm._v(" "), _c('td', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.total),
-      expression: "total"
-    }],
-    staticClass: "form-control text-right",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.total)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.total = $event.target.value
-      }
-    }
-  })])])], 2)])]), _vm._v(" "), _vm._m(1)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("SKU")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', {
-    staticClass: "text-right"
-  }, [_vm._v("Unit Price")]), _vm._v(" "), _c('th', {
-    staticClass: "text-right"
-  }, [_vm._v("Quantity")]), _vm._v(" "), _c('th', {
-    staticClass: "text-right"
-  }, [_vm._v("Total")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-12"
-  }, [_c('input', {
-    staticClass: "btn btn-primary pull-right",
-    attrs: {
-      "type": "submit",
-      "value": "Create Sale"
-    }
-  })])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-293a4c02", module.exports)
-  }
-}
-
-/***/ },
-/* 227 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_c('div', {
-    staticClass: "form-group",
-    class: {
-      'has-error': this.$parent.errors.has('product.' + _vm.row.id + '.sku')
-    }
-  }, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.row.product.sku),
-      expression: "row.product.sku"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "name": "sku",
-      "id": "sku"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.row.product.sku = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [(!this.$parent.products) ? _c('option', {
-    attrs: {
-      "disabled": "",
-      "selected": "",
-      "value": ""
-    }
-  }, [_vm._v("No Products Available")]) : _vm._e(), _vm._v(" "), (this.$parent.products) ? _c('option', {
-    attrs: {
-      "disabled": "",
-      "selected": "",
-      "value": ""
-    }
-  }, [_vm._v("Select a Product")]) : _vm._e(), _vm._v(" "), _vm._l((this.$parent.products), function(option) {
-    return _c('option', {
-      domProps: {
-        "value": option.id
-      }
-    }, [_vm._v(_vm._s(option.sku))])
-  })], 2), _vm._v(" "), _c('span', {
-    staticClass: "help-block",
-    domProps: {
-      "textContent": _vm._s(this.$parent.errors.get('product.' + _vm.row.id + '.sku'))
-    }
-  })])]), _vm._v(" "), _c('td', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.row.product.description),
-      expression: "row.product.description"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "name": "description",
-      "id": "description",
-      "placeholder": "Description"
-    },
-    domProps: {
-      "value": (_vm.row.product.description)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.row.product.description = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('td', [_c('div', {
-    staticClass: "form-group",
-    class: {
-      'has-error': this.$parent.errors.has('product.' + _vm.row.id + '.unit_price')
-    }
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.row.product.unit_price),
-      expression: "row.product.unit_price"
-    }],
-    staticClass: "form-control text-right",
-    attrs: {
-      "type": "text",
-      "name": "unit_price",
-      "id": "unit_price",
-      "placeholder": "Unit Price"
-    },
-    domProps: {
-      "value": (_vm.row.product.unit_price)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.row.product.unit_price = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "help-block",
-    domProps: {
-      "textContent": _vm._s(this.$parent.errors.get('product.' + _vm.row.id + '.unit_price'))
-    }
-  })])]), _vm._v(" "), _c('td', [_c('div', {
-    staticClass: "form-group",
-    class: {
-      'has-error': this.$parent.errors.has('product.' + _vm.row.id + '.quantity')
-    }
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.row.product.quantity),
-      expression: "row.product.quantity"
-    }],
-    staticClass: "form-control text-right",
-    attrs: {
-      "type": "text",
-      "name": "quantity",
-      "id": "quantity",
-      "placeholder": "Quantity"
-    },
-    domProps: {
-      "value": (_vm.row.product.quantity)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.row.product.quantity = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "help-block",
-    domProps: {
-      "textContent": _vm._s(this.$parent.errors.get('product.' + _vm.row.id + '.quantity'))
-    }
-  })])]), _vm._v(" "), _c('td', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.row.product.total),
-      expression: "row.product.total"
-    }],
-    staticClass: "form-control text-right",
-    attrs: {
-      "type": "text",
-      "name": "total",
-      "id": "total",
-      "placeholder": "Total"
-    },
-    domProps: {
-      "value": (_vm.row.product.total)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.row.product.total = $event.target.value
-      }
-    }
-  })])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-49e63eef", module.exports)
-  }
-}
-
-/***/ },
-/* 228 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "purchaseProcess",
-      "tabindex": "-1",
-      "role": "dialog",
-      "aria-labelledby": "purchaseProcessLbl"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('div', {
-    staticClass: "modal-header"
-  }, [_vm._m(0), _vm._v(" "), _c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "purchaseProcessLbl"
-    }
-  }, [_vm._v("Purchase #" + _vm._s(_vm.purchase))])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('div', {
-    staticClass: "form-group has-feedback",
-    class: {
-      'has-error': _vm.errors.has('ext_invoice')
-    }
-  }, [_c('label', {
-    attrs: {
-      "for": "ext_invoice"
-    }
-  }, [_vm._v("External Invoice #")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.ext_invoice),
-      expression: "ext_invoice"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "ext_invoice",
-      "placeholder": "External Invoice #"
-    },
-    domProps: {
-      "value": (_vm.ext_invoice)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.ext_invoice = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "help-block",
-    domProps: {
-      "textContent": _vm._s(_vm.errors.get('ext_invoice'))
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer"
-  }, [_c('button', {
-    staticClass: "btn btn-default",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal"
-    }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.onSubmit($event)
-      }
-    }
-  }, [_vm._v("Save changes")])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-559e7cc4", module.exports)
-  }
-}
-
-/***/ },
-/* 229 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('table', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier),
-      expression: "supplier"
-    }],
-    staticClass: "table table-condensed pull-right text-right"
-  }, [_c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.telephone),
-      expression: "supplier.telephone"
-    }]
-  }, [_vm._v("Telephone")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.telephone),
-      expression: "supplier.telephone"
-    }]
-  }, [_vm._v(_vm._s(_vm.supplier.telephone))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.email),
-      expression: "supplier.email"
-    }]
-  }, [_vm._v("Email")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.email),
-      expression: "supplier.email"
-    }]
-  }, [_vm._v(_vm._s(_vm.supplier.email))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.address),
-      expression: "supplier.address"
-    }]
-  }, [_vm._v("Address")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.address),
-      expression: "supplier.address"
-    }]
-  }, [_vm._v(_vm._s(_vm.supplier.address))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.address_2),
-      expression: "supplier.address_2"
-    }]
-  }, [_vm._v("Secondary Address")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.address_2),
-      expression: "supplier.address_2"
-    }]
-  }, [_vm._v(_vm._s(_vm.supplier.address_2))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.city),
-      expression: "supplier.city"
-    }]
-  }, [_vm._v("City")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.city),
-      expression: "supplier.city"
-    }]
-  }, [_vm._v(_vm._s(_vm.supplier.city))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.province),
-      expression: "supplier.province"
-    }]
-  }, [_vm._v("Province")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.province),
-      expression: "supplier.province"
-    }]
-  }, [_vm._v(_vm._s(_vm.supplier.province))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.country),
-      expression: "supplier.country"
-    }]
-  }, [_vm._v("State")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.supplier.country),
-      expression: "supplier.country"
-    }]
-  }, [_vm._v(_vm._s(_vm.supplier.country))])])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-619ad2c7", module.exports)
-  }
-}
-
-/***/ },
-/* 230 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('table', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer),
-      expression: "customer"
-    }],
-    staticClass: "table table-condensed pull-right text-right"
-  }, [_c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.telephone),
-      expression: "customer.telephone"
-    }]
-  }, [_vm._v("Telephone")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.telephone),
-      expression: "customer.telephone"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.telephone))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.email),
-      expression: "customer.email"
-    }]
-  }, [_vm._v("Email")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.email),
-      expression: "customer.email"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.email))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address),
-      expression: "customer.address"
-    }]
-  }, [_vm._v("Address")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address),
-      expression: "customer.address"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.address))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address_2),
-      expression: "customer.address_2"
-    }]
-  }, [_vm._v("Secondary Address")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.address_2),
-      expression: "customer.address_2"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.address_2))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.city),
-      expression: "customer.city"
-    }]
-  }, [_vm._v("City")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.city),
-      expression: "customer.city"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.city))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.province),
-      expression: "customer.province"
-    }]
-  }, [_vm._v("Province")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.province),
-      expression: "customer.province"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.province))])]), _vm._v(" "), _c('tr', [_c('th', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.country),
-      expression: "customer.country"
-    }]
-  }, [_vm._v("State")]), _vm._v(" "), _c('td', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.customer.country),
-      expression: "customer.country"
-    }]
-  }, [_vm._v(_vm._s(_vm.customer.country))])])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-b4a42bce", module.exports)
-  }
-}
-
-/***/ },
-/* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('form', {
-    attrs: {
-      "method": "POST"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onSubmit($event)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-6"
-  }, [_c('div', {
-    staticClass: "form-group has-feedback",
-    class: {
-      'has-error': _vm.errors.has('supplier_id')
-    }
-  }, [_c('label', {
-    attrs: {
-      "for": "supplier"
-    }
-  }, [_vm._v("Supplier:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.supplier_id),
-      expression: "supplier_id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "name": "supplier",
-      "id": "supplier"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.supplier_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "disabled": "",
-      "selected": "",
-      "value": ""
-    }
-  }, [_vm._v("Select a Supplier")]), _vm._v(" "), _vm._l((_vm.suppliers), function(option) {
-    return _c('option', {
-      domProps: {
-        "value": option.id
-      }
-    }, [_vm._v(_vm._s(option.name))])
-  })], 2), _vm._v(" "), _c('span', {
-    staticClass: "glyphicon glyphicon-user form-control-feedback"
-  }), _vm._v(" "), _c('span', {
-    staticClass: "help-block",
-    domProps: {
-      "textContent": _vm._s(_vm.errors.get('supplier_id'))
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('purchase-supplier', {
-    attrs: {
-      "supplier": _vm.supplier
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col-md-12"
-  }, [_c('hr'), _vm._v(" "), _c('table', {
-    staticClass: "table table-condensed"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', [_vm._l((_vm.purchase_rows), function(row) {
-    return _c('purchase-row', {
-      attrs: {
-        "row": row
-      }
-    })
-  }), _vm._v(" "), _c('tr', [_c('td', {
-    attrs: {
-      "colspan": "5"
-    }
-  }), _vm._v(" "), _c('td', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.total),
-      expression: "total"
-    }],
-    staticClass: "form-control text-right",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.total)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.total = $event.target.value
-      }
-    }
-  })])])], 2)])]), _vm._v(" "), _vm._m(1)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th'), _vm._v(" "), _c('th', [_vm._v("SKU")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', {
-    staticClass: "text-right"
-  }, [_vm._v("Unit Price")]), _vm._v(" "), _c('th', {
-    staticClass: "text-right"
-  }, [_vm._v("Quantity")]), _vm._v(" "), _c('th', {
-    staticClass: "text-right"
-  }, [_vm._v("Total")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-12"
-  }, [_c('input', {
-    staticClass: "btn btn-primary pull-right",
-    attrs: {
-      "type": "submit",
-      "value": "Save Purchase"
-    }
-  })])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-ce4c837c", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-798ad36e", module.exports)
   }
 }
 

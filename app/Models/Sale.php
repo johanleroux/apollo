@@ -47,14 +47,34 @@ class Sale extends Model
     }
 
     /**
+     * Sale calculates sub total
+     *
+     * @return double
+     */
+    public function getSubTotalAttribute()
+    {
+        return round($this->saleItems->sum(function ($item) {
+            return $item->total;
+        }), 2);
+    }
+
+    /**
      * Sale calculates total
      *
      * @return double
      */
     public function getTotalAttribute()
     {
-        return $this->saleItems->sum(function ($item) {
-            return $item->total;
-        });
+        return round($this->sub_total * 1.14, 2);
+    }
+    
+    /**
+     * Sale calculates vat
+     *
+     * @return double
+     */
+    public function getVatAttribute()
+    {
+        return round($this->total - $this->sub_total, 2);
     }
 }

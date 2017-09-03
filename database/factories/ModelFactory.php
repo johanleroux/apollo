@@ -44,6 +44,7 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Customer::class, function (Faker\Generator $faker) {
     return [
         'name'      => $faker->company,
+        'vat_number'=> $faker->companyNumber,
         'telephone' => $faker->phoneNumber,
         'email'     => $faker->email,
         'address'   => $faker->streetAddress,

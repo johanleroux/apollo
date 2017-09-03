@@ -40,14 +40,15 @@ class CustomersController extends Controller
         $this->authorize('create', Customer::class);
 
         $this->validate(request(), [
-            'name'      => 'required|string',
-            'telephone' => 'required|string',
-            'email'     => 'required|email',
-            'address'   => 'nullable|string',
-            'address_2' => 'nullable|string',
-            'city'      => 'nullable|string',
-            'province'  => 'nullable|string',
-            'country'   => 'nullable|string',
+            'name'       => 'required|string',
+            'vat_number' => 'nullable|string',
+            'telephone'  => 'required|string',
+            'email'      => 'required|email',
+            'address'    => 'nullable|string',
+            'address_2'  => 'nullable|string',
+            'city'       => 'nullable|string',
+            'province'   => 'nullable|string',
+            'country'    => 'nullable|string',
         ]);
 
         $customer = Customer::create(request()->all());
@@ -98,14 +99,15 @@ class CustomersController extends Controller
         $this->authorize('update', $customer);
 
         $this->validate(request(), [
-            'name'      => 'required|string',
-            'telephone' => 'required|string',
-            'email'     => 'required|email',
-            'address'   => 'nullable|string',
-            'address_2' => 'nullable|string',
-            'city'      => 'nullable|string',
-            'province'  => 'nullable|string',
-            'country'   => 'nullable|string',
+            'name'       => 'required|string',
+            'vat_number' => 'nullable|string',
+            'telephone'  => 'required|string',
+            'email'      => 'required|email',
+            'address'    => 'nullable|string',
+            'address_2'  => 'nullable|string',
+            'city'       => 'nullable|string',
+            'province'   => 'nullable|string',
+            'country'    => 'nullable|string',
         ]);
 
         $customer->update(request()->all());
