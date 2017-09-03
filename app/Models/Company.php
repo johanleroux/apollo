@@ -15,8 +15,8 @@ class Company extends Model
 
     public function getDetailsPrintAttribute()
     {
-        $details = "<strong>Company Information:</strong><br>";
-
+        $details = $this->vat_number ? '<b>VAT #: </b>' . $this->vat_number . '<br>': '';
+        
         $details .= $this->address ? $this->address : '';
         $details .= $this->address_2 ? ', ' . $this->address_2 . '<br>': '';
         $details .= $this->city ? $this->city : '';

@@ -79,7 +79,7 @@ class SuppliersSeeder extends Seeder
                     for($y = 0; $y < $this->nPurchaseItems; $y++) {
                         // Create Purchase Item
                         $purchase
-                            ->purchase_items()
+                            ->purchaseItems()
                             ->save(
                                 factory(PurchaseItem::class)->make([
                                     'purchase_id' => $purchase->id,
