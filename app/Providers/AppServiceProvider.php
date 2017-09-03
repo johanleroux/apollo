@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Hash;
+use Horizon;
 use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
@@ -42,6 +43,13 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('threads')) {
             View::share('share_threads', Thread::getAllLatest()->limit(5)->get());
         }
+
+        Horizon::auth(function ($request) {
+            if (auth()->guest()) {
+                return false;
+            }
+            return auth()->user()->isAn('admin');
+        });
     }
 
     /**
