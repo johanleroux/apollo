@@ -60,7 +60,7 @@ class CustomersSeeder extends Seeder
             ->each(function ($sale) use ($customer, $amount) {
                     for($y = 0; $y < $this->nSaleItems; $y++) {
                         $product = Product::inRandomOrder()
-                                    ->with(['closed_purchase_items', 'sale_items'])
+                                    ->with(['closedPurchaseItems', 'saleItems'])
                                     ->first();
 
                         $stock = (int) $product->stockQuantity;
@@ -70,7 +70,7 @@ class CustomersSeeder extends Seeder
                         {
                             // Create Sale Item
                             $sale
-                                ->sale_items()
+                                ->saleItems()
                                 ->save(
                                     factory(SaleItem::class)->make([
                                         'sale_id'     => $sale->id,
