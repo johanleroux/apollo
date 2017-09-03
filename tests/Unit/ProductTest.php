@@ -32,7 +32,7 @@ class ProductTest extends TestCase
         ->supplier->purchases()
         ->save(make(Purchase::class));
 
-        $purchase->purchase_items()->save(make(PurchaseItem::class, [
+        $purchase->purchaseItems()->save(make(PurchaseItem::class, [
             'product_id' => $this->product->id,
             'price'      => $this->product->cost_price,
             'quantity'   => $quantity
@@ -56,7 +56,7 @@ class ProductTest extends TestCase
 
         $sale = $customer->sales()->save(make(Sale::class));
 
-        $sale->sale_items()->save(make(SaleItem::class, [
+        $sale->saleItems()->save(make(SaleItem::class, [
             'product_id' => $this->product->id,
             'price'      => $this->product->cost_price,
             'quantity'   => $quantity
@@ -77,7 +77,7 @@ class ProductTest extends TestCase
     function it_has_many_purchase_items()
     {
         $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Collection', $this->product->purchase_items
+            'Illuminate\Database\Eloquent\Collection', $this->product->purchaseItems
         );
     }
 
@@ -85,7 +85,7 @@ class ProductTest extends TestCase
     function it_has_many_open_purchase_items()
     {
         $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Collection', $this->product->open_purchase_items
+            'Illuminate\Database\Eloquent\Collection', $this->product->openPurchaseItems
         );
     }
 
@@ -93,15 +93,15 @@ class ProductTest extends TestCase
     function it_has_many_closed_purchase_items()
     {
         $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Collection', $this->product->closed_purchase_items
+            'Illuminate\Database\Eloquent\Collection', $this->product->closedPurchaseItems
         );
     }
 
     /** @test */
-    function it_has_many_sale_items()
+    function it_has_many_saleItems()
     {
         $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Collection', $this->product->sale_items
+            'Illuminate\Database\Eloquent\Collection', $this->product->saleItems
         );
     }
 

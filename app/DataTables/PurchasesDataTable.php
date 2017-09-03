@@ -37,7 +37,7 @@ class PurchasesDataTable extends DataTable
      */
     public function query()
     {
-        $query = Purchase::query()->with(['supplier', 'purchase_items']);
+        $query = Purchase::query()->with(['supplier', 'purchaseItems']);
 
         if (request()->supplier_id) {
             $query->where('supplier_id', request()->supplier_id);

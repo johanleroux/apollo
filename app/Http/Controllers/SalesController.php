@@ -77,7 +77,7 @@ class SalesController extends Controller
         });
 
         // TODO
-        // $sale->sale_items->each(function ($item) {
+        // $sale->saleItems->each(function ($item) {
         //     dispatch(new \App\Jobs\GenerateForecast($item->product_id));
         // });
 
@@ -93,7 +93,7 @@ class SalesController extends Controller
     */
     public function show($id)
     {
-        $sale = Sale::with(['customer', 'sale_items.product'])->findOrFail($id);
+        $sale = Sale::with(['customer', 'saleItems.product'])->findOrFail($id);
 
         $this->authorize('view', $sale);
 
@@ -101,7 +101,7 @@ class SalesController extends Controller
 
         return view('sale.show', [
             'sale'       => $sale,
-            'sale_items' => $sale->sale_items,
+            'saleItems' => $sale->saleItems,
             'customer'   => $sale->customer,
             'company'    => $company
         ]);

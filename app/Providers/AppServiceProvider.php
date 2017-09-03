@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
             $field = str_replace('quantity', 'sku', $attribute);
 
             $product = \App\Models\Product::with([
-                    'purchase_items',
-                    'sale_items'
+                    'purchaseItems',
+                    'saleItems'
                 ])
                 ->find(request()->input($field));
 

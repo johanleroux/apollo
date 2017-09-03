@@ -30,7 +30,7 @@ class SupplierTest extends TestCase
     function it_has_purchase_items()
     {
         $this->assertInstanceOf(
-            'Illuminate\Database\Eloquent\Collection', $this->supplier->purchase_items
+            'Illuminate\Database\Eloquent\Collection', $this->supplier->purchaseItems
         );
     }
 

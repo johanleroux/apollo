@@ -53,7 +53,7 @@ class Customer extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\hasManyThrough
     */
-    public function sale_items()
+    public function saleItems()
     {
         return $this->hasManyThrough(SaleItem::class, Sale::class);
     }

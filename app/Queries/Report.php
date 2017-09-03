@@ -137,7 +137,7 @@ class Report
     protected function loadProducts()
     {
         if(!$this->products)
-            $this->products = Product::with(['closed_purchase_items', 'sale_items'])->get();
+            $this->products = Product::with(['closedPurchaseItems', 'saleItems'])->get();
         return $this->products;
     }
 

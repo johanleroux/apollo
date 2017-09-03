@@ -90,7 +90,7 @@ class ProductsController extends Controller
 
         $report['quantity'] = $query->recap($product->id, 'quantity');
         $report['forecast'] = $query->forecast($product->id);
-        $report['sales']    = $product->latest_sales();
+        $report['sales']    = $product->latestSales();
 
         return view('product.show', compact('product', 'report'));
     }

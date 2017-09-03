@@ -53,7 +53,7 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function purchase_items($limit = null)
+    public function purchaseItems($limit = null)
     {
         return $this->hasMany(PurchaseItem::class)
             ->select(['id', 'product_id', 'purchase_id'])
@@ -68,10 +68,10 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function open_purchase_items()
+    public function openPurchaseItems()
     {
         $purchases = Purchase::where('processed_at', null)->pluck('id');
-        return $this->purchase_items()
+        return $this->purchaseItems()
                 ->whereIn('purchase_id', $purchases);
     }
 
@@ -80,10 +80,10 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function closed_purchase_items()
+    public function closedPurchaseItems()
     {
         $purchases = Purchase::where('processed_at', '!=', null)->pluck('id');
-        return $this->purchase_items()
+        return $this->purchaseItems()
                 ->whereIn('purchase_id', $purchases);
     }
 
@@ -92,7 +92,7 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function sale_items()
+    public function saleItems()
     {
         return $this->hasMany(SaleItem::class)
             ->select(['id', 'product_id', 'sale_id'])
@@ -107,9 +107,9 @@ class Product extends Model
      * @param  integer $limit
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function latest_sales($limit = 5)
+    public function latestSales($limit = 5)
     {
-        return $this->sale_items()
+        return $this->saleItems()
             ->with('sale')
             ->orderBy('sale_id', 'desc')
             ->limit($limit)
@@ -117,17 +117,17 @@ class Product extends Model
     }
 
     /**
-     * Product has a current stock quantity
+     * Product's current stock quantity
      *
      * @return int
      */
     public function getStockQuantityAttribute()
     {
-        return $this->closed_purchase_items->sum('quantity') - $this->sale_items->sum('quantity');
+        return $this->closedPurchaseItems->sum('quantity') - $this->saleItems->sum('quantity');
     }
 
     /**
-     * Product has a current stock value
+     * Product's current stock value
      *
      * @return double
      */
@@ -137,12 +137,43 @@ class Product extends Model
     }
 
     /**
-     * Product has a current stock value
+     * Product's current stock value
      *
      * @return double
      */
     public function getStockMarginAttribute()
     {
         return $this->stockQuantity * ($this->retail_price - $this->cost_price);
+    }
+
+    /**
+     * Product has stock
+     *
+     * @return boolean
+     */
+    public function hasStock()
+    {
+        return $this->stock_quantity > 0;
+    }
+
+    /**
+     * Product has a excess amount of stock
+     *
+     * @return boolean
+     */
+    public function hasExcessStock()
+    {
+        return false;
+    }
+
+    /**
+     * Product has a potential to run into a stock out
+     * if stock is under predicted forecast
+     *
+     * @return boolean
+     */
+    public function hasPotentialStockOut()
+    {
+        return false;
     }
 }

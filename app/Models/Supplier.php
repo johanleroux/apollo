@@ -60,7 +60,7 @@ class Supplier extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function purchase_items()
+    public function purchaseItems()
     {
         return $this->hasManyThrough(PurchaseItem::class, Purchase::class);
     }

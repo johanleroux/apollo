@@ -62,7 +62,7 @@ class PurchasesTest extends TestCase
         $this->signInAdmin();
 
         $purchase = create(Purchase::class);
-        $purchase->purchase_items()->saveMany(make(PurchaseItem::class, [], 5));
+        $purchase->purchaseItems()->saveMany(make(PurchaseItem::class, [], 5));
         $company = create(Company::class);
 
         $this->get('/purchases/1')
