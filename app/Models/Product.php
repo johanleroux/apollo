@@ -146,6 +146,38 @@ class Product extends Model
         return $this->stockQuantity * ($this->retail_price - $this->cost_price);
     }
 
+
+    /**
+     * Product's stock required for the next 3 months
+     *
+     * @return double
+     */
+    public function requiredStock()
+    {
+        $date = \Carbon\Carbon::now();
+        $forecasts = Forecast::where('product_id', $this->id)
+                    ->where(function ($q) use ($date) {
+                        $q->where(function ($q) use ($date) {
+                            $q->where('year', $date->year)
+                            ->where('month', $date->month);
+                        })
+                        ->orWhere(function ($q) use ($date) {
+                            $date->addMonth();
+                            $q->where('year', $date->year)
+                            ->where('month', $date->month);
+                        })
+                        ->orWhere(function ($q) use ($date) {
+                            $date->addMonth();
+                            $q->where('year', $date->year)
+                            ->where('month', $date->month);
+                        });
+                    })->get();
+
+        return $forecasts->sum(function ($f) {
+            return ($f->adjusted_forecast > 0) ? $f->adjusted_forecast : $f->forecast;
+        });
+    }
+
     /**
      * Product has stock
      *
@@ -163,7 +195,17 @@ class Product extends Model
      */
     public function hasExcessStock()
     {
-        return false;
+        return ($this->stock_quantity * 1.05) > $this->requiredStock();
+    }
+
+    /**
+     * Product has un into a stock out
+     *
+     * @return boolean
+     */
+    public function hasStockOut()
+    {
+        return $this->stock_quantity == 0;
     }
 
     /**
@@ -174,6 +216,6 @@ class Product extends Model
      */
     public function hasPotentialStockOut()
     {
-        return false;
+        return ($this->stock_quantity * 0.95) <= $this->requiredStock();
     }
 }
