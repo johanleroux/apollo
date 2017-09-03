@@ -35,7 +35,7 @@ class SaleTransformer extends TransformerAbstract
         return [
             'id'           => $sale->id,
             'placed_at'    => $sale->created_at->toDateTimeString(),
-            'total'        => (double) number_format($sale->total, 2, '.', ''),
+            'total'        => round($sale->total, 2),
         ];
     }
 

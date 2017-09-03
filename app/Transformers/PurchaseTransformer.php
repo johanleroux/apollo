@@ -36,7 +36,7 @@ class PurchaseTransformer extends TransformerAbstract
             'id'           => $purchase->id,
             'placed_at'    => $purchase->created_at->toDateTimeString(),
             'processed_at' => $purchase->processed_at ? $purchase->processed_at->toDateTimeString() : '',
-            'total'        => (double) number_format($purchase->total, 2, '.', ''),
+            'total'        => round($purchase->total, 2),
         ];
     }
 
