@@ -6,7 +6,7 @@
 
 @section('content')
   <div class="row">
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-aqua"><i class="ion ion-ios-cart-outline"></i></span>
         <div class="info-box-content">
@@ -15,23 +15,35 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-yellow"><i class="fa fa-money"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Stock Value</span>
-          <span class="info-box-number">{{ price_format($report['stockValue']) }}</span>
+          <span class="info-box-number">{{ price_format($report['stockValue'], true) }}</span>
         </div>
       </div>
     </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
         <span class="info-box-icon bg-green"><i class="fa fa-credit-card"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Est. Margin</span>
-          <span class="info-box-number">{{ price_format($report['estimateMargin']) }}</span>
+          <span class="info-box-number">{{ price_format($report['estimateMargin'], true) }}</span>
         </div>
       </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="ion ion-ios-cart-outline"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">TOP PRODUCT</span>
+                <span class="info-box-number">
+                    <a class="text-black" href="{{ action('ProductsController@show', $report['quantity']['product']) }}">{{ $report['quantity']['product']->sku }}</a><br>
+                    <small>{{ $report['quantity']['quantity'] }} units</small>
+                </span>
+            </div>
+        </div>
     </div>
   </div>
   <div class="row">
@@ -53,8 +65,29 @@
       </div>
     </div>
   </div>
+  <div class="row">
+      <div class="col-md-3">
+          <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@recap') }}">
+              <i class="fa fa-external-link"></i> Recap</a>
+          </a>
+      </div>
+      <div class="col-md-3">
+          <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@sales') }}">
+              <i class="fa fa-external-link"></i> Sales</a>
+          </a>
+      </div>
+      <div class="col-md-3">
+          <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@purchases') }}">
+              <i class="fa fa-external-link"></i> Purchases</a>
+          </a>
+      </div>
+      <div class="col-md-3">
+          <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@open_purchases') }}">
+              <i class="fa fa-external-link"></i> Open Purchases</a>
+          </a>
+      </div>
+  </div>
 @endsection
-
 @push('js-after')
     <script>
     $(function () {

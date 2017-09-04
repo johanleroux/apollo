@@ -4,17 +4,6 @@
     <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
     <ul class="dropdown-menu pull-right" role="menu">
         <li><a href="{{ action('ProductsController@edit', $product) }}"><i class="fa fa-pencil"></i> Edit</a></li>
-        <li><a href="#" onclick="$('#product_destroy').submit();"><i class="fa fa-trash"></i> Archive</a></li>
-        {{ html()->form('DELETE', action('ProductsController@destroy', $product))->id('product_destroy')->open() }} {{ html()->form()->close()
-        }}
-        <li role="presentation" class="divider"></li>
-        {{--
-        <li><a target="_blank" href="{{ action('CsvController@forecast', $product) }}"><i class="fa fa-external-link"></i> Forecast</a></li>
-        --}}
-        <li><a target="_blank" href="{{ action('CsvController@recap', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Recap</a></li>
-        <li><a target="_blank" href="{{ action('CsvController@sales', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Sales</a></li>
-        <li><a target="_blank" href="{{ action('CsvController@purchases', ['product_id' => $product]) }}"><i class="fa fa-external-link"></i> Purchases</a></li>
-        <li role="presentation" class="divider"></li>
         <li><a href="#" data-toggle="modal" data-target="#manualForecast"><i class="fa fa-pencil"></i> Manual Forecast</a></li>
     </ul>
 </div>
@@ -88,6 +77,28 @@
                                 </div>
                             </div>
                         @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@recap', ['product_id' => $product]) }}">
+                                <i class="fa fa-external-link"></i> Recap</a>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@sales', ['product_id' => $product]) }}">
+                                <i class="fa fa-external-link"></i> Sales</a>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@purchases', ['product_id' => $product]) }}">
+                                <i class="fa fa-external-link"></i> Purchases</a>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-info btn-flat form-control" target="_blank" href="{{ action('CsvController@open_purchases', ['product_id' => $product]) }}">
+                                <i class="fa fa-external-link"></i> Open Purchases</a>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
