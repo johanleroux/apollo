@@ -1,7 +1,19 @@
 <?php
 
-function price_format($value)
+function price_format($value, $shorten = false)
 {
+    if ($shorten) {
+        if ($value >= 1000000000) {
+            $value = number_format($value/1000000000, 2, '.', ' ') . 'B';
+        } elseif ($value >= 1000000) {
+            $value = number_format($value/1000000, 2, '.', ' ') . 'M';
+        } elseif ($value >= 1000) {
+            $value = number_format($value/1000, 2, '.', ' ') . 'K';
+        }
+
+        return 'R ' . $value;
+    }
+
     return 'R ' . number_format($value, 2, '.', ' ');
 }
 

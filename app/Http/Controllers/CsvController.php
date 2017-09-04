@@ -141,27 +141,40 @@ class CsvController extends Controller
 
     public function open_purchases()
     {
-        $open = Purchase::where('processed_at', null)->pluck('id');
-        $purchases = PurchaseItem::whereIn('purchase_id', $open)
-                                    ->with(['purchase.supplier'])
-                                    ->get();
+        if (request()->product_id) {
+            $open = Purchase::where('processed_at', null)->pluck('id');
+            $product = Product::findOrFail(request()->product_id);
+            $purchases = PurchaseItem::whereIn('purchase_id', $open)
+                ->where('product_id', $product->id)
+                ->with(['purchase.supplier'])
+                ->get();
 
-        if(!$purchases)
-        {
-            notify()->flash('No Open Purchases Available!', 'warning');
-            return redirect()->back();
+            Excel::create($product->sku . '_open_purchases', function ($excel) use ($product, $purchases) {
+                $excel->setTitle($product->sku . '_open_purchases')
+                    ->setCreator('Apollo')
+                    ->setCompany('Apollo');
+
+                $excel->sheet('Recap', function ($sheet) use ($purchases) {
+                    $sheet->setOrientation('landscape');
+                    $sheet->loadView('csv.purchases', compact('purchases'));
+                });
+            })->download('csv');
+        } else {
+            $open = Purchase::where('processed_at', null)->pluck('id');
+            $purchases = PurchaseItem::whereIn('purchase_id', $open)
+                ->with(['purchase.supplier'])
+                ->get();
+
+            Excel::create('Products_open_purchases', function ($excel) use ($purchases) {
+                $excel->setTitle('Products_open_purchases')
+                    ->setCreator('Apollo')
+                    ->setCompany('Apollo');
+
+                $excel->sheet('Recap', function ($sheet) use ($purchases) {
+                    $sheet->setOrientation('landscape');
+                    $sheet->loadView('csv.purchases', compact('purchases'));
+                });
+            })->download('csv');
         }
-
-        Excel::create('Products_open_purchases', function ($excel) use ($purchases) {
-            $excel->setTitle('Products_open_purchases')
-                ->setCreator('Apollo')
-                ->setCompany('Apollo');
-
-            $excel->sheet('Recap', function ($sheet) use ($purchases) {
-                $sheet->setOrientation('landscape');
-                $sheet->loadView('csv.purchases', compact('purchases'));
-            });
-        }
-        )->download('csv');
     }
 }

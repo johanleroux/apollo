@@ -17,22 +17,7 @@ class ProductsController extends Controller
     */
     public function index(ProductsDataTable $dt)
     {
-        $report = new \App\Queries\Report;
-
-        $quantity = $report->soldByQuantity($limit = 1)->first();
-        $value    = $report->soldByValue($limit = 1)->first();
-
-        $stats['quantity'] = [
-            'product'  => $quantity->product,
-            'quantity' => (int) $quantity->quantity,
-        ];
-
-        $stats['value'] = [
-            'product'  => $value->product,
-            'value'    => $value->value,
-        ];
-
-        return $dt->render('product.index', compact('stats'));
+        return $dt->render('product.index');
     }
 
     /**
