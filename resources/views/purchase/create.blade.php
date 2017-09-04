@@ -9,7 +9,7 @@
             <h3 class="box-title">Create Purchase</h3>
         </div>
         <div class="box-body">
-            <purchase :suppliers="{{ $suppliers }}"></purchase>
+            <purchase :suppliers="{{ $suppliers }}" :sup="{{ request()->query('supplier_id') ?: 'null'}}"></purchase>
         </div>
     </div>
 </div>

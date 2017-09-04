@@ -41978,7 +41978,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /* harmony default export */ exports["default"] = {
-    props: ['suppliers', 'purchases'],
+    props: ['suppliers', 'sup'],
 
     data: function () {
         return {
@@ -41995,6 +41995,8 @@ if (typeof jQuery === 'undefined') {
         if(this.purchases == undefined)
         {
             this.reset();
+            if(this.sup != null)
+                this.supplier_id = this.sup;
         } else {
             this.supplier_id = this.purchases.supplier_id;
             this.$nextTick(function () {
@@ -42345,7 +42347,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /* harmony default export */ exports["default"] = {
-    props: ['customers', 'products'],
+    props: ['customers', 'products', 'cus'],
 
     data: function () {
         return {
@@ -42359,6 +42361,8 @@ if (typeof jQuery === 'undefined') {
     },
     created: function() {
         this.reset();
+        if (this.cus != null)
+            this.customer_id = this.cus;
     },
     methods: {
         onSubmit: function() {
@@ -87406,7 +87410,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control text-right",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "readonly": ""
     },
     domProps: {
       "value": (_vm.sub_total)
@@ -87430,7 +87435,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control text-right",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "readonly": ""
     },
     domProps: {
       "value": (_vm.total)
@@ -88095,7 +88101,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control text-right",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "readonly": ""
     },
     domProps: {
       "value": (_vm.total)

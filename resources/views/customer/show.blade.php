@@ -4,17 +4,19 @@
     {!! Breadcrumbs::render('customer_show', $customer) !!}
 
     @if(!$customer->trashed())
-        @if(auth()->user()->isA('manager') || auth()->user()->isA('admin'))
-            <div class="btn-group pull-right">
-                <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
-                <ul class="dropdown-menu pull-right" role="menu">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
+            <ul class="dropdown-menu pull-right" role="menu">
+                <li><a href="{{ action('SalesController@create', ['customer_id' => $customer->id]) }}"><i class="fa fa-money"></i> Sale</a></li>
+                <li class="divider"></li>
+                @if(auth()->user()->isA('manager') || auth()->user()->isA('admin'))
                     <li><a href="{{ action('CustomersController@edit', $customer) }}"><i class="fa fa-pencil"></i> Edit</a></li>
                     <li><a href="#" onclick="$('#customer_destroy').submit();"><i class="fa fa-trash"></i> Archive</a></li>
                     {{ html()->form('DELETE', action('CustomersController@destroy', $customer))->id('customer_destroy')->open() }}
                     {{ html()->form()->close() }}
-                </ul>
-            </div>
-        @endif
+                @endif
+            </ul>
+        </div>
     @endif
 @endsection
 
