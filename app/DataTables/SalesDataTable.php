@@ -90,7 +90,7 @@ class SalesDataTable extends DataTable
             ],
             'customer' => [
                 'name'       => 'customer.name',
-                'orderable'  => true,
+                'orderable'  => false,
                 'searchable' => true
             ],
             'created_at' => [

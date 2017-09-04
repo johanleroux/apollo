@@ -88,7 +88,7 @@ class PurchasesDataTable extends DataTable
             ],
             'supplier' => [
                 'name'       => 'supplier.name',
-                'sortable'   => false,
+                'orderable'  => false,
                 'searchable' => true
             ],
             'created_at' => [
