@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Sale;
+use App\Models\SaleItem;
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
@@ -50,6 +51,11 @@ class SalesDataTable extends DataTable
 
         if (request()->customer_id) {
             $query->where('customer_id', request()->customer_id);
+        }
+
+        if (request()->product_id) {
+            $sales = SaleItem::where('product_id', request()->product_id)->pluck('sale_id');
+            $query->whereIn('id', $sales);
         }
 
         return $this->applyScopes($query);

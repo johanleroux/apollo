@@ -11,6 +11,12 @@
 @section('content')
   <div class="box box-default">
     <div class="box-body ">
+      @if(request()->has('supplier_id'))
+        Supplier: #{{ request()->supplier_id }} <br>
+      @endif
+      @if(request()->has('product_id'))
+        Product: #{{ request()->product_id }} <br>
+      @endif
       {!! $dataTable->table(['class' => 'table table-striped table-hover table-responsive', 'width' => '100%']) !!}
     </div>
   </div>

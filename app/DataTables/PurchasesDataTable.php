@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Purchase;
+use App\Models\PurchaseItem;
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
@@ -44,6 +45,11 @@ class PurchasesDataTable extends DataTable
 
         if (request()->supplier_id) {
             $query->where('supplier_id', request()->supplier_id);
+        }
+
+        if (request()->product_id) {
+            $purchases = PurchaseItem::where('product_id', request()->product_id)->pluck('purchase_id');
+            $query->whereIn('id', $purchases);
         }
 
         if (request()->open) {
