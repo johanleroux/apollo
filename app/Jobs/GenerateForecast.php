@@ -71,6 +71,8 @@ class GenerateForecast implements ShouldQueue
                 ->update([
                     'last_forecast' => Carbon::now()
                 ]);
+        
+        dispatch(new AlertLowStock($this->product->id));
 
         return;
     }
@@ -140,14 +142,16 @@ class GenerateForecast implements ShouldQueue
             preg_match_all('/-?\d*\.{0,1}\d+/', $line, $matches);
             $forecasts = $matches[0];
             if (count($forecasts) == 6) {
-                $forecast = Forecast::updateOrCreate([
-                    'product_id'  => $this->product->id,
-                    'year'  => $this->date->year,
-                    'month' => $this->date->month
-                ],
-                [
-                    'forecast' => $forecasts[1]
-                ]);
+                $forecast = Forecast::updateOrCreate(
+                    [
+                        'product_id'  => $this->product->id,
+                        'year'  => $this->date->year,
+                        'month' => $this->date->month
+                    ],
+                    [
+                        'forecast' => $forecasts[1]
+                    ]
+                );
 
                 $this->date->addMonth();
             }

@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Models\Company;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\SaleItem;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\SalesDataTable;
@@ -76,10 +77,13 @@ class SalesController extends Controller
             ]);
         });
 
-        // TODO
-        // $sale->saleItems->each(function ($item) {
-        //     dispatch(new \App\Jobs\GenerateForecast($item->product_id));
-        // });
+        if (auth()->check() && auth()->user()->name != 'test') {
+            $items = SaleItem::where('sale_id', $sale->id)->pluck('product_id');
+            $products = Product::whereIn('id', $items)->get();
+            $products->each(function ($product) {
+                dispatch(new \App\Jobs\GenerateForecast($product->id));
+            });
+        }
 
         notify()->flash('Sale has been created!', 'success');
         return action('SalesController@show', $sale);

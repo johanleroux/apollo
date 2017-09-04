@@ -27,7 +27,7 @@ class ModelProcessed extends Notification implements ShouldQueue
         $this->action    = $action;
         $this->model     = $model;
         $this->modelName = class_basename($model);
-        $this->url       = $this->modelName . 'sController@index';
+        $this->url       = action($this->modelName . 'sController@show', $this->model);
     }
 
     /**
@@ -50,9 +50,10 @@ class ModelProcessed extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('Apollo - ' . $this->modelName . ' Processed')
                     ->greeting('Hello ' . $notifiable->name)
                     ->line($this->modelName . ' ' . $this->model->name . ' has been ' . $this->action)
-                    ->action('View ' . $this->modelName . 's', action($this->url))
+                    ->action('View ' . $this->modelName, $this->url)
                     ->line('Thank you for using our application!');
     }
 
@@ -66,7 +67,7 @@ class ModelProcessed extends Notification implements ShouldQueue
     {
         return [
             'message' => $this->modelName . ' ' . $this->model->name . ' has been ' . $this->action . '!',
-            'url'     => action($this->url)
+            'url'     => $this->url
         ];
     }
 
@@ -82,7 +83,7 @@ class ModelProcessed extends Notification implements ShouldQueue
             ->success()
             ->content($this->modelName . ' ' . $this->model->name . ' has been ' . $this->action . '!')
             ->attachment(function ($attachment) {
-                $attachment->title('View ' . $this->modelName . 's', action($this->url));
+                $attachment->title('View ' . $this->modelName, $this->url);
             });
     }
 }

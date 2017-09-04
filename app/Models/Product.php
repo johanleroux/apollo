@@ -173,9 +173,9 @@ class Product extends Model
                         });
                     })->get();
 
-        return $forecasts->sum(function ($f) {
+        return round($forecasts->sum(function ($f) {
             return ($f->adjusted_forecast > 0) ? $f->adjusted_forecast : $f->forecast;
-        });
+        }));
     }
 
     /**
