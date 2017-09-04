@@ -17,7 +17,7 @@ class CompaniesSeeder extends Seeder
           'name'       => 'Paradox',
           'vat_number' => 'ZA4012345678',
           'telephone'  => '0860 000 000',
-          'email'      => 'indo@paradox.com',
+          'email'      => 'info@paradox.com',
           'address'    => '1 Kingsway Street',
           'address_2'  => 'Auckland Park',
           'city'       => 'Johannesburg',

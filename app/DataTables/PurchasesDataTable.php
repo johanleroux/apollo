@@ -18,16 +18,19 @@ class PurchasesDataTable extends DataTable
     {
         return $dataTables
             ->eloquent($query)
-            ->addColumn('actions', function (Purchase $purchase) {
-                return view('purchase.datatable._actions', compact('purchase'));
+            ->editColumn('id', function (Purchase $purchase) {
+                $url = action('PurchasesController@show', $purchase);
+                return "<a href='$url'>$purchase->id</a>";
             })
             ->editColumn('supplier', function (Purchase $purchase) {
-                return $purchase->supplier->name;
+                $url = action('SuppliersController@show', $purchase->supplier);
+                $text = $purchase->supplier->name;
+                return "<a href='$url'>$text</a>";
             })
             ->addColumn('total', function (Purchase $purchase) {
                 return price_format($purchase->total);
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['id', 'supplier']);
     }
 
     /**
@@ -74,12 +77,27 @@ class PurchasesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'           => ['title' => 'Purchase #'],
-            'supplier'     => ['name' => 'supplier.name', 'sortable' => false, 'searchable' => true],
-            'processed_at' => ['title' => 'Processed At'],
-            'created_at'   => ['title' => 'Created Date'],
-            'total'        => ['orderable' => false, 'searchable' => false, 'class' => 'text-right'],
-            'actions'      => ['orderable' => false, 'searchable' => false, 'class' => 'text-center']
+            'id' => [
+                'title' => 'Purchase #'
+            ],
+            'supplier' => [
+                'name'       => 'supplier.name',
+                'sortable'   => false,
+                'searchable' => true
+            ],
+            'created_at' => [
+                'title' => 'Created Date',
+                'class' => 'text-right'
+            ],
+            'processed_at' => [
+                'title' => 'Processed At',
+                'class' => 'text-right'
+            ],
+            'total' => [
+                'orderable'  => false,
+                'searchable' => false,
+                'class'      => 'text-right'
+            ],
         ];
     }
 

@@ -4,9 +4,7 @@
   {!! Breadcrumbs::render('sale') !!}
 
   <div class="btn-group pull-right">
-    @can('create-sale')
     <a href="{{ action('SalesController@create') }}" class="btn btn-sm"> Create <i class="fa fa-plus"></i></a>
-    @endcan
   </div>
 @endsection
 

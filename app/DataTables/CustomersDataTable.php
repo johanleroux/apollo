@@ -18,10 +18,11 @@ class CustomersDataTable extends DataTable
     {
         return $dataTables
             ->eloquent($query)
-            ->addColumn('actions', function (Customer $customer) {
-                return view('customer.datatable._actions', compact('customer'));
+            ->editColumn('name', function (Customer $customer) {
+                $url = action('CustomersController@show', $customer);
+                return "<a href='$url'>$customer->name</a>";
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['name']);
     }
 
     /**
@@ -64,7 +65,6 @@ class CustomersDataTable extends DataTable
             'telephone',
             'email',
             'address',
-            'actions'
         ];
     }
 

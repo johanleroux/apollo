@@ -65,7 +65,7 @@ class SuppliersController extends Controller
     */
     public function show($id)
     {
-        $supplier = Supplier::findOrFail($id);
+        $supplier = Supplier::withTrashed()->findOrFail($id);
 
         $this->authorize('view', $supplier);
 
