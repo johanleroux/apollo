@@ -19,6 +19,5 @@ class NotificationsController extends Controller
         $notification->markAsRead();
 
         return redirect()->to($notification->data['url']);
-        dd($notification);
     }
 }

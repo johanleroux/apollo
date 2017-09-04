@@ -19,7 +19,9 @@ abstract class TestCase extends BaseTestCase
 
     protected function signIn($user = null)
     {
-        $user = $user ?: create('App\Models\User');
+        $user = $user ?: create('App\Models\User', [
+            'name' => 'test'
+        ]);
 
         $this->actingAs($user);
 
@@ -28,7 +30,10 @@ abstract class TestCase extends BaseTestCase
 
     protected function signInAdmin()
     {
-        $user = create('App\Models\User');
+        $user = create('App\Models\User', [
+            'name' => 'test'
+        ]);
+
         $user->assign('admin');
 
         $this->actingAs($user);

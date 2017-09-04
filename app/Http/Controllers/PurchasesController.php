@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
+use App\Models\PurchaseItem;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\DataTables\PurchasesDataTable;
@@ -207,6 +209,14 @@ class PurchasesController extends Controller
         ]);
 
         $purchase->save();
+
+        if (auth()->check() && auth()->user()->name != 'test') {
+            $items = PurchaseItem::where('purchase_id', $purchase->id)->pluck('product_id');
+            $products = Product::whereIn('id', $items)->get();
+            $products->each(function ($product) {
+                dispatch(new \App\Jobs\GenerateForecast($product->id));
+            });
+        }
 
         notify()->flash('Purchase has been processed!', 'success');
         return action('PurchasesController@show', $purchase);

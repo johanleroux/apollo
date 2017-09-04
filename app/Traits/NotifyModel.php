@@ -25,8 +25,7 @@ trait NotifyModel
 
     public function processNotification($action = 'saved')
     {
-        if(auth()->check())
-        {
+        if (auth()->check()) {
             $users = User::where('id', '!=', auth()->user()->id)->get();
 
             Notification::send($users, (new ModelProcessed($this, $action)));
