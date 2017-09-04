@@ -75,10 +75,8 @@ class ProductsController extends ApiController
      * @param int $id
      * @return json
      */
-    public function update($id)
+    public function update(Product $product)
     {
-        $this->authorize('update', $product);
-
         $this->validate(request(), [
             'description'               => 'required|string',
             'cost_price'                => 'required|numeric|min:0',
@@ -86,7 +84,6 @@ class ProductsController extends ApiController
             'recommended_selling_price' => 'required|numeric|min:0',
         ]);
 
-        $product = Product::findOrFail($id);
         $product->update(request()->all());
 
         return response()
@@ -101,11 +98,10 @@ class ProductsController extends ApiController
      * @param int $id
      * @return response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
         $this->authorize('delete', $product);
 
-        $product = Product::findOrFail($id);
         $product->delete();
 
         return response(null, 204);
