@@ -136,8 +136,10 @@ class Report
      */
     protected function loadProducts()
     {
-        if(!$this->products)
+        if (!$this->products)
+        {
             $this->products = Product::with(['closedPurchaseItems', 'saleItems'])->get();
+        }
         return $this->products;
     }
 
@@ -147,9 +149,11 @@ class Report
      */
     public function stockQuantity()
     {
-        return $this->loadProducts()->sum(function ($product) {
-            return $product->stockQuantity;
-        });
+        return PurchaseItem::whereIn(
+            'purchase_id',
+            Purchase::where('processed_at', '!=', null)
+                ->pluck('id')
+        )->sum('quantity') - SaleItem::sum('quantity');
     }
 
     /**

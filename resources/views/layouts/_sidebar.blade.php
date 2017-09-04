@@ -5,8 +5,10 @@
                 <img src="{{ asset('img/avatar.png') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>{{ auth()->user()->name }} [{{ title_case(auth()->user()->role->name) }}]</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p>
+                    {{ auth()->user()->name }}<br>
+                    <small>[{{ title_case(auth()->user()->role->name) }}]</small><br/>
+                </p>
             </div>
         </div>
         <ul class="sidebar-menu">

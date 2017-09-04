@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Sale;
+use App\Models\SaleItem;
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
@@ -18,16 +19,25 @@ class SalesDataTable extends DataTable
     {
         return $dataTables
             ->eloquent($query)
+            ->editColumn('id', function (Sale $sale) {
+                $url = action('SalesController@show', $sale);
+                return "<a href='$url'>$sale->id</a>";
+            })
             ->addColumn('actions', function (Sale $sale) {
                 return view('sale.datatable._actions', compact('sale'));
             })
             ->editColumn('customer', function (Sale $sale) {
-                return $sale->customer->name;
+                $url = action('CustomersController@show', $sale->customer);
+                $text = $sale->customer->name;
+                return "<a href='$url'>$text</a>";
+            })
+            ->addColumn('sub_total', function (Sale $sale) {
+                return price_format($sale->sub_total);
             })
             ->addColumn('total', function (Sale $sale) {
                 return price_format($sale->total);
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['id', 'customer']);
     }
 
     /**
@@ -41,6 +51,11 @@ class SalesDataTable extends DataTable
 
         if (request()->customer_id) {
             $query->where('customer_id', request()->customer_id);
+        }
+
+        if (request()->product_id) {
+            $sales = SaleItem::where('product_id', request()->product_id)->pluck('sale_id');
+            $query->whereIn('id', $sales);
         }
 
         return $this->applyScopes($query);
@@ -70,11 +85,28 @@ class SalesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id'         => ['title' => 'Sale #'],
-            'customer'   => ['name' => 'customer.name', 'orderable' => true, 'searchable' => true],
-            'created_at' => ['title' => 'Created Date'],
-            'total'      => ['orderable' => false, 'searchable' => false, 'class' => 'text-right'],
-            'actions'    => ['class' => 'text-center']
+            'id' => [
+                'title' => 'Sale #'
+            ],
+            'customer' => [
+                'name'       => 'customer.name',
+                'orderable'  => true,
+                'searchable' => true
+            ],
+            'created_at' => [
+                'title' => 'Created Date',
+                'class' => 'text-right'
+            ],
+            'sub_total' => [
+                'orderable'  => false,
+                'searchable' => false,
+                'class'      => 'text-right'
+            ],
+            'total' => [
+                'orderable'  => false,
+                'searchable' => false,
+                'class'      => 'text-right'
+            ],
         ];
     }
 

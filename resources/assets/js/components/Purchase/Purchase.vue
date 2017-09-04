@@ -33,7 +33,7 @@
                         <purchase-row v-for="row in purchase_rows" :row="row"></purchase-row>
                         <tr>
                             <td colspan="5"></td>
-                            <td><input type="text" class="form-control text-right" v-model="total"></td>
+                            <td><input type="text" readonly class="form-control text-right" v-model="total"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -49,7 +49,7 @@
 import {Errors} from '../../Errors'
 
 export default {
-    props: ['suppliers', 'purchases'],
+    props: ['suppliers', 'sup'],
 
     data: function () {
         return {
@@ -66,6 +66,8 @@ export default {
         if(this.purchases == undefined)
         {
             this.reset();
+            if(this.sup != null)
+                this.supplier_id = this.sup;
         } else {
             this.supplier_id = this.purchases.supplier_id;
             this.$nextTick(function () {

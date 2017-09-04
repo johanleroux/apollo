@@ -3,17 +3,19 @@
 @section('content-header')
     {!! Breadcrumbs::render('supplier_show', $supplier) !!}
 
-    @if(auth()->user()->isA('manager') || auth()->user()->isA('admin'))
-        <div class="btn-group pull-right">
-            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
-            <ul class="dropdown-menu pull-right" role="menu">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
+        <ul class="dropdown-menu pull-right" role="menu">
+            <li><a href="{{ action('PurchasesController@create', ['supplier_id' => $supplier]) }}"><i class="fa fa-money"></i> Purchase</a></li>
+            <li class="divider"></li>
+            @if(auth()->user()->isA('manager') || auth()->user()->isA('admin'))
                 <li><a href="{{ action('SuppliersController@edit', $supplier) }}"><i class="fa fa-pencil"></i> Edit</a></li>
                 <li><a href="#" onclick="$('#supplier_destroy').submit();"><i class="fa fa-trash"></i> Archive</a></li>
                 {{ html()->form('DELETE', action('SuppliersController@destroy', $supplier))->id('supplier_destroy')->open() }}
                 {{ html()->form()->close() }}
-            </ul>
-        </div>
-    @endif
+            @endif
+        </ul>
+    </div>
 @endsection
 
 @section('content')

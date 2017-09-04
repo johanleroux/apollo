@@ -18,10 +18,11 @@ class SuppliersDataTable extends DataTable
     {
         return $dataTables
             ->eloquent($query)
-            ->addColumn('actions', function (Supplier $supplier) {
-                return view('supplier.datatable._actions', compact('supplier'));
+            ->editColumn('name', function (Supplier $supplier) {
+                $url = action('SuppliersController@show', $supplier);
+                return "<a href='$url'>$supplier->name</a>";
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['name']);
     }
 
     /**
@@ -63,8 +64,7 @@ class SuppliersDataTable extends DataTable
             'name',
             'telephone',
             'email',
-            'address',
-            'actions'
+            'address'
         ];
     }
 

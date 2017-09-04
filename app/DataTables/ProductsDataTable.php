@@ -18,11 +18,14 @@ class ProductsDataTable extends DataTable
     {
         return $dataTables
             ->eloquent($query)
-            ->addColumn('actions', function (Product $product) {
-                return view('product.datatable._actions', compact('product'));
+            ->editColumn('sku', function (Product $product) {
+                $url = action('ProductsController@show', $product);
+                return "<a href='$url'>$product->sku</a>";
             })
             ->editColumn('supplier', function (Product $product) {
-                return $product->supplier->name;
+                $url = action('SuppliersController@show', $product->supplier);
+                $text = $product->supplier->name;
+                return "<a href='$url'>$text</a>";
             })
             ->editColumn('cost_price', function (Product $product) {
                 return price_format($product->cost_price);
@@ -33,7 +36,7 @@ class ProductsDataTable extends DataTable
             ->editColumn('recommended_selling_price', function (Product $product) {
                 return price_format($product->recommended_selling_price);
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['sku', 'supplier']);
     }
 
     /**
@@ -76,13 +79,30 @@ class ProductsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'sku'                       => ['title' => 'SKU', 'width' => '50'],
-            'supplier'                  => ['title' => 'Supplier', 'name' => 'supplier.name'],
+            'sku' => [
+                'title' => 'SKU',
+                'width' => '50'
+            ],
+            'supplier' => [
+                'title' => 'Supplier',
+                'name'  => 'supplier.name'
+            ],
             'description',
-            'cost_price'                => ['title' => 'Cost Price', 'width' => '50', 'class' => 'text-right'],
-            'retail_price'              => ['title' => 'Retail Price', 'width' => '50', 'class' => 'text-right'],
-            'recommended_selling_price' => ['title' => 'RSP', 'width' => '50', 'class' => 'text-right'],
-            'actions',
+            'cost_price' => [
+                'title' => 'Cost Price',
+                'width' => '50',
+                'class' => 'text-right'
+            ],
+            'retail_price' => [
+                'title' => 'Retail Price',
+                'width' => '50',
+                'class' => 'text-right'
+            ],
+            'recommended_selling_price' => [
+                'title' => 'RSP',
+                'width' => '50',
+                'class' => 'text-right'
+            ],
         ];
     }
 

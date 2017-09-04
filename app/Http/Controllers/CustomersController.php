@@ -65,7 +65,7 @@ class CustomersController extends Controller
     */
     public function show($id)
     {
-        $customer = Customer::findOrFail($id);
+        $customer = Customer::withTrashed()->findOrFail($id);
 
         $this->authorize('view', $customer);
 

@@ -199,7 +199,7 @@ class Product extends Model
     }
 
     /**
-     * Product has un into a stock out
+     * Product has run into a stock out
      *
      * @return boolean
      */

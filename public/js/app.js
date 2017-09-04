@@ -41694,6 +41694,29 @@ if (typeof jQuery === 'undefined') {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -41704,7 +41727,7 @@ if (typeof jQuery === 'undefined') {
         return {
             adjusted_forecast: '',
             year: '2017',
-            month: '',
+            month: 1,
             errors: new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* Errors */]()
         }
     },
@@ -41978,7 +42001,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /* harmony default export */ exports["default"] = {
-    props: ['suppliers', 'purchases'],
+    props: ['suppliers', 'sup'],
 
     data: function () {
         return {
@@ -41995,6 +42018,8 @@ if (typeof jQuery === 'undefined') {
         if(this.purchases == undefined)
         {
             this.reset();
+            if(this.sup != null)
+                this.supplier_id = this.sup;
         } else {
             this.supplier_id = this.purchases.supplier_id;
             this.$nextTick(function () {
@@ -42345,7 +42370,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /* harmony default export */ exports["default"] = {
-    props: ['customers', 'products'],
+    props: ['customers', 'products', 'cus'],
 
     data: function () {
         return {
@@ -42359,6 +42384,8 @@ if (typeof jQuery === 'undefined') {
     },
     created: function() {
         this.reset();
+        if (this.cus != null)
+            this.customer_id = this.cus;
     },
     methods: {
         onSubmit: function() {
@@ -87406,7 +87433,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control text-right",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "readonly": ""
     },
     domProps: {
       "value": (_vm.sub_total)
@@ -87430,7 +87458,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control text-right",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "readonly": ""
     },
     domProps: {
       "value": (_vm.total)
@@ -88095,7 +88124,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control text-right",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "readonly": ""
     },
     domProps: {
       "value": (_vm.total)
@@ -88208,7 +88238,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "year"
     }
-  }, [_vm._v("Year")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Year")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -88217,20 +88247,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "type": "text",
-      "id": "year",
-      "placeholder": "Year"
-    },
-    domProps: {
-      "value": (_vm.year)
+      "name": "year",
+      "id": "year"
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.year = $event.target.value
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.year = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
-  }), _vm._v(" "), _c('span', {
+  }, [_c('option', {
+    attrs: {
+      "value": "2017",
+      "selected": ""
+    }
+  }, [_vm._v("2017")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2018"
+    }
+  }, [_vm._v("2018")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2019"
+    }
+  }, [_vm._v("2019")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2020"
+    }
+  }, [_vm._v("2020")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2012"
+    }
+  }, [_vm._v("2012")])]), _vm._v(" "), _c('span', {
     staticClass: "help-block",
     domProps: {
       "textContent": _vm._s(_vm.errors.get('year'))
@@ -88244,7 +88296,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "month"
     }
-  }, [_vm._v("Month")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Month")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -88253,20 +88305,70 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "type": "text",
-      "id": "month",
-      "placeholder": "Month"
-    },
-    domProps: {
-      "value": (_vm.month)
+      "name": "month",
+      "id": "month"
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.month = $event.target.value
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.month = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
-  }), _vm._v(" "), _c('span', {
+  }, [_c('option', {
+    attrs: {
+      "value": "1",
+      "selected": ""
+    }
+  }, [_vm._v("1")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("2")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("3")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("4")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("5")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "6"
+    }
+  }, [_vm._v("6")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "7"
+    }
+  }, [_vm._v("7")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "8"
+    }
+  }, [_vm._v("8")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "9"
+    }
+  }, [_vm._v("9")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "10"
+    }
+  }, [_vm._v("10")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "11"
+    }
+  }, [_vm._v("11")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "12"
+    }
+  }, [_vm._v("12")])]), _vm._v(" "), _c('span', {
     staticClass: "help-block",
     domProps: {
       "textContent": _vm._s(_vm.errors.get('month'))

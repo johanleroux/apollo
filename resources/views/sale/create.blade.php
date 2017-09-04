@@ -9,7 +9,7 @@
             <h3 class="box-title">Create Sale</h3>
         </div>
         <div class="box-body">
-            <sale :customers="{{ $customers }}" :products="{{ $products }}"></sale>
+            <sale :customers="{{ $customers }}" :products="{{ $products }}" :cus="{{ request()->query('customer_id') ?: 'null' }}"></sale>
         </div>
     </div>
 </div>

@@ -4,9 +4,9 @@
   {!! Breadcrumbs::render('supplier') !!}
 
   <div class="btn-group pull-right">
-      @can('create-supplier')
+      @if(auth()->user()->isAn('admin') || auth()->user()->can('create-supplier'))
           <a href="{{ action('SuppliersController@create') }}" class="btn btn-sm"> Create <i class="fa fa-plus"></i></a>
-      @endcan
+      @endif
   </div>
 @endsection
 

@@ -32,11 +32,11 @@
                         <sale-row v-for="row in sale_rows" :row="row"></sale-row>
                         <tr>
                             <td colspan="4"></td>
-                            <td><input type="text" class="form-control text-right" v-model="sub_total"></td>
+                            <td><input type="text" readonly class="form-control text-right" v-model="sub_total"></td>
                         </tr>
                         <tr>
                             <td colspan="4"></td>
-                            <td><input type="text" class="form-control text-right" v-model="total"></td>
+                            <td><input type="text" readonly class="form-control text-right" v-model="total"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -52,7 +52,7 @@
 import {Errors} from '../../Errors'
 
 export default {
-    props: ['customers', 'products'],
+    props: ['customers', 'products', 'cus'],
 
     data: function () {
         return {
@@ -66,6 +66,8 @@ export default {
     },
     created: function() {
         this.reset();
+        if (this.cus != null)
+            this.customer_id = this.cus;
     },
     methods: {
         onSubmit: function() {

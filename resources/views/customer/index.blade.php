@@ -4,9 +4,9 @@
   {!! Breadcrumbs::render('customer') !!}
 
   <div class="btn-group pull-right">
-      @can('create-customer')
-          <a href="{{ action('CustomersController@create') }}" class="btn btn-sm"> Create <i class="fa fa-plus"></i></a>
-      @endcan
+    @if(auth()->user()->isAn('admin') || auth()->user()->can('create-customer'))
+      <a href="{{ action('CustomersController@create') }}" class="btn btn-sm"> Create <i class="fa fa-plus"></i></a>
+    @endif
   </div>
 @endsection
 
