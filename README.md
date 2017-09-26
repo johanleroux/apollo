@@ -31,4 +31,4 @@ ___
 * manager@paradox.com:secret
 * admin@paradox.com:secret
 
-### [Project Apollo Mobile Repository](https://github.com/Slaysenfite/Project_Apollo_Mobile)
+### [Project Apollo Mobile Repository](https://github.com/IFMTYP/team19-mobile)
