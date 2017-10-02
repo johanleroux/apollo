@@ -1,4 +1,4 @@
-@servers(['web' => 'forge@169.239.181.174'])
+@servers(['web' => 'forge@46.101.254.88'])
 
 @task('deploy')
     cd /home/forge/apollo.lomejo.co.za
