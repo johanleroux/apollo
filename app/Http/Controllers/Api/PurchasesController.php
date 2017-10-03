@@ -15,7 +15,14 @@ class PurchasesController extends ApiController
      */
     public function index()
     {
-        $paginator = Purchase::orderBy('id', 'desc')->paginate(25);
+        $open = request()->query('open') ? true : false;
+        
+        if ($open) {
+            $paginator = Purchase::where('processed_at', null)->orderBy('id', 'desc')->paginate(25);
+        } else {
+            $paginator = Purchase::where('processed_at', '!=', null)->orderBy('id', 'desc')->paginate(25);
+        }
+
         $purchases = $paginator->getCollection();
 
         return response()
