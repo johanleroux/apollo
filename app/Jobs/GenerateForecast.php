@@ -104,20 +104,18 @@ class GenerateForecast implements ShouldQueue
         if (!file_exists($this->path)) {
             mkdir($this->path);
         }
-        $handle = fopen($this->path . 'input.txt', 'w');
+        $handle = fopen($this->path . 'input.csv', 'w');
 
-        $data = 'Time Value' . "\n";
+        $data = 'Title,Value' . "\n";
         $firstSale = $this->sales->first();
         $date = Carbon::createFromDate($firstSale->year, $firstSale->month, 1)->startOfDay();
-        $i = 1;
         while ($date < $this->date) {
             $sale = $this->sales->where('year', $date->year)->where('month', $date->month)->first();
             if ($sale) {
-                $data .= $i . ' ' . $date->year . '-' . $date->month . ' ' . $sale->quantity . "\n";
+                $data .= $date->year . '/' . $date->month . ',' . $sale->quantity . "\n";
             } else {
-                $data .= $i . ' ' . $date->year . '-' . $date->month . ' 0' . "\n";
+                $data .= $date->year . '/' . $date->month . ',0' . "\n";
             }
-            $i++;
             $date->addMonth();
         }
         fwrite($handle, $data);
@@ -126,7 +124,7 @@ class GenerateForecast implements ShouldQueue
 
     protected function generateForecast()
     {
-        $process = new Process('Rscript ' . app_path('Queries/Forecast.R'));
+        $process = new Process('python ' . app_path('Queries/Forecast.py'));
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -136,7 +134,7 @@ class GenerateForecast implements ShouldQueue
 
     protected function saveForecast()
     {
-        $handle = fopen($this->path . 'output.txt', 'r');
+        $handle = fopen($this->path . 'output.csv', 'r');
 
         while (($line = fgets($handle)) !== false) {
             preg_match_all('/-?\d*\.{0,1}\d+/', $line, $matches);
