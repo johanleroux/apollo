@@ -75,7 +75,7 @@ export default {
             axios.post('/sales', this.request)
             .then(response => window.location = response.request.response)
             .catch(error => {
-                this.errors.record(error.response.data);
+                this.errors.record(error.response.data.errors);
             });
         },
         reset: function () {

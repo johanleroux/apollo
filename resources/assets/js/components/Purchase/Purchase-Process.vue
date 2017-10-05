@@ -8,7 +8,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback" v-bind:class="{ 'has-error': errors.has('ext_invoice') }">
-                        <label for="ext_invoice">External Invoice #</label>
+                        <label for="ext_invoice">Invoice #</label>
+                        <input type="text" class="form-control" id="ext_invoice" placeholder="External Invoice #" v-model="ext_invoice">
+                        <span class="help-block" v-text="errors.get('ext_invoice')"></span>
+                    </div>
+                    <div class="form-group has-feedback" v-bind:class="{ 'has-error': errors.has('ext_invoice') }">
+                        <label for="ext_invoice">External Invoice</label>
                         <input type="text" class="form-control" id="ext_invoice" placeholder="External Invoice #" v-model="ext_invoice">
                         <span class="help-block" v-text="errors.get('ext_invoice')"></span>
                     </div>
@@ -48,7 +53,7 @@ export default {
             axios.post('/purchases/' + this.purchase + '/process', this.request)
             .then(response => window.location = response.request.response)
             .catch(error => {
-                this.errors.record(error.response.data);
+                this.errors.record(error.response.data.errors);
             });
         }
     }

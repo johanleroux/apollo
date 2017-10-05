@@ -41787,6 +41787,11 @@ if (typeof jQuery === 'undefined') {
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -41814,7 +41819,7 @@ if (typeof jQuery === 'undefined') {
             axios.post('/purchases/' + this.purchase + '/process', this.request)
             .then(function (response) { return window.location = response.request.response; })
             .catch(function (error) {
-                this$1.errors.record(error.response.data);
+                this$1.errors.record(error.response.data.errors);
             });
         }
     }
@@ -42077,7 +42082,7 @@ if (typeof jQuery === 'undefined') {
                 window.location = response.request.response;
             })
             .catch(function (error) {
-                this$1.errors.record(error.response.data);
+                this$1.errors.record(error.response.data.errors);
             });
         },
 
@@ -42395,7 +42400,7 @@ if (typeof jQuery === 'undefined') {
             axios.post('/sales', this.request)
             .then(function (response) { return window.location = response.request.response; })
             .catch(function (error) {
-                this$1.errors.record(error.response.data);
+                this$1.errors.record(error.response.data.errors);
             });
         },
         reset: function () {
@@ -87714,7 +87719,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "ext_invoice"
     }
-  }, [_vm._v("External Invoice #")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("Invoice #")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.ext_invoice),
+      expression: "ext_invoice"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "ext_invoice",
+      "placeholder": "External Invoice #"
+    },
+    domProps: {
+      "value": (_vm.ext_invoice)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.ext_invoice = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "help-block",
+    domProps: {
+      "textContent": _vm._s(_vm.errors.get('ext_invoice'))
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group has-feedback",
+    class: {
+      'has-error': _vm.errors.has('ext_invoice')
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "ext_invoice"
+    }
+  }, [_vm._v("External Invoice")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",

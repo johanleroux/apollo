@@ -117,7 +117,7 @@ export default {
                 window.location = response.request.response;
             })
             .catch(error => {
-                this.errors.record(error.response.data);
+                this.errors.record(error.response.data.errors);
             });
         },
 
