@@ -36,7 +36,7 @@ Route::namespace('Api')->group(function () {
         /**
         * Purchases REST
         */
-        Route::apiResource('purchase', 'PurchasesController', ['only' => ['index', 'show']]);
+        Route::apiResource('purchase', 'PurchasesController', ['only' => ['index', 'show', 'update']]);
 
         /**
         * Sales REST
