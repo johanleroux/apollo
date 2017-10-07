@@ -49,7 +49,7 @@ class PurchasesController extends ApiController
         return response()
             ->json(fractal()
             ->item($purchase, new PurchaseTransformer())
-            ->parseIncludes(['items'])
+            ->parseIncludes(['purchase_items'])
             ->toArray());
     }
 
