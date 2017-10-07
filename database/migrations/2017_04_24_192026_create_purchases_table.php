@@ -17,7 +17,8 @@ class CreatePurchasesTable extends Migration
           $table->increments('id');
           $table->integer('supplier_id')->unsigned();
 
-          $table->string('ext_invoice')->nullable();
+          $table->string('ext_invoice_number')->nullable();
+          $table->string('ext_invoice_image')->nullable();
           $table->datetime('processed_at')->nullable();
 
           $table->foreign('supplier_id')->references('id')->on('suppliers');

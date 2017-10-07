@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PurchasesTest extends TestCase
@@ -152,22 +153,26 @@ class PurchasesTest extends TestCase
         $this->signInAdmin();
 
         $purchase = create(Purchase::class, [
-            'ext_invoice'  => null,
-            'processed_at' => null
+            'ext_invoice_number' => null,
+            'ext_invoice_image'  => null,
+            'processed_at'       => null
         ]);
 
         $this->assertDatabaseHas('purchases', [
-            'ext_invoice'  => null,
-            'processed_at' => null
+            'ext_invoice_number' => null,
+            'ext_invoice_image'  => null,
+            'processed_at'       => null
         ]);
 
         $this->post('/purchases/1/process', [
-            'ext_invoice' => 'LOREM'
+            'ext_invoice_number' => 'LOREM',
+            'ext_invoice_image' => UploadedFile::fake()->image('avatar.jpg')
         ]);
 
         $this->assertDatabaseMissing('purchases', [
-            'ext_invoice'  => null,
-            'processed_at' => null
+            'ext_invoice_number' => null,
+            'ext_invoice_image'  => null,
+            'processed_at'       => null
         ]);
     }
 }

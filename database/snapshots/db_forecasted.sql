@@ -332,7 +332,8 @@ DROP TABLE IF EXISTS `purchases`;
 CREATE TABLE `purchases` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `supplier_id` int(10) unsigned NOT NULL,
-  `ext_invoice` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ext_invoice_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ext_invoice_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `processed_at` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,

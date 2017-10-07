@@ -41798,29 +41798,30 @@ if (typeof jQuery === 'undefined') {
 /* harmony default export */ exports["default"] = {
     props: ['purchase'],
 
-    data: function() {
+    data: function () {
         return {
-            ext_invoice: '',
-            errors: new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* Errors */]()
-        }
-    },
-    computed: {
-        request: function () {
-            var data = new FormData();
-            data.append('ext_invoice', this.ext_invoice);
-            return data;
+            ext_invoice_number: '',
+            errors: new __WEBPACK_IMPORTED_MODULE_0__Errors__["a" /* Errors */](),
+            formData: new FormData(),
         }
     },
     methods: {
-        onSubmit: function() {
+        onSubmit: function () {
             var this$1 = this;
 
             this.errors.clear();
-            axios.post('/purchases/' + this.purchase + '/process', this.request)
-            .then(function (response) { return window.location = response.request.response; })
-            .catch(function (error) {
-                this$1.errors.record(error.response.data.errors);
-            });
+            this.formData.append('ext_invoice_number', this.ext_invoice_number);
+            this.formData.append('ext_invoice_image', document.getElementById('ext_invoice_image').files[0]);
+
+            axios.post('/purchases/' + this.purchase + '/process', this.formData, {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                })
+                .then(function (response) { return window.location = response.request.response; })
+                .catch(function (error) {
+                    this$1.errors.record(error.response.data.errors);
+                });
         }
     }
 };
@@ -87713,74 +87714,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "form-group has-feedback",
     class: {
-      'has-error': _vm.errors.has('ext_invoice')
+      'has-error': _vm.errors.has('ext_invoice_number')
     }
   }, [_c('label', {
     attrs: {
-      "for": "ext_invoice"
+      "for": "ext_invoice_number"
     }
   }, [_vm._v("Invoice #")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.ext_invoice),
-      expression: "ext_invoice"
+      value: (_vm.ext_invoice_number),
+      expression: "ext_invoice_number"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "ext_invoice",
+      "id": "ext_invoice_number",
       "placeholder": "External Invoice #"
     },
     domProps: {
-      "value": (_vm.ext_invoice)
+      "value": (_vm.ext_invoice_number)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.ext_invoice = $event.target.value
+        _vm.ext_invoice_number = $event.target.value
       }
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block",
     domProps: {
-      "textContent": _vm._s(_vm.errors.get('ext_invoice'))
+      "textContent": _vm._s(_vm.errors.get('ext_invoice_number'))
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "form-group has-feedback",
     class: {
-      'has-error': _vm.errors.has('ext_invoice')
+      'has-error': _vm.errors.has('ext_invoice_image')
     }
   }, [_c('label', {
     attrs: {
-      "for": "ext_invoice"
+      "for": "ext_invoice_image"
     }
   }, [_vm._v("External Invoice")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.ext_invoice),
-      expression: "ext_invoice"
-    }],
     staticClass: "form-control",
     attrs: {
-      "type": "text",
-      "id": "ext_invoice",
-      "placeholder": "External Invoice #"
-    },
-    domProps: {
-      "value": (_vm.ext_invoice)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.ext_invoice = $event.target.value
-      }
+      "type": "file",
+      "id": "ext_invoice_image"
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "help-block",
     domProps: {
-      "textContent": _vm._s(_vm.errors.get('ext_invoice'))
+      "textContent": _vm._s(_vm.errors.get('ext_invoice_image'))
     }
   })])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer"

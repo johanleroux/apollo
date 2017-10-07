@@ -200,12 +200,16 @@ class PurchasesController extends Controller
         abort_if($purchase->processed_at, 400);
 
         $this->validate(request(), [
-            'ext_invoice' => 'required|string',
+            'ext_invoice_number' => 'required|string',
+            'ext_invoice_image'  => 'required|image',
         ]);
 
+        $ext_invoice_image = request()->file('ext_invoice_image')->store('ext_invoices', 'public');
+
         $purchase->forceFill([
-            'ext_invoice'  => request()->ext_invoice,
-            'processed_at' => \Carbon\Carbon::now()
+            'ext_invoice_number' => request()->ext_invoice_number,
+            'ext_invoice_image'  => $ext_invoice_image,
+            'processed_at'       => \Carbon\Carbon::now()
         ]);
 
         $purchase->save();

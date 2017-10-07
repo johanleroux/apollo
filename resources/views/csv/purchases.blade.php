@@ -13,7 +13,7 @@
         <tr>
             <td>{{ $purchase->purchase_id }}</td>
             <td>{{ $purchase->created_at }}</td>
-            <td>{{ $purchase->purchase->ext_invoice }}</td>
+            <td>{{ $purchase->purchase->ext_invoice_number }}</td>
             <td>{{ $purchase->purchase->processed_at }}</td>
             <td>{{ $purchase->purchase->supplier->name }}</td>
             <td>{{ $purchase->quantity }}</td>

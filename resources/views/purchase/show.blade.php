@@ -3,14 +3,16 @@
 @section('content-header')
     {!! Breadcrumbs::render('purchase_show', $purchase) !!}
 
-    @if(!$purchase->processed_at)
-        <div class="btn-group pull-right">
-            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
-            <ul class="dropdown-menu pull-right" role="menu">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Actions <i class="fa fa-angle-down"></i></button>
+        <ul class="dropdown-menu pull-right" role="menu">
+            @if(!$purchase->processed_at)
                 <li><a href="#" data-toggle="modal" data-target="#purchaseProcess"><i class="fa fa-pencil"></i> Process Purchase</a></li>
-            </ul>
-        </div>
-    @endif
+            @else
+                <li><a href="#" data-toggle="modal" data-target="#externalInvoice"><i class="fa fa-pencil"></i> External Invoice</a></li>
+            @endif
+        </ul>
+    </div>
 @endsection
 @section('content')
 <section class="invoice">
@@ -36,7 +38,7 @@
             <b>Process Date:</b> {{ $purchase->processed_at ?  $purchase->processed_at->toDateTimeString() : 'Not Yet Processed' }}
             <br>
             @if($purchase->processed_at)
-                <b>External Invoice #:</b> {{ $purchase->ext_invoice }}
+                <b>External Invoice #:</b> {{ $purchase->ext_invoice_number }}
             @endif
         </div>
     </div>
@@ -76,4 +78,24 @@
 @if(!$purchase->processed_at)
 <purchase-process :purchase="{{ $purchase->id }}"></purchase-process>
 @endif
+
+<div class="modal fade" id="externalInvoice" tabindex="-1" role="dialog" aria-labelledby="externalInvoiceLbl">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="externalInvoiceLbl">External Invoice</h4>
+            </div>
+            <div class="modal-body">
+                @if($purchase->ext_invoice_image)
+                    <a href="{{ asset('storage/' . $purchase->ext_invoice_image) }}">
+                        <img class="img-responsive" src="{{ asset('storage/' . $purchase->ext_invoice_image) }}" alt="">
+                    </a>
+                @else
+                    <p>No External Invoice Image Available...</p>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
