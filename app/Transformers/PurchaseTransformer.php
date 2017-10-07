@@ -13,7 +13,7 @@ class PurchaseTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'items'
+        'purchase_items'
     ];
 
     /**
@@ -57,9 +57,9 @@ class PurchaseTransformer extends TransformerAbstract
     *
     * @return League\Fractal\ItemResource
     */
-    public function includeItems(Purchase $purchase)
+    public function includePurchaseItems(Purchase $purchase)
     {
-        $items = $purchase->items;
+        $items = $purchase->purchaseItems;
 
         return $this->collection($items, new PurchaseItemTransformer);
     }
