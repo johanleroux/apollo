@@ -137,9 +137,9 @@ class GenerateForecast implements ShouldQueue
         $handle = fopen($this->path . 'output.csv', 'r');
 
         while (($line = fgets($handle)) !== false) {
-            preg_match_all('/-?\d*\.{0,1}\d+/', $line, $matches);
+            preg_match_all('/(\d*[.])\d+/', $line, $matches);
             $forecasts = $matches[0];
-            if (count($forecasts) == 6) {
+            if (count($forecasts) == 1) {
                 $forecast = Forecast::updateOrCreate(
                     [
                         'product_id'  => $this->product->id,
@@ -147,7 +147,7 @@ class GenerateForecast implements ShouldQueue
                         'month' => $this->date->month
                     ],
                     [
-                        'forecast' => $forecasts[1]
+                        'forecast' => $forecasts[0]
                     ]
                 );
 
