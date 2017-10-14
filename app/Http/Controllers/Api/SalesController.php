@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Sale;
+use App\Models\SaleItem;
 use App\Transformers\SaleTransformer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
@@ -40,7 +41,7 @@ class SalesController extends ApiController
         return response()
             ->json(fractal()
             ->item($sale, new SaleTransformer())
-            ->parseIncludes(['items'])
+            ->parseIncludes(['sale_items'])
             ->toArray());
     }
 }
