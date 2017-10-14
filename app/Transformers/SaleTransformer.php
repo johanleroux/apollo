@@ -13,7 +13,7 @@ class SaleTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'items'
+        'sale_items'
     ];
 
     /**
@@ -56,9 +56,9 @@ class SaleTransformer extends TransformerAbstract
     *
     * @return League\Fractal\ItemResource
     */
-    public function includeItems(Sale $sale)
+    public function includeSaleItems(Sale $sale)
     {
-        $items = $sale->items;
+        $items = $sale->saleItems;
 
         return $this->collection($items, new SaleItemTransformer);
     }
