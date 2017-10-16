@@ -183,9 +183,12 @@ class ProductTest extends TestCase
         $purchase = $this->createPurchase(50000, Carbon::now()->subMonths(3));
 
         // Create couple months worth of sales with easy forecastings
-        for ($i = 1; $i <= 7; $i++) {
-            $sale = $this->createSale((7 - $i) * 500, $date->subMonth());
-        }
+        $sale = $this->createSale(500, $date->subMonth());
+        $sale = $this->createSale(450, $date->subMonth());
+        $sale = $this->createSale(400, $date->subMonth());
+        $sale = $this->createSale(500, $date->subMonth());
+        $sale = $this->createSale(450, $date->subMonth());
+        $sale = $this->createSale(400, $date->subMonth());
 
         // Assert that their is no forecast
         $this->assertCount(0, Forecast::get());
@@ -197,16 +200,9 @@ class ProductTest extends TestCase
         $this->assertCount(10, Forecast::get());
 
         $this->assertDatabaseHas('forecasts', [
-            'forecast' => 3500,
-            'forecast' => 4000,
-            'forecast' => 4500,
-            'forecast' => 5000,
-            'forecast' => 5500,
-            'forecast' => 6000,
-            'forecast' => 6500,
-            'forecast' => 7000,
-            'forecast' => 7500,
-            'forecast' => 8000,
+            'forecast' => 400,
+            'forecast' => 450,
+            'forecast' => 500,
         ]);
     }
 
