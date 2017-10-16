@@ -19,7 +19,7 @@
             To:
             <address>{!! $sale->customer->detailsPrint !!}</address>
         </div>
-        <div class="col-sm-6 invoice-col text-right">
+        <div class="col-sm-6 invoice-col text-right" style="float:right">
             <b>Sale ID:</b> #{{ $sale->id }} <br>
             <address>{!! $company->detailsPrint !!}</address>
         </div>
@@ -32,9 +32,9 @@
                     <tr>
                         <th>SKU</th>
                         <th>Description</th>
-                        <th>Quantity</th>
-                        <th class="text-right">Price</th>
-                        <th class="text-right">Total</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-right" style="width: 100px">Price</th>
+                        <th class="text-right" style="width: 100px">Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +42,7 @@
                         <tr>
                             <td>{{ $item->product->sku }}</td>
                             <td>{{ $item->product->description }}</td>
-                            <td>{{ $item->quantity }}</td>
+                            <td class="text-center">{{ $item->quantity }}</td>
                             <td class="text-right">{{ price_format($item->price) }}</td>
                             <td class="text-right">{{ price_format($item->total) }}</td>
                         </tr>
