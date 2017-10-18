@@ -25,6 +25,8 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
+    $faker->addProvider(new ProductProvider($faker));
+
     $cost   = $faker->randomFloat(2, 100, 1500);
     $retail = $cost * 1.14 * $faker->randomFloat(2, 1.25, 1.5);
     $rsp    = $retail * $faker->randomFloat(2, 0.9, 1.1);
@@ -34,7 +36,7 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
             return factory(App\Models\Supplier::class)->create()->id;
         },
         'sku'                       => strtoupper($faker->unique()->lexify()),
-        'description'               => $faker->sentence(),
+        'description'               => $faker->description(),
         'cost_price'                => $cost,
         'retail_price'              => $retail,
         'recommended_selling_price' => $rsp,
