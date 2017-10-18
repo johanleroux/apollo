@@ -76,7 +76,7 @@ $factory->define(App\Models\Purchase::class, function (Faker\Generator $faker) {
         },
         'processed_at' => \Carbon\Carbon::now(),
         'ext_invoice_number'  => $faker->word,
-        'ext_invoice_image'   => null
+        'ext_invoice_image'   => 'ext_invoices/XkkAvRudHcUg0KiOUyI1iBOH8UlyK3R3ShwEWPxg.png'
     ];
 });
 
