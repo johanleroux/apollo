@@ -75,21 +75,21 @@ class SuppliersSeeder extends Seeder
         $supplier
             ->purchases
             ->each(function ($purchase) use ($supplier, $amount) {
-                $product = $supplier->products->random();
-                    for($y = 0; $y < $this->nPurchaseItems; $y++) {
-                        // Create Purchase Item
-                        $purchase
-                            ->purchaseItems()
-                            ->save(
-                                factory(PurchaseItem::class)->make([
-                                    'purchase_id' => $purchase->id,
-                                    'product_id'  => $product->id,
-                                    'price'       => $product->cost_price,
-                                    'created_at'  => $purchase->created_at,
-                                    'updated_at'  => $purchase->created_at
-                                ])
-                            );
-                    }
+                for ($y = 0; $y < $this->nPurchaseItems; $y++) {
+                    $product = $supplier->products->random();
+                    // Create Purchase Item
+                    $purchase
+                        ->purchaseItems()
+                        ->save(
+                            factory(PurchaseItem::class)->make([
+                                'purchase_id' => $purchase->id,
+                                'product_id'  => $product->id,
+                                'price'       => $product->cost_price,
+                                'created_at'  => $purchase->created_at,
+                                'updated_at'  => $purchase->created_at
+                            ])
+                        );
+                }
             });
     }
 }
