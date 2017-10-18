@@ -25,7 +25,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
-    $faker->addProvider(new ProductProvider($faker));
+    $faker->addProvider(new App\Providers\ProductProvider($faker));
 
     $cost   = $faker->randomFloat(2, 100, 1500);
     $retail = $cost * 1.14 * $faker->randomFloat(2, 1.25, 1.5);

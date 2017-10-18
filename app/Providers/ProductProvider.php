@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Providers;
+
 use Faker\Provider\Base;
 
 class ProductProvider extends Base
